@@ -1,0 +1,26 @@
+ProgettoUniversita
+==================
+Dopo aver importato il progetto su Eclipse andate nella prospettiva di Java (si trova in alto a destra) e aggiungete 
+una classe, poi se non si salva dovrete fare così:
+
+  - Tasto destro sul progetto > team > commit
+  - Si apre un finestra da qui immettere un messaggio e mettete la spunta alla vostra classe (dovrebbe farlo in automatico) e
+    cliccate commit
+
+Andate, ora, sulla prospettiva di Git e aprite il menu a tendina del progetto (dovete vedere tutte le cartelle che contiene:
+
+  - Per prima cosa guardate se in References è contenuto un file chiamato master, se il file è presente allora cliccate col
+    destro su di esso e fate push. 
+    
+  - Se il file master non è presente allora dovete andare su Remotes > origin > tasto destro sulla cartella con l'iconcina
+    che presenta un freccia rossa > push
+  
+  - Se il comando push non è attivo DON'T WORRY!!!
+  - Cliccate su Configure Push > advance , qui vi si aprirà una finestra.
+  - Nella finestra dovete: dove c'è scritto "Source ref" mettete master, scegliendo dal menu a tendina, cliccate su add ed,
+    infine, cliccate su finish.
+  - Fatto ciò potete cliccare su Push e il gioco è fatto.
+  
+La seconda procedura è da fare solo la prima volta, poi bisogna fare la prima che ho scritto, spero di essere stata chiara.
+
+PS Controllate sempre sul sito di GitHub che le vostre modifiche ci siano!
