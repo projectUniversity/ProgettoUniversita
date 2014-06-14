@@ -1,0 +1,68 @@
+ProgettoUniversita
+==================
+Date in JAVA
+Emiliano Castellina (emiliano.castellina@polito.it)
+
+La classe principale per trattare date ed ore in Java è 
+java.util.GregorianCalendar che estende la classe astratta java.util.Calendar e
+sostituisce la ormai deprecata classe java.util.Date.
+Per creare un oggetto di classe GregorianCalendar che contenga la data e
+l'ora corrente, basta richiamare il costruttore senza parametri.
+GregorianCalendar dataAttuale=new GregorianCalendar();
+Per ottenere informazioni sull'ANNO, MESE, GIORNO e ORA si utilizza il
+metodo get() passandogli come paramentro le costanti statiche definite nella
+classe (YEAR, MONTH, DAY, …)
+int anno = dataAttuale.get(GregorianCalendar.YEAR);
+int mese = dataAttuale.get(GregorianCalendar.MONTH) + 1; //i mesi partono da 0
+int giorno = dataAttuale.get(GregorianCalendar.DATE);
+int ore = dataAttuale.get(GregorianCalendar.HOUR);
+int minuti = dataAttuale.get(GregorianCalendar.MINUTE);
+int secondi = dataAttuale.get(GregorianCalendar.SECOND);
+La classe GregorianCalendar implementa dei metodi per effettuare confronti
+ed operazioni con le date. Di seguito sono riportati alcuni esempi.
+
+Confronto di due date
+
+GregorianCalendar data1 = new GregorianCalendar(2008, 11, 18);
+GregorianCalendar data2 = new GregorianCalendar(2007, 11, 10);
+if ( data1.before(data2) )
+{
+System.out.println("data 1 precede data 2");
+} else if ( data1.after(data2) )
+{
+System.out.println("dati 2 precede data 1");
+} else {
+System.out.println("Le date sono uguali");
+}
+
+Somma sottrazione di Date
+
+GregorianCalendar data = new GregorianCalendar(2008, 11, 18);
+data.add(GregorianCalendar.DATE, +33); // Aggiungo 33 giorni
+data.add(GregorianCalendar.YEAR, -1); // Tolgo 1 anno
+data.roll(GregorianCalendar.MONTH, +1); //Come Add, ma non modifica altri campi
+come DAY e YEAR
+
+Differenza in giorni tra due date
+
+GregorianCalendar data1 = new GregorianCalendar(2008, 11, 18);
+GregorianCalendar data2 = new GregorianCalendar(2007, 11, 10);
+long milliseconds1 = data1.getTimeInMillis();
+long milliseconds2 = data1.getTimeInMillis();
+long diff = milliseconds2 - milliseconds1;
+long diffSeconds = diff / 1000; //differenza in secondi
+long diffMinutes = diff / (60 * 1000); //differenza in minuti
+long diffHours = diff / (60 * 60 * 1000); //differenza in ore
+long diffDays = diff / (24 * 60 * 60 * 1000); //differenza in giorni
+
+Formattazione Date
+
+Per formattare l'output degli oggetti Calendar si può utilizzare la classe
+java.text.SimpleDateFormat .
+SimpleDateFormat sdf =
+new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+System.out.println( sdf.format( data.getTime() ) );
+Parsing Date
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+String mydata = "02/03/2008";
+Calendar c = (sdf.parse(myData)).getCalendar();
