@@ -27,5 +27,6 @@ PS Controllate sempre sul sito di GitHub che le vostre modifiche ci siano!
 
 PSS Ricordate che per ogni modifica dovrete ricominciare dal primo punto, e se cliccando su master e facendo push branches
     le modifiche non vengono apportate, allora cliccate anche su Remotes > origin > tasto destro sul secondo file > push
-    
+    Per incorporare da eclipse le modifiche apportate su al progetto e salvate su gitHub basta andare nella schermata di
+    Git > tasto destro sul nome del progetto e cliccate su pull.
 Ciaooooooooooooooooooooooooooo :D
