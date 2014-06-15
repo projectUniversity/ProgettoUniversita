@@ -30,24 +30,24 @@ public class Malattia
 	/**
 	 * ATTRIBUTI
 	 */
-	private String nomeMalattia;
-	GregorianCalendar dataInizioMalattia;
-	GregorianCalendar dataFineMalattia;
-	ArrayList <String> sintomiMalattia;
-	String sintomo;
-	ArrayList <String> diagnosiMalattia;
-	String diagnosi;
-	ArrayList <String> esamiAssociati;
-	String esame;
-	ArrayList <String> terapiaAssociata;
-	String terapia;
+	private static String nomeMalattia;
+	private static GregorianCalendar dataInizioMalattia;
+	private static GregorianCalendar dataFineMalattia;
+	private static ArrayList <String> sintomiMalattia;
+	private static String sintomo;
+	private static ArrayList <String> diagnosiMalattia;
+	private static String diagnosi;
+	private static ArrayList <String> esamiAssociati;
+	private static String esame;
+	private static ArrayList <String> terapiaAssociata;
+	private static String terapia;
 
-	int giornoInizio;
-	int meseInizio;
-	int annoInizio;
-	int giornoFine;
-	int meseFine;
-	int annoFine;
+	private static int giornoInizio;
+	private static int meseInizio;
+	private static int annoInizio;
+	private static int giornoFine;
+	private static int meseFine;
+	private static int annoFine;
 	
 	
 	/**
@@ -104,7 +104,7 @@ public class Malattia
 	/**
 	 * Metodo che permette di creare una nuova malattia
 	 */
-	public void nuovaMalattia ()
+	public static void nuovaMalattia ()
 	{
 		System.out.println(MSG_NOME);
 		InputDati.leggiStringaNonVuota(nomeMalattia);
@@ -136,7 +136,7 @@ public class Malattia
 	/**
 	 * Metodo per visualizzare un toString sintetico per descrivere la malattia
 	 */
-	public String toStringSintetico()
+	public static String toStringSintetico()
 	{
 		StringBuffer stringa = new StringBuffer();
 		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" + "Nome: " + nomeMalattia + "\n" + "Data d'inizio: " + dataInizioMalattia + "\n" + "Data di termine: " + dataFineMalattia));
