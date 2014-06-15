@@ -8,6 +8,7 @@ import it.unibs.fp.mylib.*;
  *
  */
 public class Menu {
+	
 	//COSTANTI
 		public static final String CORNICE="*******************************************************************";
 		public static final String MSG_SCELTA="Digitare il numero dell'opzione desiderata --> ";
