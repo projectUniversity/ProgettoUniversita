@@ -1,5 +1,6 @@
 package mainETest;
 
+import metodi.CartellaSanitaria;
 import InputSalvataggioEMenu.Menu;
 
 /**
@@ -10,18 +11,15 @@ import InputSalvataggioEMenu.Menu;
  */
 public class MainProgetto {
 	
-	/**
-	 *COSTANTI 
-	 */
+	//COSTANTI
 	public static final String[] scelte={"Inserisci i dati dell'utente","Prenota un nuovo esame","Inserisci l'esito di un esame","Inserisci una nuova malattia","Visualizza una malattia a scelta","Visualizza la cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
 	
-	/**
-	 * ATTRIBUTI
-	 */
+	//ATTRIBUTI
 	private static boolean finito=false;
 	private static Menu myMenu=new Menu(scelte);
 	private static int scelta;
+	private static CartellaSanitaria cartSan=new CartellaSanitaria();
 	
 	/**
 	 * METODI
@@ -60,6 +58,7 @@ public class MainProgetto {
 				System.out.println();
 				//Queste stringhe verranno tolte, mi servono solo per controllare il funzionamento
 				System.out.println("Hai selezionato l'opzione per visualizzare la cartella sanitaria");
+				cartSan.toString();
 			break;
 			default:
 				System.out.println();

@@ -30,22 +30,22 @@ public class Paziente
 	/**
 	 * ATTRIBUTI
 	 */
-	private String nome;
-	private String cognome;
-	private char sesso;
-	private double peso;
-	private double altezza;
-	private GregorianCalendar dataNascita;
-	private String [] codiceFiscale;
-	private String fattoreRh;
-	private String gruppoSanguigno;
-	private String viaCasa;
-	private String comuneCasa;
-	private String provinciaCasa;
-	private String comuneNascita;
-	private String provinciaNascita;
-	private int [] capCasa;
-	private ArrayList <Integer> telefoni;
+	private static String nome;
+	private static String cognome;
+	private static char sesso;
+	private static double peso;
+	private static double altezza;
+	private static GregorianCalendar dataNascita;
+	private static String [] codiceFiscale;
+	private static String fattoreRh;
+	private static String gruppoSanguigno;
+	private static String viaCasa;
+	private static String comuneCasa;
+	private static String provinciaCasa;
+	private static String comuneNascita;
+	private static String provinciaNascita;
+	private static int [] capCasa;
+	private static ArrayList <Integer> telefoni;
 	
 	/**
 	 * COSTRUTTORE
@@ -136,7 +136,7 @@ public class Paziente
 	 * METODO per la visualizzazione completa dei dati anagrafici del paziente
 	 * @return tutti i dati anagrafici del paziente
 	 */
-	public String toStringCompleto()
+	public static String toStringCompleto()
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
