@@ -18,15 +18,13 @@ public class Paziente
 	/**
 	 * COSTANTI
 	 */
-	public final static String FATTORE_POSITIVO = "POSITIVO";
-	public final static String FATTORE_NEGATIVO = "NEGATIVO";
-	public final static String GRUPPO_0 = "0";
-	public final static String GRUPPO_A = "A";
-	public final static String GRUPPO_B = "B";
-	public final static String GRUPPO_AB = "AB";
+	public final static String [] FATTORE = {"POSITIVO","NEGATIVO"};
+	public final static String [] GRUPPO = {"0","A","B","AB"};
+	public final static String [] LETTERE = {"A","B","C","D","E","F","G","H","J","K","I","L","M","N","O","P","Q","R","S","T","U","X","Y","W","V","Z"};
+	public final static int [] NUMERI = {0,1,2,3,4,5,6,7,8,9};
+	public final static int [] POSIZIONE_LETTERE = {0,1,2,3,4,5,8,11,15};
+	public final static int [] POSIZIONE_NUMERI = {6,7,9,10,12,1,3,14};
 	public final static int NUM_CAP = 5;
-	public final static int NUM_TEL = 10;
-	public final static int CF_VUOTO = 0;
 	public final static int LUNGH_MAX_CF = 16;
 	
 	/**
@@ -84,27 +82,41 @@ public class Paziente
 		telefoni = new ArrayList <Integer> ();		
 	}
 	
-	//???????????????????????????????????????????????????????????????????????????
-	public boolean controlloCf(String msg)
+	/**
+	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
+	 * @return true il codice fisclae e' corretto, altrimenti false
+	 */
+	public boolean controlloCf()
 	{
-		boolean giusto = false;
 		
 		if(codiceFiscale.length != LUNGH_MAX_CF)
 		{
-			giusto = false;
-			System.out.println(msg); // Deve stampare un messaggio di errore!
+			return false;
 		}
 		
 		else
 		{
-			for(int i =0; i<=5; i++)
+			for(int i=0; i<codiceFiscale.length; i++)
 			{
-				if(codiceFiscale[i]);
+				for(int j=0; j<POSIZIONE_LETTERE.length; j++)
+				{
+					while(i == POSIZIONE_LETTERE[j])
+					{
+						controlloLettera(codiceFiscale[i]);
+					}// while delle lettere
+				}// for delle lettere
 				
-			}
-		}
-		
-		return giusto;
+				for(int j=0; j<POSIZIONE_NUMERI.length; j++)
+				{
+					while(i == POSIZIONE_NUMERI[j])
+					{
+						controlloNumero(codiceFiscale[i]);
+					}// while dei numeri
+				}// for dei numeri
+			}// for del codice fiscale
+			
+			return true;
+		}//else
 	}
 	
 	/**
@@ -160,10 +172,83 @@ public class Paziente
 		telefoni.add(nuovoTel);
 	}
 	
+	/**
+	 * METODO per vedere se un numero di telefono e' gia' presente
+	 * @param tel il numero di telefono che inserisco
+	 * @return true s eil numero e' gia' presnete, altrimenti false
+	 */
+	public boolean TelDoppio(int tel)
+	{
+		for(int numTel: telefoni)
+		{
+			if(tel == numTel)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * METODO che controlla che il fattore sia positivo o negativo e il gruppo sanguigno sia 0,A,B o AB
+	 * @param msg messaggio il controllo fallisce
+	 * @return true se il controllo va a buon fine, altrimenti ritorna false
+	 */
 	public boolean controlloGruppo()
 	{
-		boolean giusto = false;
+		for(int i=0; i<FATTORE.length; i++)
+		{
+			if(fattoreRh.equalsIgnoreCase(FATTORE[i]))
+			{
+				for(int j=0; j<GRUPPO.length; j++)
+				{
+					if(gruppoSanguigno.equalsIgnoreCase(GRUPPO[j]))
+					{
+						return true;
+					}// if interno
+				}// for interno
+			}// if esterno
+		}// for esterno
 		
-		if()
+		return false;
+	}
+	
+	/**
+	 * METODO che controlla che la stringa contenga lettere
+	 * @param str la stringa che viene controllata
+	 * @return true se la stringa contiene lettere, altrimenti false
+	 */
+	public boolean controlloLettera(String str)
+	{
+		for(int i=0; i<LETTERE.length; i++)
+		{
+			while(str.equalsIgnoreCase(LETTERE[i]))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * METODO che controlla che una stringa contenga numeri
+	 * @param str la stringa che viene controllata
+	 * @return true se la stringa contiene numeri, altrimenti false
+	 */
+	public boolean controlloNumero(String str)
+	{
+		for(int i=0; i<NUMERI.length; i++)
+		{
+			int num = Integer.parseInt(str);
+
+			while(num == NUMERI[i])
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
