@@ -10,10 +10,10 @@ import it.unibs.fp.mylib.*;
 public class Menu {
 	
 	//COSTANTI
-		public static final String CORNICE="*******************************************************************";
+		public static final String CORNICE="_____________________________________________________________________";
 		public static final String MSG_SCELTA="Digitare il numero dell'opzione desiderata --> ";
 		public static final String MSG_ESCI="0) Salva e termina";
-		
+		public static final String CORNICE2="MENU _______________________________________________________________";
 		//ATTRIBUTI
 		private static String[] scelta;
 		
@@ -35,6 +35,7 @@ public class Menu {
 		 */
 		public int seleziona(){
 			System.out.println();
+			System.out.println(CORNICE2);
 			for(int i=0;i<scelta.length;i++){
 				System.out.println((i+1)+")"+scelta[i]);
 			}

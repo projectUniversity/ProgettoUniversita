@@ -36,6 +36,7 @@ public class MainProgetto {
 	public static final String ANNO="Inserisci l'anno di nascita: ";
 	public static final String MESE="Inserisci il mese di nascita: ";
 	public static final String GIORNO="Inserisci il giorno di nascita: ";
+	
 	//ATTRIBUTI
 	private static boolean finito=false;
 	private static Menu myMenu=new Menu(SCELTE);
@@ -43,9 +44,12 @@ public class MainProgetto {
 	private static int scelta2;
 	private static int scelta3;
 	private static CartellaSanitaria cartSan=new CartellaSanitaria();
+	private static SalvaSuFile file=new SalvaSuFile();
 	
 	/**
-	 * METODI
+	 * Metodo main
+	 * Questo metodo richiama i vari metodi delle altre classi e fa iniziare il programma
+	 * @param args
 	 */
 	public static void main(String[] args){
 		System.out.println(BENVENUTO);
@@ -65,10 +69,10 @@ public class MainProgetto {
 				scelta2=InputDati.leggiIntero(MSG_SCELTA, 0, PRENOTAZIONE.length);
 				switch(scelta2){
 				case 1:
-					SalvaSuFile.nuovoEsame();
+					//uso file
 				break;
 				case 2:
-					SalvaSuFile.nuovoEsame();
+					//uso file
 				break;
 				}
 			break;
@@ -92,7 +96,7 @@ public class MainProgetto {
 			break;
 			case 4:
 				System.out.println();
-				SalvaSuFile.nuovaMalattia();
+				//uso file
 			break;
 			case 5:
 				System.out.println();
