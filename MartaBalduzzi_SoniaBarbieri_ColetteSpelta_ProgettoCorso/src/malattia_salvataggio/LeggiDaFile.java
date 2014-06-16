@@ -1,7 +1,7 @@
 package malattia_salvataggio;
 
 import java.io.*;
-import metodi.*;
+import paziente_esami.*;
 import java.util.ArrayList;
 
 /**
@@ -16,14 +16,16 @@ public class LeggiDaFile
 {
 	public static void main (String [] args)
 	{
-		ArrayList<CartellaSanitaria> mioSalvataggio = new ArrayList();
+		SalvaSuFile nuovaMalattia;
+		SalvaSuFile nuovoEsame;
 		
 		try
 		{
 			FileInputStream salvaSuFile = new FileInputStream("Salvataggio.sav");
 			ObjectInputStream salvataggio = new ObjectInputStream(salvaSuFile);
 			
-			mioSalvataggio = (ArrayList<CartellaSanitaria>) salvataggio.readObject();
+			nuovaMalattia = (SalvaSuFile) salvataggio.readObject();
+			nuovoEsame = (SalvaSuFile) salvataggio.readObject();
 			
 			salvataggio.close();
 		}

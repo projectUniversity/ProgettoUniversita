@@ -14,19 +14,7 @@ import it.unibs.fp.mylib.*;
  */
 
 public class Malattia 
-{
-	/**
-	 * COSTANTI
-	 */
-	private final static String MSG_NOME = "Inserire il nome della malattia: ";
-	private final static String MSG_DATA_INIZIO = "Inserire la data di inizio della malattia: ";
-	private final static String MSG_DATA_FINE = "Inserire la data di termine della malattia, se presente: ";
-	private final static String MSG_SINTOMI = "Inserire i sintomi della malattia: ";
-	private final static String MSG_DIAGNOSI = "Indicare la diagnosi finale: ";
-	private final static String MSG_ESAMI = "Inserire gli esami indicati per la patologia: ";
-	private final static String MSG_TERAPIA = "Indicare la terapia da seguire: ";
-	
-	
+{	
 	/**
 	 * ATTRIBUTI
 	 */
@@ -101,37 +89,6 @@ public class Malattia
 	}
 	
 	
-	/**
-	 * Metodo che permette di creare una nuova malattia
-	 */
-	public void nuovaMalattia ()
-	{
-		System.out.println(MSG_NOME);
-		InputDati.leggiStringaNonVuota(nomeMalattia);
-		System.out.println(nomeMalattia);
-		
-		System.out.println(MSG_DATA_INIZIO);
-		System.out.println(giornoInizio + "-" + meseInizio + "-" + annoInizio);
-		
-		System.out.println(MSG_DATA_FINE);
-		System.out.println(giornoFine + "-" + meseFine + "-" + annoFine);
-		
-		System.out.println(MSG_SINTOMI);
-		InputDati.leggiStringa(sintomo);
-		System.out.println(sintomiMalattia);
-		
-		System.out.println(MSG_DIAGNOSI);
-		InputDati.leggiStringa(diagnosi);
-		System.out.println(diagnosiMalattia);
-		
-		System.out.println(MSG_ESAMI);
-		InputDati.leggiStringa(esame);
-		System.out.println(esamiAssociati);
-		
-		System.out.println(MSG_TERAPIA);
-		InputDati.leggiStringa(terapia);
-		System.out.println(terapiaAssociata);	
-	}
 	
 	/**
 	 * Metodo per visualizzare un toString sintetico per descrivere la malattia
