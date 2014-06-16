@@ -148,7 +148,7 @@ public class Paziente
 		str.append("Nome: " + nome);
 		str.append("Cognome: " + cognome);
 		str.append("Sesso: " + sesso + " - " + "Peso (kg) : " + peso + " - " + "Altezza (m): " + altezza);
-		str.append("Nato il: " + dataNascita + " a " + comuneNascita + " in provincia di " + provinciaNascita);
+		str.append("Nato il: " + giorno + "/" + mese + "/" + anno + " a " + comuneNascita + " in provincia di " + provinciaNascita);
 		str.append("Abita in via " + viaCasa + " - " + comuneCasa + "In provincia di: " + provinciaCasa + " CAP: " + capCasa);
 		
 		for(int i=0; i<codiceFiscale.length; i++)
