@@ -35,7 +35,7 @@ public class Paziente
 	private static int giorno;
 	private static int mese;
 	private static int anno;
-	private static String [] codiceFiscale;
+	private static String [] codiceFiscale = new String [LUNGH_MAX_CF];
 	private static String fattoreRh;
 	private static String gruppoSanguigno;
 	private static String viaCasa;
@@ -43,7 +43,7 @@ public class Paziente
 	private static String provinciaCasa;
 	private static String comuneNascita;
 	private static String provinciaNascita;
-	private static int [] capCasa;
+	private static int [] capCasa = new int [NUM_CAP];
 	private static ArrayList <Integer> telefoni;
 	
 	/**
@@ -64,7 +64,7 @@ public class Paziente
 	 * @param _comuneNascita il comune dove e' nato
 	 * @param _provinciaNascita la provincia dove e' nato
 	 */
-	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita)
+	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String [] _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int [] _capCasa)
 	{
 		nome = _nome;
 		cognome = _cognome;
@@ -75,7 +75,7 @@ public class Paziente
 		anno = _anno;
 		mese = _mese;
 		giorno = _giorno;
-		codiceFiscale = new String [LUNGH_MAX_CF];
+		codiceFiscale = _codiceFiscale;
 		fattoreRh = _fattoreRh;
 		gruppoSanguigno = _gruppoSanguigno;
 		viaCasa = _viaCasa;
@@ -83,7 +83,7 @@ public class Paziente
 		provinciaCasa = _provinciaCasa;
 		comuneNascita = _comuneNascita;
 		provinciaNascita = _provinciaNascita;
-		capCasa = new int [NUM_CAP];
+		capCasa = _capCasa;
 		telefoni = new ArrayList <Integer> ();		
 	}
 	
