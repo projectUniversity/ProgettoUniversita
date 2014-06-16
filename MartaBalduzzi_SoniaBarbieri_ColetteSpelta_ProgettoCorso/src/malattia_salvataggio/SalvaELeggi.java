@@ -132,9 +132,8 @@ public class SalvaELeggi
 	
 	/**
 	 * Metodo per scrivere su file e memorizzare i dati
-	 * @param fileout 
 	 */
-	public void scrittura(Writer fileout)
+	public void scrittura()
 	{
 		try
 		{
