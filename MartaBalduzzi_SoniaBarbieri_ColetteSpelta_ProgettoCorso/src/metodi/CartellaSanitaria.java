@@ -15,7 +15,7 @@ public class CartellaSanitaria {
 	//METODI
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
-		frase.append(String.format(Paziente.toStringCompleto(),/*esami*/Malattia.toStringSintetico()));
+		frase.append(String.format(Paziente.toStringCompleto(),Malattia.toStringSintetico()));
 		return frase.toString();
 	}
 }
