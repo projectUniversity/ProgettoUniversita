@@ -1,7 +1,7 @@
 package metodi;
 
-import paziente_esami.Paziente;
-
+import paziente_esami.*;
+import malattia_salvataggio.*;
 public class CartellaSanitaria {
 
 	/**
@@ -11,13 +11,11 @@ public class CartellaSanitaria {
 	 *
 	 */
 	
-	//ATTRIBUTI
-	
 	
 	//METODI
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
-		frase.append(String.format(Paziente.toStringCompleto()));
+		frase.append(String.format(Paziente.toStringCompleto(),/*esami*/Malattia.toStringSintetico()));
 		return frase.toString();
 	}
 }

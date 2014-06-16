@@ -14,10 +14,8 @@ import it.unibs.fp.mylib.*;
  */
 public class Paziente
 {
-	
-	/**
-	 * COSTANTI
-	 */
+
+	//COSTANTI
 	public final static String [] FATTORE = {"POSITIVO","NEGATIVO"};
 	public final static String [] GRUPPO = {"0","A","B","AB"};
 	public final static String [] LETTERE = {"A","B","C","D","E","F","G","H","J","K","I","L","M","N","O","P","Q","R","S","T","U","X","Y","W","V","Z"};
@@ -27,15 +25,16 @@ public class Paziente
 	public final static int NUM_CAP = 5;
 	public final static int LUNGH_MAX_CF = 16;
 	
-	/**
-	 * ATTRIBUTI
-	 */
+	//ATTRIBUTI
 	private static String nome;
 	private static String cognome;
 	private static char sesso;
 	private static double peso;
 	private static double altezza;
 	private static GregorianCalendar dataNascita;
+	private static int giorno;
+	private static int mese;
+	private static int anno;
 	private static String [] codiceFiscale;
 	private static String fattoreRh;
 	private static String gruppoSanguigno;
@@ -54,6 +53,9 @@ public class Paziente
 	 * @param _sesso il sesso del paziente (M/F)
 	 * @param _peso il peso del paziente (ex. 72.5 kg)
 	 * @param _altezza l'altezza del paziente (ex. 1.5 m)
+	 * @param _anno l'anno di nascita del paziente
+	 * @param _mese il mese in cui e' nato
+	 * @param _giorno il giorno in cui e' nato
 	 * @param _fattoreRh il fattore Rh del sangue (positivo/negativo)
 	 * @param _gruppoSanguigno il gruppo sanguigno (0,A,B,AB)
 	 * @param _viaCasa la via dell'abitazione
@@ -62,7 +64,7 @@ public class Paziente
 	 * @param _comuneNascita il comune dove e' nato
 	 * @param _provinciaNascita la provincia dove e' nato
 	 */
-	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita)
+	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita)
 	{
 		nome = _nome;
 		cognome = _cognome;
@@ -70,6 +72,9 @@ public class Paziente
 		peso = _peso;
 		altezza = _altezza;
 		dataNascita = new GregorianCalendar ();
+		anno = _anno;
+		mese = _mese;
+		giorno = _giorno;
 		codiceFiscale = new String [LUNGH_MAX_CF];
 		fattoreRh = _fattoreRh;
 		gruppoSanguigno = _gruppoSanguigno;
@@ -250,5 +255,15 @@ public class Paziente
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * METODO per ottenere informazioni sulla data di nascita
+	 */
+	public void infoData()
+	{
+		anno = dataNascita.get(GregorianCalendar.YEAR);
+		mese = dataNascita.get(GregorianCalendar.MONTH) + 1; // i mesi iniziano da 0 nel GregorianCalendar
+		giorno = dataNascita.get(GregorianCalendar.DATE);
 	}
 }

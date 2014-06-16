@@ -12,7 +12,7 @@ public class Menu {
 	//COSTANTI
 		public static final String CORNICE="*******************************************************************";
 		public static final String MSG_SCELTA="Digitare il numero dell'opzione desiderata --> ";
-		public static final String MSG_ESCI="0- Salva e termina";
+		public static final String MSG_ESCI="0) Salva e termina";
 		
 		//ATTRIBUTI
 		private static String[] scelta;
