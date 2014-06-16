@@ -93,7 +93,7 @@ public class Malattia
 	/**
 	 * Metodo per visualizzare un toString sintetico per descrivere la malattia
 	 */
-	public String toStringSintetico()
+	public static String toStringSintetico()
 	{
 		StringBuffer stringa = new StringBuffer();
 		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" + "Nome: " + nomeMalattia + "\n" + "Data d'inizio: " + dataInizioMalattia + "\n" + "Data di termine: " + dataFineMalattia));

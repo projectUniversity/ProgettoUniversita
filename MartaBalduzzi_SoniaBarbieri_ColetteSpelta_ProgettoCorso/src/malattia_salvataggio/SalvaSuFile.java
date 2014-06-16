@@ -55,15 +55,15 @@ public class SalvaSuFile
 	private static int meseFine;
 	private static int annoFine;
 	
-	private String nomeEsame;
-	private String raccomandazione;
-	private char tipoEsame;
-	GregorianCalendar dataEsame;
+	private static String nomeEsame;
+	private static String raccomandazione;
+	private static char tipoEsame;
+	static GregorianCalendar dataEsame;
 	private String viaEsame;
 	private String comuneEsame;
 	private String provinciaEsame;
 	int [] capEsame;
-	GregorianCalendar oraEsame;
+	static GregorianCalendar oraEsame;
 	ArrayList <Double> esitoPeriodico;
 	ArrayList <String> esitoDiagnostico;
 	ArrayList <String> esamePeriodico;
@@ -72,7 +72,7 @@ public class SalvaSuFile
 	/**
 	 * Metodo che permette di creare una nuova malattia
 	 */
-	public void nuovaMalattia ()
+	public static void nuovaMalattia ()
 	{
 		System.out.println(MSG_NOME);
 		InputDati.leggiStringaNonVuota(nomeMalattia);
@@ -104,7 +104,7 @@ public class SalvaSuFile
 	/**
 	 * Metodo per creare un nuovo esame
 	 */
-	public void nuovoEsame()
+	public static void nuovoEsame()
 	{
 		System.out.println(NOME_ESAME);
 		InputDati.leggiStringaNonVuota(nomeEsame);

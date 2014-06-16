@@ -33,7 +33,9 @@ public class MainProgetto {
 	public static final String PROVINCIA="Inserisci la provincia di residenza: ";
 	public static final String COMUNE_NASCITA="Inserisci il comune di nascita: ";
 	public static final String PROVINCIA_NASCITA="Inserisci la provincia di nascita: ";
-	
+	public static final String ANNO="Inserisci l'anno di nascita: ";
+	public static final String MESE="Inserisci il mese di nascita: ";
+	public static final String GIORNO="Inserisci il giorno di nascita: ";
 	//ATTRIBUTI
 	private static boolean finito=false;
 	private static Menu myMenu=new Menu(SCELTE);
@@ -52,7 +54,7 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA));
+				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA));
 			break;
 			case 2:
 				System.out.println();
@@ -63,12 +65,10 @@ public class MainProgetto {
 				scelta2=InputDati.leggiIntero(MSG_SCELTA, 0, PRENOTAZIONE.length);
 				switch(scelta2){
 				case 1:
-					//Queste stringhe verranno tolte, mi servono solo per controllare il funzionamento
-					System.out.println("Hai selezionato l'opzione per prenotare un esame periodico");
+					SalvaSuFile.nuovoEsame();
 				break;
 				case 2:
-					//Queste stringhe verranno tolte, mi servono solo per controllare il funzionamento
-					System.out.println("Hai selezionato l'opzione per prenotare un esame diagnostico");
+					SalvaSuFile.nuovoEsame();
 				break;
 				}
 			break;
@@ -92,8 +92,7 @@ public class MainProgetto {
 			break;
 			case 4:
 				System.out.println();
-				String malattia=Malattia.nuovaMalattia();
-				new Malattia(malattia);
+				SalvaSuFile.nuovaMalattia();
 			break;
 			case 5:
 				System.out.println();
