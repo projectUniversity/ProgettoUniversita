@@ -1,6 +1,8 @@
 package malattia_salvataggio;
 
 import java.io.*;
+import metodi.*;
+import java.util.ArrayList;
 
 /**
  * Classe che permette di leggere i dati salvati su un file
@@ -12,5 +14,22 @@ import java.io.*;
 
 public class LeggiDaFile 
 {
-	
+	public static void main (String [] args)
+	{
+		ArrayList<CartellaSanitaria> mioSalvataggio = new ArrayList();
+		
+		try
+		{
+			FileInputStream salvaSuFile = new FileInputStream("Salvataggio.sav");
+			ObjectInputStream salvataggio = new ObjectInputStream(salvaSuFile);
+			
+			mioSalvataggio = (ArrayList<CartellaSanitaria>) salvataggio.readObject();
+			
+			salvataggio.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace(); //Se c'è un errore stampa l'info
+		}
+	}
 }
