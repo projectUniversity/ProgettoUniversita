@@ -15,7 +15,7 @@ import it.unibs.fp.mylib.*;
  * Classe svolta da Barbieri Sonia
  *
  */
-public class Paziente 
+public class Paziente implements Serializable
 {
 	//COSTANTI
 	public final static String [] FATTORE = {"POSITIVO","NEGATIVO"};
