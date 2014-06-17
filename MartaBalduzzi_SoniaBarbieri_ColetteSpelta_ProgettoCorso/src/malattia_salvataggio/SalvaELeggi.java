@@ -3,7 +3,7 @@ package malattia_salvataggio;
 import it.unibs.fp.mylib.InputDati;
 
 import java.io.*;
-
+import java.util.*;
 import paziente_esami.*;
 
 import java.util.ArrayList;
@@ -78,9 +78,7 @@ public class SalvaELeggi
 	private ObjectOutputStream fout;
 	private FileInputStream filein;
 	private ObjectInputStream fin;
-	private SalvaELeggi malattia ;
-	 
-	
+	private SalvaELeggi malattia =  
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
@@ -108,6 +106,7 @@ public class SalvaELeggi
 		InputDati.leggiStringa(MSG_TERAPIA);
 		System.out.println(terapiaAssociata);	
 	}
+	
 	
 	/**
 	 * Metodo per creare un nuovo esame
@@ -170,9 +169,17 @@ public class SalvaELeggi
 	{
 		try
 		{
+			fileout = new FileOutputStream("Salvataggio.dat");
+			fout = new ObjectOutputStream(fileout);
 			
+			
+			
+			fout.close();
 		}
-			
+		catch (IOException e)
+		{
+			System.out.println(e);
+		}
 	}
 	
 	
@@ -183,18 +190,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			filein = new FileReader("Salvataggio.txt");
-			fin = new BufferedReader(filein);
-			while ((s = fin.readLine()) != null)
-			{
-				System.out.println(s);
-			}
 			
-			fin.close();
-		}
-		catch(IOException e)
-		{
-			System.out.println(e);
 		}
 	}
 	

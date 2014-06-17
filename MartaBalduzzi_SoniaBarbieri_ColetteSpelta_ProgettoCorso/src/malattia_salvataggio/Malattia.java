@@ -134,7 +134,7 @@ public class Malattia
 	/**
 	 * Metodo per memorizzare i nomi di tutte le malattie (Vector di String)
 	 */
-	public void aggiungiMalattia(String nomeMalattia)
+	public static void aggiungiMalattia()
 	{
 		elenco.add(nomeMalattia);
 		System.out.println(elenco);
