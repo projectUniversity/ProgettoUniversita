@@ -1,6 +1,5 @@
 package paziente_esami;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import it.unibs.fp.mylib.*;
 
@@ -21,9 +20,14 @@ public class Paziente
 	public final static String [] LETTERE = {"A","B","C","D","E","F","G","H","J","K","I","L","M","N","O","P","Q","R","S","T","U","X","Y","W","V","Z"};
 	public final static int [] NUMERI = {0,1,2,3,4,5,6,7,8,9};
 	public final static int [] POSIZIONE_LETTERE = {0,1,2,3,4,5,8,11,15};
-	public final static int [] POSIZIONE_NUMERI = {6,7,9,10,12,1,3,14};
+	public final static int [] POSIZIONE_NUMERI = {6,7,9,10,12,13,14};
 	public final static int LUNGH_MAX_CF = 16;
 	public final static String NOME_COGNOME = "Nome: %s - Cognome: %s";
+	public final static String SESSO_PESO_ALTEZZA = "Sesso: %c - Peso: %1.2f - Altezza: %1.2f";
+	public final static String NASCITA = "Nato il %d/%d/%d a %s in provincia di %s";
+	public final static String DOMICILIO = "Abita in via %s a %s in provicia di %s      CAP  %d";
+	public final static String TEL_CF ="Telefono  %s          Codice Fiscale  %s";
+	public final static String SANGUE = "Gruppo sanguigno %s %s";
 	
 	//ATTRIBUTI
 	private static String nome;
@@ -44,7 +48,7 @@ public class Paziente
 	private static String comuneNascita;
 	private static String provinciaNascita;
 	private static int capCasa;
-	private static ArrayList <Integer> telefoni;
+	private static String telefono;
 	
 	/**
 	 * COSTRUTTORE
@@ -65,8 +69,9 @@ public class Paziente
 	 * @param _comuneNascita il comune dove e' nato
 	 * @param _provinciaNascita la provincia dove e' nato
 	 * @param _capCasa il cap di dove abita
+	 * @param _telefono il numero di telefono del paziente
 	 */
-	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String  _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa)
+	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String  _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa, String _telefono)
 	{
 		nome = _nome;
 		cognome = _cognome;
@@ -86,30 +91,30 @@ public class Paziente
 		comuneNascita = _comuneNascita;
 		provinciaNascita = _provinciaNascita;
 		capCasa = _capCasa;
-		telefoni = new ArrayList <Integer> ();		
+		telefono = _telefono;		
 	}
 	
 	/**
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return true il codice fisclae e' corretto, altrimenti false
 	 */
-/*	public boolean controlloCf()
+	public static boolean controlloCf()
 	{
 		
-		if(codiceFiscale.length != LUNGH_MAX_CF)
+		if(codiceFiscale.length() != LUNGH_MAX_CF)
 		{
 			return false;
 		}
 		
 		else
 		{
-			for(int i=0; i<codiceFiscale.length; i++)
+			for(int i=0; i<codiceFiscale.length(); i++)
 			{
 				for(int j=0; j<POSIZIONE_LETTERE.length; j++)
 				{
 					while(i == POSIZIONE_LETTERE[j])
 					{
-						controlloLettera(codiceFiscale[i]);
+						controlloLettera(codiceFiscale.substring(i));
 					}// while delle lettere
 				}// for delle lettere
 				
@@ -117,14 +122,14 @@ public class Paziente
 				{
 					while(i == POSIZIONE_NUMERI[j])
 					{
-						controlloNumero(codiceFiscale[i]);
+						controlloNumero(codiceFiscale.substring(i));
 					}// while dei numeri
 				}// for dei numeri
 			}// for del codice fiscale
 			
 			return true;
 		}//else
-	}*/
+	}
 	
 	/**
 	 * METODO per la visualizzazione sintetica dei dati del paziente (nome e cognome)
@@ -134,8 +139,7 @@ public class Paziente
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati del paziente"));
-		str.append("Nome: " + nome);
-		str.append("Cognome: " + cognome);
+		str.append(String.format(NOME_COGNOME, nome, cognome));
 		return str.toString();
 	}
 	
@@ -148,52 +152,12 @@ public class Paziente
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
 		str.append(String.format(NOME_COGNOME, nome, cognome));
-		str.append("Sesso: " + sesso + " - " + "Peso (kg) : " + peso + " - " + "Altezza (m): " + altezza);
-		str.append("Nato il: " + giorno + "/" + mese + "/" + anno + " a " + comuneNascita + " in provincia di " + provinciaNascita);
-		str.append("Abita in via " + viaCasa + " - " + comuneCasa + "In provincia di: " + provinciaCasa + " CAP: " + capCasa);
-		str.append("CF: "+codiceFiscale.toUpperCase());
-		/*for(int i=0; i<codiceFiscale.length; i++)
-		{
-			str.append("CF: " + codiceFiscale[i].toUpperCase());
-		}*/
-		
-		str.append("Gruppo sanguigno: " + gruppoSanguigno + fattoreRh);
-		
-		for(int i=0; i<telefoni.size(); i++)
-		{
-			str.append("Telefono/i: ");
-			int telefono = telefoni.get(i);
-			str.append(telefono);
-		}
-		
+		str.append(String.format("\n" + SESSO_PESO_ALTEZZA, sesso, peso, altezza));
+		str.append(String.format("\n" + NASCITA, giorno, mese, anno, comuneNascita, provinciaNascita));
+		str.append(String.format("\n" + DOMICILIO, viaCasa, comuneCasa, provinciaCasa, capCasa));
+		str.append(String.format("\n" + TEL_CF, telefono, codiceFiscale.toUpperCase()));
+		str.append(String.format("\n" + SANGUE, gruppoSanguigno, fattoreRh));
 		return str.toString();
-	}
-	
-	/**
-	 * METODO per aggiungere un numero di telefono
-	 * @param nuovoTel il numero di telefono che si vuole aggiungere
-	 */
-	public void aggiungiTel(int nuovoTel)
-	{
-		telefoni.add(nuovoTel);
-	}
-	
-	/**
-	 * METODO per vedere se un numero di telefono e' gia' presente
-	 * @param tel il numero di telefono che inserisco
-	 * @return true s eil numero e' gia' presnete, altrimenti false
-	 */
-	public boolean TelDoppio(int tel)
-	{
-		for(int numTel: telefoni)
-		{
-			if(tel == numTel)
-			{
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	/**
@@ -201,7 +165,7 @@ public class Paziente
 	 * @param msg messaggio il controllo fallisce
 	 * @return true se il controllo va a buon fine, altrimenti ritorna false
 	 */
-	public boolean controlloGruppo()
+	public static boolean controlloGruppo()
 	{
 		for(int i=0; i<FATTORE.length; i++)
 		{
@@ -225,7 +189,7 @@ public class Paziente
 	 * @param str la stringa che viene controllata
 	 * @return true se la stringa contiene lettere, altrimenti false
 	 */
-	public boolean controlloLettera(String str)
+	public static boolean controlloLettera(String str)
 	{
 		for(int i=0; i<LETTERE.length; i++)
 		{
@@ -243,7 +207,7 @@ public class Paziente
 	 * @param str la stringa che viene controllata
 	 * @return true se la stringa contiene numeri, altrimenti false
 	 */
-	public boolean controlloNumero(String str)
+	public static boolean controlloNumero(String str)
 	{
 		for(int i=0; i<NUMERI.length; i++)
 		{
@@ -267,4 +231,23 @@ public class Paziente
 		mese = dataNascita.get(GregorianCalendar.MONTH) + 1; // i mesi iniziano da 0 nel GregorianCalendar
 		giorno = dataNascita.get(GregorianCalendar.DATE);
 	}
+	
+	/**
+	 * METODO per prendere il nome del paziente
+	 * @return il nome del paziente
+	 */
+	public static String getNome()
+	{
+		return nome;
+	}
+	
+	/**
+	 * METODO per prendere il cognome del paziente
+	 * @return il cognome del paziente
+	 */
+	public static String getCognome()
+	{
+		return cognome;
+	}
+
 }

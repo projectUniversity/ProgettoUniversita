@@ -19,6 +19,16 @@ public class Esame
 	public final static char PERIODICO = 'P';
 	public final static char DIAGNOSTICO = 'D';
 	public final static String MSG_ASSENTE = "L'esame non e' presente nella lista";
+	public final static String PRENOTATO = "L'esame %s e' stato prenotato";
+	public final static String ESAME_P_ESITI = "Esame: %s      Esito: %f  svolto in data %d/%d/%d";
+	public final static String ESAME_D = "Esame %s     svolto in data %d/%d/%d";
+	public final static String RACCOMANDAZIONI = "Esame: %s       Raccomandazioni: %s";
+	public final static String ESITI_P_DATA_ORA = "Esito: %1.2f    svolto in data %d/%d/%d   alle ore %d:%d";
+	public final static String LUOGO = "A %s in via %s, %s (%s)";
+	public final static String MEDIA = "La media dei valori registrati e' %1.2f";
+	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
+	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d";
+	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
 	
 	//ATTRIBUTI
 	private static String nomeEsame;
@@ -87,7 +97,7 @@ public class Esame
 	}
 	
 	/**
-	 * METODO per ottenere informazioni rigardo la data e l'ora deòò'esame
+	 * METODO per ottenere informazioni rigardo la data e l'ora dell'esame
 	 */
 	public void dataOraEsame()
 	{
@@ -239,14 +249,14 @@ public class Esame
 		{
 			if(prenotazione())
 			{
-				str.append(String.format("L'esame " + esamePeriodico.get(i) + " e' stato prenotato"));
+				str.append(String.format(PRENOTATO, esamePeriodico.get(i)));
 			}
 			
 			else
 			{
 				for(int j=0; j<esitoPeriodico.size(); j++)
 				{
-					str.append(String.format("Esame: " + esamePeriodico.get(i) + "esito: " + esitoPeriodico.get(j) + "svolto in data: " + giorno + "/" + mese + "/" + anno));
+					str.append(String.format(ESAME_P_ESITI, esamePeriodico.get(i), esitoPeriodico.get(j), giorno, mese, anno));
 				}
 			}
 		}
@@ -255,11 +265,11 @@ public class Esame
 		{
 			if(prenotazione())
 			{
-				str.append(String.format("L'esame " + esameDiagnostico.get(i) + " e' stato prenotato"));
+				str.append(String.format(PRENOTATO, esameDiagnostico.get(i)));
 			}
 			else
 			{
-				str.append(String.format("Esame: " + esameDiagnostico.get(i) + "svolto in data:" + giorno + mese + anno));
+				str.append(String.format(ESAME_D, esameDiagnostico.get(i), giorno, mese, anno));
 			}
 		}	
 		
@@ -275,24 +285,26 @@ public class Esame
 		StringBuffer str = new StringBuffer();
 		if(tipoEsame == PERIODICO)
 		{
-			str.append(String.format("Esame: " + nomeEsame + "Raccomandazioni:" + raccomandazione));
+			str.append(String.format(RACCOMANDAZIONI, nomeEsame, raccomandazione));
 			for(int i=0; i<esitoPeriodico.size(); i++)
 			{
-				str.append(String.format("esito: " + esitoPeriodico.get(i) + "svolto in data: " + giorno + "/" + mese + "/" + anno + "alle ore: " + ora + ":" + minuti + "a: " + ospedale + ", " + viaEsame + ", " + comuneEsame + "(" + provinciaEsame + ")"));
-				str.append(String.format("Media dei valori dell'esame: " + mediaEsiti()));
+				str.append(String.format(ESITI_P_DATA_ORA, esitoPeriodico.get(i), giorno, mese, anno, ora, minuti));
+				str.append(String.format("\n" + "\t" + LUOGO, ospedale, viaEsame, comuneEsame, provinciaEsame));
+				str.append(String.format("\n" + MEDIA, mediaEsiti()));
 				if(VerificaSoglia())
 				{
-					str.append(String.format("Il valore " + esitoPeriodico.get(i) + "registrato il " + giorno + "/" + mese + "/" + anno + "non si trova entro l'intervallo di normalita' " + sogliaMin + " - " + sogliaMax));
+					str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
 				}// if interno
 			}// for
 		}// if esterno
 		
 		if(tipoEsame == DIAGNOSTICO)
 		{
-			str.append(String.format("Esame: " + nomeEsame + "Raccomandazioni: " + raccomandazione));
+			str.append(String.format(RACCOMANDAZIONI, nomeEsame, raccomandazione));
 			for(int i=0; i<esitoDiagnostico.size(); i++)
 			{
-				str.append(String.format("esito: " + esitoDiagnostico.get(i) + "svolto in data: " + giorno + "/" + mese + "/" + anno + "alle ore: " + ora + ":" + minuti + "a: " + viaEsame + ", " + comuneEsame + "(" + provinciaEsame + ")"));
+				str.append(String.format("\n" + ESITO_D_DATA_ORA, esitoDiagnostico.get(i), giorno, mese, anno, ora, minuti));
+				str.append(String.format("\n" + "\t" + LUOGO, viaEsame, comuneEsame, provinciaEsame));
 			}
 		}
 		
@@ -306,11 +318,12 @@ public class Esame
 	public static String toStringPrenotati()
 	{
 		StringBuffer str = new StringBuffer();
+		str.append(String.format(ELENCO_PRENOTATI));
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
 			if(prenotato == ESAME_PRENOTATO)
 			{
-				str.append(String.format("Esame periodico prenotato: " + esamePeriodico.get(i)));
+				str.append(String.format("\n" + esamePeriodico.get(i)));
 			}
 		}
 			
@@ -318,7 +331,7 @@ public class Esame
 		{
 			if(prenotato == ESAME_PRENOTATO)
 			{
-				str.append(String.format("Esame diagnostico prenotato: " + esameDiagnostico.get(i)));
+				str.append(String.format("\n" + esameDiagnostico.get(i)));
 			}
 		}
 
