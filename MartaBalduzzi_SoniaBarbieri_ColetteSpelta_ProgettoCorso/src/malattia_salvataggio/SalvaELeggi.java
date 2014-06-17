@@ -78,7 +78,8 @@ public class SalvaELeggi
 	private ObjectOutputStream fout;
 	private FileInputStream filein;
 	private ObjectInputStream fin;
-	private SalvaELeggi malattia =  
+	
+	
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
@@ -190,7 +191,29 @@ public class SalvaELeggi
 	{
 		try
 		{
-			
+			filein = new FileInputStream("Salvataggio.dat");
+			fin = new ObjectInputStream(filein);
+			boolean fineFile = false;
+			while(!fineFile)
+			{
+				try
+				{
+					
+				}
+				catch(EOFException e)
+				{
+					fineFile = true;
+				}
+			}
+			fin.close();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
 		}
 	}
 	
