@@ -30,6 +30,7 @@ public class Esame
 	private int anno;
 	private int ora;
 	private int minuti;
+	private String ospedale;
 	private String viaEsame;
 	private String comuneEsame;
 	private String provinciaEsame;
@@ -52,6 +53,7 @@ public class Esame
 	 * @param _anno l'anno in cui fare l'esame
 	 * @param _ora l'ora delle'esame
 	 * @param _minuti i minuti dell'esame
+	 * @param _ospedale l'ospedale dove viene effettuato l'esame
 	 * @param _viaEsame la via dove viene svolto l'esame
 	 * @param _comuneEsame il comune di dove viene svolto l'esame
 	 * @param _provinciaEsame la provincia del comune
@@ -59,7 +61,7 @@ public class Esame
 	 * @param _sogliaMin la soglia minima per un esito misurabile
 	 * @param _prenotato se l'esame e' stato prenotato
 	 */
-	public Esame (String _nomeEsame, String _raccomandazione, char _tipoEsame, int _giorno, int _mese, int _anno, int _ora, int _minuti, String _viaEsame, String _comuneEsame, String _provinciaEsame, double _sogliaMax, double _sogliaMin, String _prenotato)
+	public Esame (String _nomeEsame, String _raccomandazione, char _tipoEsame, int _giorno, int _mese, int _anno, int _ora, int _minuti, String _ospedale, String _viaEsame, String _comuneEsame, String _provinciaEsame, double _sogliaMax, double _sogliaMin, String _prenotato)
 	{
 		nomeEsame = _nomeEsame;
 		raccomandazione = _raccomandazione;
@@ -70,6 +72,7 @@ public class Esame
 		anno = _anno;
 		ora = _ora;
 		minuti = _minuti;
+		ospedale = _ospedale;
 		viaEsame = _viaEsame;
 		comuneEsame = _comuneEsame;
 		provinciaEsame = _provinciaEsame;
@@ -256,7 +259,7 @@ public class Esame
 			str.append("Esame: " + nomeEsame + "Raccomandazioni:" + raccomandazione);
 			for(int i=0; i<esitoPeriodico.size(); i++)
 			{
-				str.append("esito: " + esitoPeriodico.get(i) + "svolto in data: " + giorno + "/" + mese + "/" + anno + "alle ore: " + ora + ":" + minuti + "a: " + viaEsame + ", " + comuneEsame + "(" + provinciaEsame + ")");
+				str.append("esito: " + esitoPeriodico.get(i) + "svolto in data: " + giorno + "/" + mese + "/" + anno + "alle ore: " + ora + ":" + minuti + "a: " + ospedale + ", " + viaEsame + ", " + comuneEsame + "(" + provinciaEsame + ")");
 				if(VerificaSoglia())
 				{
 					str.append("Il valore " + esitoPeriodico.get(i) + "registrato il " + giorno + "/" + mese + "/" + anno + "non si trova entro l'intervallo di normalita' " + sogliaMin + " - " + sogliaMax);
