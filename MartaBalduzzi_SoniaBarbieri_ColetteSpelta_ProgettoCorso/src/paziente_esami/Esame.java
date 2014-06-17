@@ -1,5 +1,6 @@
 package paziente_esami;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -11,7 +12,7 @@ import java.util.GregorianCalendar;
  * Classe svolta da Barbieri Sonia
  *
  */
-public class Esame
+public class Esame implements Serializable
 {
 	
 	//COSTANTI

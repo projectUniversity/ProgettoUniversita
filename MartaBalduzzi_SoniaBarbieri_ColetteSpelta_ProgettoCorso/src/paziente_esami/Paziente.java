@@ -1,5 +1,7 @@
 package paziente_esami;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import mainETest.MainProgetto;
@@ -13,7 +15,7 @@ import it.unibs.fp.mylib.*;
  * Classe svolta da Barbieri Sonia
  *
  */
-public class Paziente
+public class Paziente implements Serializable
 {
 
 	//COSTANTI
@@ -113,14 +115,16 @@ public class Paziente
 		
 		else
 		{
-			for(int i=0; i<codiceFiscale.length(); i++)
+			ArrayList <String> codFiscale = new ArrayList <String>();
+			codFiscale.add(codiceFiscale);
+			for(int i=0; i<codFiscale.size(); i++)
 			{
 				for(int j=0; j<POSIZIONE_LETTERE.length; j++)
 				{
 					while(i == POSIZIONE_LETTERE[j])
 					{
-						controlloLettera(codiceFiscale.substring(i));
-						if(controlloLettera(codiceFiscale.substring(i)) == false)
+						controlloLettera(codFiscale.get(i));
+						if(controlloLettera(codFiscale.get(i)) == false)
 						{
 							System.out.println(CF_SBAGLIATO);
 							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
@@ -132,8 +136,8 @@ public class Paziente
 				{
 					while(i == POSIZIONE_NUMERI[j])
 					{
-						controlloNumero(codiceFiscale.substring(i));
-						if(controlloNumero(codiceFiscale.substring(i)) == false)
+						controlloNumero(codFiscale.get(i));
+						if(controlloNumero(codFiscale.get(i)) == false)
 						{
 							System.out.println(CF_SBAGLIATO);
 							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
@@ -166,12 +170,12 @@ public class Paziente
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
-		str.append(String.format(NOME_COGNOME, nome, cognome));
+		str.append(String.format(NOME_COGNOME, nome.toUpperCase(), cognome.toUpperCase()));
 		str.append(String.format("\n" + SESSO_PESO_ALTEZZA, sesso, peso, altezza));
-		str.append(String.format("\n" + NASCITA, giorno, mese, anno, comuneNascita, provinciaNascita));
-		str.append(String.format("\n" + DOMICILIO, viaCasa, comuneCasa, provinciaCasa, capCasa));
+		str.append(String.format("\n" + NASCITA, giorno, mese, anno, comuneNascita.toUpperCase(), provinciaNascita.toUpperCase()));
+		str.append(String.format("\n" + DOMICILIO, viaCasa.toUpperCase(), comuneCasa.toUpperCase(), provinciaCasa.toUpperCase(), capCasa));
 		str.append(String.format("\n" + TEL_CF, telefono, codiceFiscale.toUpperCase()));
-		str.append(String.format("\n" + SANGUE, gruppoSanguigno, fattoreRh));
+		str.append(String.format("\n" + SANGUE, gruppoSanguigno.toUpperCase(), fattoreRh.toUpperCase()));
 		return str.toString();
 	}
 	
