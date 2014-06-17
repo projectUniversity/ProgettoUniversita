@@ -23,6 +23,7 @@ public class Paziente
 	public final static int [] POSIZIONE_LETTERE = {0,1,2,3,4,5,8,11,15};
 	public final static int [] POSIZIONE_NUMERI = {6,7,9,10,12,1,3,14};
 	public final static int LUNGH_MAX_CF = 16;
+	public final static String NOME_COGNOME = "Nome: %s - Cognome: %s";
 	
 	//ATTRIBUTI
 	private static String nome;
@@ -146,8 +147,7 @@ public class Paziente
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
-		str.append(String.format("Nome: " + nome));
-		str.append("Cognome: " + cognome);
+		str.append(String.format(NOME_COGNOME, nome, cognome));
 		str.append("Sesso: " + sesso + " - " + "Peso (kg) : " + peso + " - " + "Altezza (m): " + altezza);
 		str.append("Nato il: " + giorno + "/" + mese + "/" + anno + " a " + comuneNascita + " in provincia di " + provinciaNascita);
 		str.append("Abita in via " + viaCasa + " - " + comuneCasa + "In provincia di: " + provinciaCasa + " CAP: " + capCasa);
