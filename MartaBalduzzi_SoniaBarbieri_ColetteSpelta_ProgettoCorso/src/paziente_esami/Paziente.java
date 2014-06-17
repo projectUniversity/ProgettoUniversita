@@ -28,7 +28,7 @@ public class Paziente implements Serializable
 	public final static String NOME_COGNOME = "Nome: %s - Cognome: %s";
 	public final static String SESSO_PESO_ALTEZZA = "Sesso: %c - Peso: %1.2f - Altezza: %1.2f";
 	public final static String NASCITA = "Nato il %d/%d/%d a %s in provincia di %s";
-	public final static String DOMICILIO = "Abita in via %s a %s in provicia di %s      CAP  %d";
+	public final static String DOMICILIO = "Abita in via %s a %s in provincia di %s      CAP  %d";
 	public final static String TEL_CF ="Telefono:  %s          Codice Fiscale:  %s";
 	public final static String SANGUE = "Gruppo sanguigno: %s %s";
 	public final static String CF_SBAGLIATO = "Il codice fiscale inserito non e' corretto. Rinserire il CF: ";
