@@ -282,7 +282,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			filein = new FileInputStream("Salvataggio.dat");
+			filein = new FileInputStream("Salvataggio.txt");
 			fin = new ObjectInputStream(filein);
 			boolean fineFile = false;
 			while(!fineFile)

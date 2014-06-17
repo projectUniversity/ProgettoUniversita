@@ -134,7 +134,10 @@ public class Malattia implements Serializable
 	 */
 	public static ArrayList<String> aggiungiMalattia()  
 	{
-		elenco.add(nomeMalattia);
+		for(int i = 0; i < elenco.size(); i++)
+		{
+			elenco.add(nomeMalattia);
+		}
 		return elenco;
 	}
 	
