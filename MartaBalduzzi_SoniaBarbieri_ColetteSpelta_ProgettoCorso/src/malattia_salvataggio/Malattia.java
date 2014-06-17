@@ -1,8 +1,11 @@
 package malattia_salvataggio;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
+
 import it.unibs.fp.mylib.*;
+
 import java.util.*;
 
 /**
@@ -14,7 +17,7 @@ import java.util.*;
  *
  */
 
-public class Malattia 
+public class Malattia implements Serializable 
 {	
 	/**
 	 * ATTRIBUTI
