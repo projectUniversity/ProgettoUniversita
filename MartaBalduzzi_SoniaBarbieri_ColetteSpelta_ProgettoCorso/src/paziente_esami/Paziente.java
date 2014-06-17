@@ -1,6 +1,8 @@
 package paziente_esami;
 
 import java.util.GregorianCalendar;
+
+import mainETest.MainProgetto;
 import it.unibs.fp.mylib.*;
 
 /**
@@ -26,8 +28,9 @@ public class Paziente
 	public final static String SESSO_PESO_ALTEZZA = "Sesso: %c - Peso: %1.2f - Altezza: %1.2f";
 	public final static String NASCITA = "Nato il %d/%d/%d a %s in provincia di %s";
 	public final static String DOMICILIO = "Abita in via %s a %s in provicia di %s      CAP  %d";
-	public final static String TEL_CF ="Telefono  %s          Codice Fiscale  %s";
-	public final static String SANGUE = "Gruppo sanguigno %s %s";
+	public final static String TEL_CF ="Telefono:  %s          Codice Fiscale:  %s";
+	public final static String SANGUE = "Gruppo sanguigno: %s %s";
+	public final static String CF_SBAGLIATO = "Il codice fiscale inserito non e' corretto. Rinserire il CF: ";
 	
 	//ATTRIBUTI
 	private static String nome;
@@ -96,14 +99,16 @@ public class Paziente
 	
 	/**
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
-	 * @return true il codice fisclae e' corretto, altrimenti false
+	 * @return il codice fiscale del paziente
 	 */
-	public static boolean controlloCf()
+	public String controlloCf()
 	{
 		
 		if(codiceFiscale.length() != LUNGH_MAX_CF)
 		{
-			return false;
+			System.out.println(CF_SBAGLIATO);
+			codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			return codiceFiscale;
 		}
 		
 		else
@@ -115,6 +120,11 @@ public class Paziente
 					while(i == POSIZIONE_LETTERE[j])
 					{
 						controlloLettera(codiceFiscale.substring(i));
+						if(controlloLettera(codiceFiscale.substring(i)) == false)
+						{
+							System.out.println(CF_SBAGLIATO);
+							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+						}
 					}// while delle lettere
 				}// for delle lettere
 				
@@ -123,11 +133,16 @@ public class Paziente
 					while(i == POSIZIONE_NUMERI[j])
 					{
 						controlloNumero(codiceFiscale.substring(i));
+						if(controlloNumero(codiceFiscale.substring(i)) == false)
+						{
+							System.out.println(CF_SBAGLIATO);
+							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+						}
 					}// while dei numeri
 				}// for dei numeri
 			}// for del codice fiscale
 			
-			return true;
+			return codiceFiscale;
 		}//else
 	}
 	
@@ -158,30 +173,6 @@ public class Paziente
 		str.append(String.format("\n" + TEL_CF, telefono, codiceFiscale.toUpperCase()));
 		str.append(String.format("\n" + SANGUE, gruppoSanguigno, fattoreRh));
 		return str.toString();
-	}
-	
-	/**
-	 * METODO che controlla che il fattore sia positivo o negativo e il gruppo sanguigno sia 0,A,B o AB
-	 * @param msg messaggio il controllo fallisce
-	 * @return true se il controllo va a buon fine, altrimenti ritorna false
-	 */
-	public static boolean controlloGruppo()
-	{
-		for(int i=0; i<FATTORE.length; i++)
-		{
-			if(fattoreRh.equalsIgnoreCase(FATTORE[i]))
-			{
-				for(int j=0; j<GRUPPO.length; j++)
-				{
-					if(gruppoSanguigno.equalsIgnoreCase(GRUPPO[j]))
-					{
-						return true;
-					}// if interno
-				}// for interno
-			}// if esterno
-		}// for esterno
-		
-		return false;
 	}
 	
 	/**
