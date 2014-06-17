@@ -289,6 +289,8 @@ public class SalvaELeggi
 			{
 				try
 				{
+					patologia = (Malattia)fin.readObject();
+					System.out.println(patologia);
 					
 				}
 				catch(EOFException e)
