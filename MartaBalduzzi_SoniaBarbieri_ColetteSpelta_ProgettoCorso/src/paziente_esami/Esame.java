@@ -21,26 +21,26 @@ public class Esame
 	public final static String MSG_ASSENTE = "L'esame non e' presente nella lista";
 	
 	//ATTRIBUTI
-	private String nomeEsame;
-	private String raccomandazione;
-	private char tipoEsame;
-	private GregorianCalendar dataEsame;
+	private static String nomeEsame;
+	private static String raccomandazione;
+	private static char tipoEsame;
+	private static GregorianCalendar dataEsame;
 	private static int giorno;
 	private static int mese;
 	private static int anno;
-	private int ora;
-	private int minuti;
-	private String ospedale;
-	private String viaEsame;
-	private String comuneEsame;
-	private String provinciaEsame;
-	private GregorianCalendar oraEsame;
+	private static int ora;
+	private static int minuti;
+	private static String ospedale;
+	private static String viaEsame;
+	private static String comuneEsame;
+	private static String provinciaEsame;
+	private static GregorianCalendar oraEsame;
 	private static ArrayList <Double> esitoPeriodico;
-	private ArrayList <String> esitoDiagnostico;
+	private static ArrayList <String> esitoDiagnostico;
 	private static ArrayList <String> esamePeriodico;
 	private static ArrayList <String> esameDiagnostico;
-	private double sogliaMax;
-	private double sogliaMin;
+	private static double sogliaMax;
+	private static double sogliaMin;
 	private static String prenotato;
 	
 	/**
@@ -102,7 +102,7 @@ public class Esame
 	 * METODO per vedere se un esame e' gia' stato prenotato o meno
 	 * @return true se l'esame e' gia' stato prenotato, altrimenti false
 	 */
-	public boolean prenotazione()
+	public static boolean prenotazione()
 	{
 		if(prenotato.equals(ESAME_PRENOTATO))
 		{
@@ -169,7 +169,7 @@ public class Esame
 	 * @param esame il nome dell'esame da ricercare nell'elenco per poter aggiungere l'esito
 	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
 	 */
-	public void aggiungiEsitoPeriodico(String esame, double esito)
+	public static void aggiungiEsitoPeriodico(String esame, double esito)
 	{
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
@@ -190,7 +190,7 @@ public class Esame
 	 * @param esame il nome dell'esame da ricercare nell'elenco per poter aggiungere l'esito
 	 * @param esito il vaolre dell'esito come stringa (si tratta di un esame diagnostico)
 	 */
-	public void aggiungiEsitoDiagnostico(String esame, String esito)
+	public static void aggiungiEsitoDiagnostico(String esame, String esito)
 	{
 		for(int i=0; i<esameDiagnostico.size(); i++)
 		{
