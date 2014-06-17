@@ -163,8 +163,8 @@ public class SalvaELeggi
 		giornoInizio = InputDati.leggiIntero(GIORNO_I, 1, 31);
 		meseInizio = InputDati.leggiIntero(MESE_I, 1, 12);
 		annoInizio = InputDati.leggiIntero(ANNO_I);
-		giornoFine = InputDati.leggiIntero(GIORNO_F, 1, 31);
-		meseFine = InputDati.leggiIntero(MESE_F, 1, 12);
+		giornoFine = InputDati.leggiIntero(GIORNO_F, 0, 31);
+		meseFine = InputDati.leggiIntero(MESE_F, 0, 12);
 		annoFine = InputDati.leggiIntero(ANNO_F);
 		
 		sintomo = InputDati.leggiStringa(MSG_SINTOMI);
@@ -242,7 +242,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("Salvataggio.txt");
 			fout = new ObjectOutputStream(fileout);
 			
 			utente = SalvaELeggi.creaUtente();
@@ -260,7 +260,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("Salvataggio.txt");
 			fout = new ObjectOutputStream(fileout);
 			
 			patologia = SalvaELeggi.nuovaMalattia();
