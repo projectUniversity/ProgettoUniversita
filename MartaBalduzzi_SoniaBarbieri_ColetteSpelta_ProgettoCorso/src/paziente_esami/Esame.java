@@ -264,6 +264,7 @@ public class Esame
 			for(int i=0; i<esitoPeriodico.size(); i++)
 			{
 				str.append("esito: " + esitoPeriodico.get(i) + "svolto in data: " + giorno + "/" + mese + "/" + anno + "alle ore: " + ora + ":" + minuti + "a: " + ospedale + ", " + viaEsame + ", " + comuneEsame + "(" + provinciaEsame + ")");
+				str.append("Media dei valori dell'esame: " + mediaEsiti());
 				if(VerificaSoglia())
 				{
 					str.append("Il valore " + esitoPeriodico.get(i) + "registrato il " + giorno + "/" + mese + "/" + anno + "non si trova entro l'intervallo di normalita' " + sogliaMin + " - " + sogliaMax);
@@ -307,5 +308,22 @@ public class Esame
 		}
 
 		return str.toString();
+	}
+	
+	/**
+	 * METODO per calcolare la media dei valori misurabili di un esame periodico
+	 * @return la media dei valori registrati
+	 */
+	public double mediaEsiti()
+	{
+		double somma = 0;
+		for(int i=0; i<esitoPeriodico.size(); i++)
+		{
+			somma = somma + esitoPeriodico.get(i);
+		}
+		
+		double media = somma/(esitoPeriodico.size() + 1);
+		
+		return media;
 	}
 }
