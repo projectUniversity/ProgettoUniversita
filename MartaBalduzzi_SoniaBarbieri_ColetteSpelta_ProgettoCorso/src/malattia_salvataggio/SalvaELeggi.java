@@ -74,11 +74,13 @@ public class SalvaELeggi
 	private static String prenotato; 
 	
 	
-	FileWriter fileout;
-	PrintWriter fout;
-	FileReader filein;
-	BufferedReader fin;
-	String s;
+	private FileOutputStream fileout;
+	private ObjectOutputStream fout;
+	private FileInputStream filein;
+	private ObjectInputStream fin;
+	private SalvaELeggi malattia ;
+	 
+	
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
@@ -168,21 +170,9 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileWriter("Salvataggio.txt");
-			InputStreamReader input = new InputStreamReader(System.in);
-			BufferedReader tastiera = new BufferedReader(input);
 			
-			while(!(s = tastiera.readLine()).equals("fine"))
-			{
-				fout.println(s);
-			}
+		}
 			
-			fout.close();
-		}
-		catch(IOException e)
-		{
-			System.out.println(e);
-		}
 	}
 	
 	

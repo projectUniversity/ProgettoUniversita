@@ -137,6 +137,7 @@ public class Malattia
 	public void aggiungiMalattia(String nomeMalattia)
 	{
 		elenco.add(nomeMalattia);
+		System.out.println(elenco);
 	}
 	
 }
