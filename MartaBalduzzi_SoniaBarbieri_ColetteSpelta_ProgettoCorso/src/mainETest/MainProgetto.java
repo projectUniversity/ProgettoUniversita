@@ -17,7 +17,6 @@ public class MainProgetto {
 	//COSTANTI
 	public static final String[] SCELTE={"Inserimento dei dati del paziente","Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
-	public static final String[] PRENOTAZIONE={"Prenotazione esame periodico","Prenotazione esame diagnostico"};
 	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
 	public static final String CORNICE="*******************************************************************";
 	public static final String MSG_SCELTA="Digitare il numero dell'opzione desiderata --> ";
@@ -43,11 +42,13 @@ public class MainProgetto {
 	private static boolean finito=false;
 	private static Menu myMenu=new Menu(SCELTE);
 	private static int scelta;
-	private static int scelta2;
 	private static int scelta3;
 	private static CartellaSanitaria cartSan=new CartellaSanitaria();
 	private static SalvaELeggi file=new SalvaELeggi();
-	private static String[] codFis=new String[16];
+	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN;
+	private static char sesso;
+	private static double peso,altezza;
+	private static int anno,mese,giorno,cap;
 	
 	/**
 	 * Metodo main
@@ -61,26 +62,11 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				for(int i=0;i<16;i++){
-					codFis[i]=InputDati.leggiStringaNonVuota(COD_FISC);
-				}
-				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),codFis,InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP));
+				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(COD_FISC),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP));
 			break;
 			case 2:
 				System.out.println();
-				for(int i=0;i<PRENOTAZIONE.length;i++){
-					System.out.println((i+1)+")"+PRENOTAZIONE[i]);
-				}
-				System.out.println(CORNICE);
-				scelta2=InputDati.leggiIntero(MSG_SCELTA, 0, PRENOTAZIONE.length);
-				switch(scelta2){
-				case 1:
-					//uso file
-				break;
-				case 2:
-					//uso file
-				break;
-				}
+				//metodi nella classe del salva
 			break;
 			case 3:
 				System.out.println();
@@ -111,7 +97,7 @@ public class MainProgetto {
 			break;
 			case 6:
 				System.out.println();
-				cartSan.toString();
+				utente.toString();
 			break;
 			default:
 				System.out.println();
@@ -120,5 +106,25 @@ public class MainProgetto {
 			}
 		}
 		while(!finito);
+	}
+	
+	public static Paziente utente(){
+		nome=InputDati.leggiStringaNonVuota(NOME);
+		InputDati.leggiStringaNonVuota(COGNOME);
+		InputDati.leggiChar(SESSO);
+		InputDati.leggiDoubleConMinimo(PESO, 0);
+		InputDati.leggiDoubleConMinimo(ALTEZZA, 0);
+		InputDati.leggiIntero(ANNO);
+		InputDati.leggiIntero(MESE, 1, 12);
+		InputDati.leggiIntero(GIORNO, 1, 31);
+		InputDati.leggiStringaNonVuota(COD_FISC);
+		InputDati.leggiStringaNonVuota(RH);
+		InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO);
+		InputDati.leggiStringaNonVuota(VIA);
+		InputDati.leggiStringaNonVuota(COMUNE);
+		InputDati.leggiStringaNonVuota(PROVINCIA);
+		InputDati.leggiStringaNonVuota(COMUNE_NASCITA);
+		InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA);
+		InputDati.leggiIntero(CAP)
 	}
 }

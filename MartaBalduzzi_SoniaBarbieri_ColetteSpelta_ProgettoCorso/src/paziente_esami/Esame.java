@@ -41,7 +41,7 @@ public class Esame
 	private static ArrayList <String> esameDiagnostico;
 	private double sogliaMax;
 	private double sogliaMin;
-	private String prenotato;
+	private static String prenotato;
 	
 	/**
 	 * COSTRUTTORE
@@ -287,7 +287,7 @@ public class Esame
 	 * METODO per visualizzare gli esami prenotati
 	 * @return gli esami prenotati
 	 */
-	public String toStringPrenotati()
+	public static String toStringPrenotati()
 	{
 		StringBuffer str = new StringBuffer();
 		for(int i=0; i<esamePeriodico.size(); i++)
