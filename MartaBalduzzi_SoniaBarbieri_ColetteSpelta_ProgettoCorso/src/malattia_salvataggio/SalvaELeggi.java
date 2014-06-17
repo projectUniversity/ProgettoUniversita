@@ -4,6 +4,7 @@ import it.unibs.fp.mylib.InputDati;
 
 import java.io.*;
 import java.util.*;
+
 import paziente_esami.*;
 
 import java.util.ArrayList;
@@ -23,8 +24,12 @@ public class SalvaELeggi
 	 * COSTANTI
 	 */
 	private final static String MSG_NOME = "Inserire il nome della malattia: ";
-	private final static String MSG_DATA_INIZIO = "Inserire la data di inizio della malattia: ";
-	private final static String MSG_DATA_FINE = "Inserire la data di termine della malattia, se presente: ";
+	private final static String GIORNO_I = "Inserire il giorno di inizio della malattia: ";
+	private final static String MESE_I = "Inserire il mese di inizio della malattia: ";
+	private final static String ANNO_I = "Inserire l'anno di inizio della malattia: ";
+	private final static String GIORNO_F = "Inserire il giorno di termine della malattia: ";
+	private final static String MESE_F = "Inserire il mese di termine della malattia: ";
+	private final static String ANNO_F = "Inserire l'anno di termine della malattia: ";
 	private final static String MSG_SINTOMI = "Inserire i sintomi della malattia: ";
 	private final static String MSG_DIAGNOSI = "Indicare la diagnosi finale: ";
 	private final static String MSG_ESAMI = "Inserire gli esami indicati per la patologia: ";
@@ -41,6 +46,25 @@ public class SalvaELeggi
 	private final static String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
 	private final static String MSG_ESITO = "Inserire l'esito dell'esame: ";
 	
+	public static final String NOME="Inserisci il nome: ";
+	public static final String COGNOME="Inserisci il cognome: ";
+	public static final String SESSO="Inserisci il genere (F=femmina, M=maschio): ";
+	public static final String ALTEZZA="Inserisci l'altezza (in metri): ";
+	public static final String PESO="Inserisci il peso (in kilogrammi): ";
+	public static final String RH="Inserisci il fattore Rh del gruppo sanguigno: ";
+	public static final String GRUPPO_SANGUIGNO="Inserisci il gruppo sanguigno del sangue: ";
+	public static final String VIA="Inserisci la via di residenza: ";
+	public static final String COMUNE="Inserisci il comune di residenza: ";
+	public static final String PROVINCIA="Inserisci la provincia di residenza: ";
+	public static final String COMUNE_NASCITA="Inserisci il comune di nascita: ";
+	public static final String PROVINCIA_NASCITA="Inserisci la provincia di nascita: ";
+	public static final String ANNO="Inserisci l'anno di nascita: ";
+	public static final String MESE="Inserisci il mese di nascita: ";
+	public static final String GIORNO="Inserisci il giorno di nascita: ";
+	public static final String COD_FISC="Inserisci il codice fiscale: ";
+	public static final String CAP="Inserisci il cap di residenza: ";
+	public static final String MSG_TELEFONO = "Inserisci il numero di telefono: ";
+	
 	/**
 	 * ATTRIBUTI
 	 */
@@ -55,6 +79,13 @@ public class SalvaELeggi
 	private static String terapia;
 	private static GregorianCalendar dataInizioMalattia;
 	private static GregorianCalendar dataFineMalattia;
+	
+	private static int giornoInizio;
+	private static int meseInizio;
+	private static int annoInizio;
+	private static int giornoFine;
+	private static int meseFine;
+	private static int annoFine;
 	
 	private static String nomeEsame;
 	private static String raccomandazione;
@@ -79,40 +110,77 @@ public class SalvaELeggi
 	private FileInputStream filein;
 	private ObjectInputStream fin;
 	
+	private Paziente utente;
+	private Malattia patologia;
+	private Esame visitaMedica;
 	
+	
+	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
+	private static char sesso;
+	private static double peso,altezza;
+	private static int anno,mese,giorno,cap;
+	/**
+	 * Metodo per creare un nuovo paziente
+	 */
+	public static Paziente utente()
+	{
+		nome = InputDati.leggiStringaNonVuota(NOME);
+		cognome = InputDati.leggiStringaNonVuota(COGNOME);
+		sesso = InputDati.leggiChar(SESSO);
+		peso = InputDati.leggiDoubleConMinimo(PESO, 0);
+		altezza = InputDati.leggiDoubleConMinimo(ALTEZZA, 0);
+		anno = InputDati.leggiIntero(ANNO);
+		mese = InputDati.leggiIntero(MESE, 1, 12);
+		giorno = InputDati.leggiIntero(GIORNO, 1, 31);
+		codF = InputDati.leggiStringaNonVuota(COD_FISC);
+		fattoreRh = InputDati.leggiStringaNonVuota(RH);
+		gruppoS = InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO);
+		via = InputDati.leggiStringaNonVuota(VIA);
+		comune = InputDati.leggiStringaNonVuota(COMUNE);
+		provincia = InputDati.leggiStringaNonVuota(PROVINCIA);
+		comuneN = InputDati.leggiStringaNonVuota(COMUNE_NASCITA);
+		provinciaN = InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA);
+		cap = InputDati.leggiIntero(CAP);
+		telefono = InputDati.leggiStringaNonVuota(MSG_TELEFONO);
+		
+		return new Paziente(nome, cognome, sesso, peso, altezza, anno, mese, giorno, codF, fattoreRh, gruppoS, via, comune, provincia, comuneN, provinciaN, cap, telefono);
+	}
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
 	 */
-	public static void nuovaMalattia ()
+	public static Malattia nuovaMalattia ()
 	{
-		InputDati.leggiStringaNonVuota(MSG_NOME);
-		System.out.println(nomeMalattia);
+		nomeMalattia = InputDati.leggiStringaNonVuota(MSG_NOME);
 		
-		System.out.println(MSG_DATA_INIZIO);
-		System.out.println(dataInizioMalattia);
+		giornoInizio = InputDati.leggiIntero(GIORNO_I, 1, 31);
+		meseInizio = InputDati.leggiIntero(MESE_I, 1, 12);
+		annoInizio = InputDati.leggiIntero(ANNO_I);
+		giornoFine = InputDati.leggiIntero(GIORNO_F, 1, 31);
+		meseFine = InputDati.leggiIntero(MESE_F, 1, 12);
+		annoFine = InputDati.leggiIntero(ANNO_F);
 		
-		System.out.println(MSG_DATA_FINE);
-		System.out.println(dataFineMalattia);
+		sintomo = InputDati.leggiStringa(MSG_SINTOMI);
+		Malattia.aggiungiSintomi(sintomo);
 		
-		InputDati.leggiStringa(MSG_SINTOMI);
-		System.out.println(sintomiMalattia);
+		diagnosi = InputDati.leggiStringa(MSG_DIAGNOSI);
+		Malattia.aggiungiDiagnosi(diagnosi);
 		
-		InputDati.leggiStringa(MSG_DIAGNOSI);
-		System.out.println(diagnosiMalattia);
+		esame = InputDati.leggiStringa(MSG_ESAMI);
+		Malattia.aggiungiEsami(esame);;
 		
-		InputDati.leggiStringa(MSG_ESAMI);
-		System.out.println(esamiAssociati);
+		terapia = InputDati.leggiStringa(MSG_TERAPIA);
+		Malattia.aggiungiTerapia(terapia);
 		
-		InputDati.leggiStringa(MSG_TERAPIA);
-		System.out.println(terapiaAssociata);	
+		return new Malattia(nomeMalattia, dataInizioMalattia, dataFineMalattia, sintomiMalattia, diagnosiMalattia, esamiAssociati, terapiaAssociata);
 	}
 	
 	
 	/**
 	 * Metodo per creare un nuovo esame
 	 */
-	public static void nuovoEsame()
+	public static Esame nuovoEsame()  //Basarsi sul paziente per rifare questo metodo
+										//return new Esame()
 	{
 		InputDati.leggiStringaNonVuota(NOME_ESAME);
 		System.out.println(nomeEsame);
@@ -123,10 +191,7 @@ public class SalvaELeggi
 		InputDati.leggiStringaNonVuota(MSG_TIPO);
 		System.out.println(tipoEsame);
 		
-		InputDati.leggiStringaNonVuota(MSG_DATA);
-		System.out.println(dataEsame);
-		InputDati.leggiStringaNonVuota(MSG_ORA);
-		System.out.println(oraEsame);
+		
 		
 		InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
 		System.out.println(ospedale);
@@ -138,6 +203,8 @@ public class SalvaELeggi
 		System.out.println(provinciaEsame);
 		
 		prenotato = Esame.ESAME_PRENOTATO;
+		
+		return new Esame();
 	}
 	
 	
@@ -173,6 +240,8 @@ public class SalvaELeggi
 			fileout = new FileOutputStream("Salvataggio.dat");
 			fout = new ObjectOutputStream(fileout);
 			
+			utente = new Paziente();
+			fout.writeObject(utente); 
 			
 			
 			fout.close();
