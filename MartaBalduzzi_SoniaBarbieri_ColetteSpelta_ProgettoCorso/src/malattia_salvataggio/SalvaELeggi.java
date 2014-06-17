@@ -17,7 +17,7 @@ import java.util.GregorianCalendar;
  * Classe realizzata da Marta Balduzzi
  */
 
-public class SalvaSuFile 
+public class SalvaELeggi 
 {
 	/**
 	 * COSTANTI
@@ -33,7 +33,8 @@ public class SalvaSuFile
 	private final static String NOME_ESAME = "Inserire il nome dell'esame: ";
 	private final static String MSG_RACC = "Inserire eventuali raccomandazioni: ";
 	private final static String MSG_TIPO = "Specificare il tipo dell'esame (P = periodico, D = diagnostico): ";
-	private final static String MSG_DATA = "Inserire la data e l'ora in cui si intende fare l'esame: ";
+	private final static String MSG_DATA = "Inserire la data in cui si intende fare l'esame: ";
+	private final static String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
 	
 	/**
 	 * ATTRIBUTI
@@ -68,6 +69,13 @@ public class SalvaSuFile
 	ArrayList <String> esitoDiagnostico;
 	ArrayList <String> esamePeriodico;
 	ArrayList <String> esameDiagnostico;
+	
+	
+	FileWriter fileout;
+	PrintWriter fout;
+	FileReader filein;
+	BufferedReader fin;
+	String s;
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
@@ -106,43 +114,67 @@ public class SalvaSuFile
 	 */
 	public static void nuovoEsame()
 	{
-		System.out.println(NOME_ESAME);
-		InputDati.leggiStringaNonVuota(nomeEsame);
+		InputDati.leggiStringaNonVuota(NOME_ESAME);
 		System.out.println(nomeEsame);
 		
-		System.out.println(MSG_RACC);
-		InputDati.leggiStringa(raccomandazione);
+		InputDati.leggiStringa(MSG_RACC);
 		System.out.println(raccomandazione);
 		
-		System.out.println(MSG_TIPO);
-		InputDati.leggiStringaNonVuota(tipoEsame);
+		InputDati.leggiStringaNonVuota(MSG_TIPO);
 		System.out.println(tipoEsame);
 		
-		System.out.println(MSG_DATA);
-		//??????
+		InputDati.leggiStringaNonVuota(MSG_DATA);
 		System.out.println(dataEsame);
+		InputDati.leggiStringaNonVuota(MSG_ORA);
 		System.out.println(oraEsame);
 	}
 	
-
-	public static void main (String [] args)
-	{
-		SalvaSuFile nuovaMalattia = null;
-		SalvaSuFile nuovoEsame = null;
 	
+	/**
+	 * Metodo per scrivere su file e memorizzare i dati
+	 */
+	public void scrittura()
+	{
 		try
 		{
-			FileOutputStream salvaSuFile = new FileOutputStream("Salvataggio.sav");
-			ObjectOutputStream salvataggio = new ObjectOutputStream(salvaSuFile);
+			fileout = new FileWriter("Salvataggio.txt");
+			InputStreamReader input = new InputStreamReader(System.in);
+			BufferedReader tastiera = new BufferedReader(input);
 			
-			salvataggio.writeObject(nuovaMalattia);
-			salvataggio.writeObject(nuovoEsame);
+			while(!(s = tastiera.readLine()).equals("fine"))
+			{
+				fout.println(s);
+			}
 			
-			salvataggio.close();
+			fout.close();
 		}
-		catch (Exception e)
+		catch(IOException e)
 		{
-			e.printStackTrace(); //Se c'è un errore stampa l'info
+			System.out.println(e);
 		}
 	}
+	
+	
+	/**
+	 * Metodo per leggere da file
+	 */
+	public void lettura()
+	{
+		try
+		{
+			filein = new FileReader("Salvataggio.txt");
+			fin = new BufferedReader(filein);
+			while ((s = fin.readLine()) != null)
+			{
+				System.out.println(s);
+			}
+			
+			fin.close();
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
 }
