@@ -231,4 +231,31 @@ public class Paziente
 		mese = dataNascita.get(GregorianCalendar.MONTH) + 1; // i mesi iniziano da 0 nel GregorianCalendar
 		giorno = dataNascita.get(GregorianCalendar.DATE);
 	}
+	
+	/**
+	 * METODO per prendere il nome del paziente
+	 * @return il nome del paziente
+	 */
+	public String getNome()
+	{
+		return nome;
+	}
+	
+	/**
+	 * METODO per prendere il cognome del paziente
+	 * @return il cognome del paziente
+	 */
+	public String getCognome()
+	{
+		return cognome;
+	}
+	
+	/**
+	 * METODO per prendere il codice fiscale del paziente
+	 * @return il codice fiscale del paziente
+	 */
+	public String getCoFiscale()
+	{
+		return codiceFiscale;
+	}
 }
