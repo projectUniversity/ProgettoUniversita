@@ -46,7 +46,6 @@ public class MainProgetto {
 	private static boolean finito=false;
 	private static Menu myMenu=new Menu(SCELTE);
 	private static int scelta;
-	private static int scelta2;
 	private static String nomeMalattia;
 	private static CartellaSanitaria cartSan=new CartellaSanitaria();
 	private static SalvaELeggi file=new SalvaELeggi();
@@ -65,36 +64,22 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				//utilizzare il salva per creare l'utente
-				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(COD_FISC),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP),InputDati.leggiStringaNonVuota(TEL));
-				System.out.println(Paziente.controlloCf());
+				file.scritturaUtente();
+				//System.out.println(Paziente.controlloCf());
 				
 			break;
 			case 2:
 				System.out.println();
-				//metodi nella classe del salva
+				file.scritturaEsame();
 			break;
 			case 3:
 				System.out.println();
-				for(int i=0;i<ESITO.length;i++){
-					System.out.println((i+1)+")"+ESITO[i]);
-				}
-				System.out.println(CORNICE);
-				scelta2=InputDati.leggiIntero(MSG_SCELTA, 0, ESITO.length);
-				switch(scelta2){
-				case 1:
-					//Queste stringhe verranno tolte, mi servono solo per controllare il funzionamento
-					System.out.println("Hai selezionato l'opzione per inserire l'esito di un esame periodico");
-				break;
-				case 2:
-					//Queste stringhe verranno tolte, mi servono solo per controllare il funzionamento
-					System.out.println("Hai selezionato l'opzione per inserire l'esito di un esame diagnostico");
-				break;
-				}
+				System.out.println(Esame.toStringPrenotati());
+				file.inserisciEsito();
 			break;
 			case 4:
 				System.out.println();
-				//uso file
+				file.scritturaMalattia();
 			break;
 			case 5:
 				System.out.println();
@@ -103,7 +88,7 @@ public class MainProgetto {
 					System.out.println((i+1)+")"+malattia.get(i));
 				}
 				nomeMalattia=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
-				//Malattia.toStringCompleto(nomeMalattia);
+				Malattia.toStringCompleto(nomeMalattia);
 			break;
 			case 6:
 				System.out.println();
