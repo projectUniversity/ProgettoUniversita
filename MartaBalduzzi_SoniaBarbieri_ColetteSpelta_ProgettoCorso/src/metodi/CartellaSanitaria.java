@@ -22,7 +22,7 @@ public class CartellaSanitaria {
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
 		System.out.println(MSG);
-		frase.append(String.format(Paziente.toStringCompleto(),Malattia.toStringSintetico()));
+		frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),));
 		return frase.toString();
 	}
 }

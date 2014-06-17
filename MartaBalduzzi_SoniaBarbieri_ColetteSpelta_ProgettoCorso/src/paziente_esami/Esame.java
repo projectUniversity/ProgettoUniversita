@@ -25,9 +25,9 @@ public class Esame
 	private String raccomandazione;
 	private char tipoEsame;
 	private GregorianCalendar dataEsame;
-	private int giorno;
-	private int mese;
-	private int anno;
+	private static int giorno;
+	private static int mese;
+	private static int anno;
 	private int ora;
 	private int minuti;
 	private String ospedale;
@@ -35,10 +35,10 @@ public class Esame
 	private String comuneEsame;
 	private String provinciaEsame;
 	private GregorianCalendar oraEsame;
-	private ArrayList <Double> esitoPeriodico;
+	private static ArrayList <Double> esitoPeriodico;
 	private ArrayList <String> esitoDiagnostico;
-	private ArrayList <String> esamePeriodico;
-	private ArrayList <String> esameDiagnostico;
+	private static ArrayList <String> esamePeriodico;
+	private static ArrayList <String> esameDiagnostico;
 	private double sogliaMax;
 	private double sogliaMin;
 	private String prenotato;
@@ -232,7 +232,7 @@ public class Esame
 	 * METODO per la visualizzazione sintetica degli esami
 	 * @return gli esami con i rispettivi esiti e date
 	 */
-	public String toStringSintetico()
+	public static String toStringSintetico()
 	{
 		StringBuffer str = new StringBuffer();
 		for(int i=0; i<esamePeriodico.size(); i++)

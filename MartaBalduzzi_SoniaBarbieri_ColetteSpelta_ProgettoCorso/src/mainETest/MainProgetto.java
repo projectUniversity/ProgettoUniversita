@@ -36,6 +36,8 @@ public class MainProgetto {
 	public static final String ANNO="Inserisci l'anno di nascita: ";
 	public static final String MESE="Inserisci il mese di nascita: ";
 	public static final String GIORNO="Inserisci il giorno di nascita: ";
+	public static final String COD_FISC="Inserisci il codice fiscale: ";
+	public static final String CAP="Inserisci il cap di residenza: ";
 	
 	//ATTRIBUTI
 	private static boolean finito=false;
@@ -44,7 +46,8 @@ public class MainProgetto {
 	private static int scelta2;
 	private static int scelta3;
 	private static CartellaSanitaria cartSan=new CartellaSanitaria();
-	private static SalvaSuFile file=new SalvaSuFile();
+	private static SalvaELeggi file=new SalvaELeggi();
+	private static String[] codFis=new String[16];
 	
 	/**
 	 * Metodo main
@@ -58,7 +61,10 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA));
+				for(int i=0;i<16;i++){
+					codFis[i]=InputDati.leggiStringaNonVuota(COD_FISC);
+				}
+				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),codFis,InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP));
 			break;
 			case 2:
 				System.out.println();
