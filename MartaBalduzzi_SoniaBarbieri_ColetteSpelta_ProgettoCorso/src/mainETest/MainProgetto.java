@@ -22,7 +22,7 @@ public class MainProgetto {
 	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
 	public static final String CORNICE="*******************************************************************";
 	public static final String MSG_SCELTA="Digitare il numero dell'opzione desiderata --> ";
-	public static final String NOME="Inserisci il nome: ";
+	/*public static final String NOME="Inserisci il nome: ";
 	public static final String COGNOME="Inserisci il cognome: ";
 	public static final String SESSO="Inserisci il genere (F=femmina, M=maschio): ";
 	public static final String ALTEZZA="Inserisci l'altezza (in metri): ";
@@ -38,7 +38,7 @@ public class MainProgetto {
 	public static final String MESE="Inserisci il mese di nascita: ";
 	public static final String GIORNO="Inserisci il giorno di nascita: ";
 	public static final String COD_FISC="Inserisci il codice fiscale: ";
-	public static final String CAP="Inserisci il cap di residenza: ";
+	public static final String CAP="Inserisci il cap di residenza: ";*/
 	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli";
 	
 	//ATTRIBUTI
@@ -63,7 +63,8 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(COD_FISC),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP));
+				//utilizzare il salva
+				//new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(COD_FISC),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP));
 			break;
 			case 2:
 				System.out.println();
