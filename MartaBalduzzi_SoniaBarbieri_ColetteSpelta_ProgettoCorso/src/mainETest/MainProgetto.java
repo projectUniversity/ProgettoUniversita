@@ -29,7 +29,7 @@ public class MainProgetto {
 	public static final String PESO="Inserisci il peso (in kilogrammi): ";
 	public static final String RH="Inserisci il fattore Rh del gruppo sanguigno: ";
 	public static final String GRUPPO_SANGUIGNO="Inserisci il gruppo sanguigno: ";
-	public static final String VIA="Inserisci la via di residenza: ";
+	public static final String VIA="Inserisci la via di residenza:via ";
 	public static final String COMUNE="Inserisci il comune di residenza: ";
 	public static final String PROVINCIA="Inserisci la provincia di residenza: ";
 	public static final String COMUNE_NASCITA="Inserisci il comune di nascita: ";
@@ -65,7 +65,7 @@ public class MainProgetto {
 			case 1:
 				System.out.println();
 				file.scritturaUtente();
-				//System.out.println(Paziente.controlloCf());
+				System.out.println(Paziente.controlloCf());
 				
 			break;
 			case 2:
