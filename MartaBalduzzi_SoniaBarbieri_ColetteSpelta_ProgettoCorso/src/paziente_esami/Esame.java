@@ -25,9 +25,9 @@ public class Esame
 	private String raccomandazione;
 	private char tipoEsame;
 	private GregorianCalendar dataEsame;
-	private int giorno;
-	private int mese;
-	private int anno;
+	private static int giorno;
+	private static int mese;
+	private static int anno;
 	private int ora;
 	private int minuti;
 	private String ospedale;
@@ -35,13 +35,13 @@ public class Esame
 	private String comuneEsame;
 	private String provinciaEsame;
 	private GregorianCalendar oraEsame;
-	private ArrayList <Double> esitoPeriodico;
+	private static ArrayList <Double> esitoPeriodico;
 	private ArrayList <String> esitoDiagnostico;
-	private ArrayList <String> esamePeriodico;
-	private ArrayList <String> esameDiagnostico;
+	private static ArrayList <String> esamePeriodico;
+	private static ArrayList <String> esameDiagnostico;
 	private double sogliaMax;
 	private double sogliaMin;
-	private String prenotato;
+	private static String prenotato;
 	
 	/**
 	 * COSTRUTTORE
@@ -232,7 +232,7 @@ public class Esame
 	 * METODO per la visualizzazione sintetica degli esami
 	 * @return gli esami con i rispettivi esiti e date
 	 */
-	public String toStringSintetico()
+	public static String toStringSintetico()
 	{
 		StringBuffer str = new StringBuffer();
 		for(int i=0; i<esamePeriodico.size(); i++)
@@ -251,6 +251,10 @@ public class Esame
 		return str.toString();
 	}
 	
+	/**
+	 * METODO per a visualizzazione completa degli esami
+	 * @return la stringa completa con la descrizione dell'esame
+	 */
 	public String toStringCompleto()
 	{
 		StringBuffer str = new StringBuffer();
@@ -260,6 +264,7 @@ public class Esame
 			for(int i=0; i<esitoPeriodico.size(); i++)
 			{
 				str.append("esito: " + esitoPeriodico.get(i) + "svolto in data: " + giorno + "/" + mese + "/" + anno + "alle ore: " + ora + ":" + minuti + "a: " + ospedale + ", " + viaEsame + ", " + comuneEsame + "(" + provinciaEsame + ")");
+				str.append("Media dei valori dell'esame: " + mediaEsiti());
 				if(VerificaSoglia())
 				{
 					str.append("Il valore " + esitoPeriodico.get(i) + "registrato il " + giorno + "/" + mese + "/" + anno + "non si trova entro l'intervallo di normalita' " + sogliaMin + " - " + sogliaMax);
@@ -277,5 +282,48 @@ public class Esame
 		}
 		
 		return str.toString();
+	}
+	
+	/**
+	 * METODO per visualizzare gli esami prenotati
+	 * @return gli esami prenotati
+	 */
+	public static String toStringPrenotati()
+	{
+		StringBuffer str = new StringBuffer();
+		for(int i=0; i<esamePeriodico.size(); i++)
+		{
+			if(prenotato == ESAME_PRENOTATO)
+			{
+				str.append("Esame periodico prenotato: " + esamePeriodico.get(i));
+			}
+		}
+			
+		for(int i=0; i<esameDiagnostico.size(); i++)
+		{
+			if(prenotato == ESAME_PRENOTATO)
+			{
+				str.append("Esame diagnostico prenotato: " + esameDiagnostico.get(i));
+			}
+		}
+
+		return str.toString();
+	}
+	
+	/**
+	 * METODO per calcolare la media dei valori misurabili di un esame periodico
+	 * @return la media dei valori registrati
+	 */
+	public double mediaEsiti()
+	{
+		double somma = 0;
+		for(int i=0; i<esitoPeriodico.size(); i++)
+		{
+			somma = somma + esitoPeriodico.get(i);
+		}
+		
+		double media = somma/(esitoPeriodico.size() + 1);
+		
+		return media;
 	}
 }

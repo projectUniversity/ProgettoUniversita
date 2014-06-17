@@ -22,7 +22,6 @@ public class Paziente
 	public final static int [] NUMERI = {0,1,2,3,4,5,6,7,8,9};
 	public final static int [] POSIZIONE_LETTERE = {0,1,2,3,4,5,8,11,15};
 	public final static int [] POSIZIONE_NUMERI = {6,7,9,10,12,1,3,14};
-	public final static int NUM_CAP = 5;
 	public final static int LUNGH_MAX_CF = 16;
 	
 	//ATTRIBUTI
@@ -35,7 +34,7 @@ public class Paziente
 	private static int giorno;
 	private static int mese;
 	private static int anno;
-	private static String [] codiceFiscale = new String [LUNGH_MAX_CF];
+	private static String codiceFiscale;
 	private static String fattoreRh;
 	private static String gruppoSanguigno;
 	private static String viaCasa;
@@ -43,7 +42,7 @@ public class Paziente
 	private static String provinciaCasa;
 	private static String comuneNascita;
 	private static String provinciaNascita;
-	private static int [] capCasa = new int [NUM_CAP];
+	private static int capCasa;
 	private static ArrayList <Integer> telefoni;
 	
 	/**
@@ -56,6 +55,7 @@ public class Paziente
 	 * @param _anno l'anno di nascita del paziente
 	 * @param _mese il mese in cui e' nato
 	 * @param _giorno il giorno in cui e' nato
+	 * @param _codiceFiscale il codice fiscale del paziente
 	 * @param _fattoreRh il fattore Rh del sangue (positivo/negativo)
 	 * @param _gruppoSanguigno il gruppo sanguigno (0,A,B,AB)
 	 * @param _viaCasa la via dell'abitazione
@@ -63,8 +63,9 @@ public class Paziente
 	 * @param _provinciaCasa la provincia del comune del domicilio
 	 * @param _comuneNascita il comune dove e' nato
 	 * @param _provinciaNascita la provincia dove e' nato
+	 * @param _capCasa il cap di dove abita
 	 */
-	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String [] _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int [] _capCasa)
+	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String  _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa)
 	{
 		nome = _nome;
 		cognome = _cognome;
@@ -91,7 +92,7 @@ public class Paziente
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return true il codice fisclae e' corretto, altrimenti false
 	 */
-	public boolean controlloCf()
+/*	public boolean controlloCf()
 	{
 		
 		if(codiceFiscale.length != LUNGH_MAX_CF)
@@ -122,7 +123,7 @@ public class Paziente
 			
 			return true;
 		}//else
-	}
+	}*/
 	
 	/**
 	 * METODO per la visualizzazione sintetica dei dati del paziente (nome e cognome)
@@ -145,16 +146,16 @@ public class Paziente
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
-		str.append("Nome: " + nome);
+		str.append(String.format("Nome: " + nome));
 		str.append("Cognome: " + cognome);
 		str.append("Sesso: " + sesso + " - " + "Peso (kg) : " + peso + " - " + "Altezza (m): " + altezza);
 		str.append("Nato il: " + giorno + "/" + mese + "/" + anno + " a " + comuneNascita + " in provincia di " + provinciaNascita);
 		str.append("Abita in via " + viaCasa + " - " + comuneCasa + "In provincia di: " + provinciaCasa + " CAP: " + capCasa);
-		
-		for(int i=0; i<codiceFiscale.length; i++)
+		str.append("CF: "+codiceFiscale.toUpperCase());
+		/*for(int i=0; i<codiceFiscale.length; i++)
 		{
 			str.append("CF: " + codiceFiscale[i].toUpperCase());
-		}
+		}*/
 		
 		str.append("Gruppo sanguigno: " + gruppoSanguigno + fattoreRh);
 		
