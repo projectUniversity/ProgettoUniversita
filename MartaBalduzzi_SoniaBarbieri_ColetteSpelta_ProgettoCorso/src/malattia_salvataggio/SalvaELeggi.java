@@ -38,13 +38,18 @@ public class SalvaELeggi
 	private final static String NOME_ESAME = "Inserire il nome dell'esame: ";
 	private final static String MSG_RACC = "Inserire eventuali raccomandazioni: ";
 	private final static String MSG_TIPO = "Specificare il tipo dell'esame (P = periodico, D = diagnostico): ";
-	private final static String MSG_DATA = "Inserire la data in cui si intende fare l'esame: ";
+	private final static String MSG_GIORNO = "Inserire il giorno in cui si intende fare l'esame: "; 
+	private final static String MSG_MESE = "Inserire il mese in cui si intende fare l'esame: ";
+	private final static String MSG_ANNO = "Inserire l'anno in cui si intende fare l'esame: ";
+	private final static String MSG_MINUTI = "Inserire i minuti: ";
 	private final static String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
 	private final static String MSG_OSPEDALE = "Specificare il nome della struttura in cui si intende fare l'esame: ";
 	private final static String MSG_VIA = "Specificare la via della struttura sopracitata: ";
 	private final static String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
 	private final static String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
 	private final static String MSG_ESITO = "Inserire l'esito dell'esame: ";
+	private final static String SOGLIA_MAX = "Inserire il massimo valore che l'esame può presentare: ";
+	private final static String SOGLIA_MIN = "Inserire il minimo valore che l'esame deve avere: ";
 	
 	public static final String NOME="Inserisci il nome: ";
 	public static final String COGNOME="Inserisci il cognome: ";
@@ -96,6 +101,8 @@ public class SalvaELeggi
 	private static String comuneEsame;
 	private static String provinciaEsame;
 	private static GregorianCalendar oraEsame;
+	private static double sogliaMax; 
+	private static double sogliaMin;
 	
 	private static ArrayList <Double> esitoPeriodico;
 	private static ArrayList <String> esitoDiagnostico;
@@ -118,7 +125,7 @@ public class SalvaELeggi
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
 	private static double peso,altezza;
-	private static int anno,mese,giorno,cap;
+	private static int anno,mese,giorno,cap, ora, minuti;
 	/**
 	 * Metodo per creare un nuovo paziente
 	 */
@@ -182,29 +189,27 @@ public class SalvaELeggi
 	public static Esame nuovoEsame()  //Basarsi sul paziente per rifare questo metodo
 										//return new Esame()
 	{
-		InputDati.leggiStringaNonVuota(NOME_ESAME);
-		System.out.println(nomeEsame);
+		nomeEsame = InputDati.leggiStringaNonVuota(NOME_ESAME);
+		raccomandazione = InputDati.leggiStringa(MSG_RACC);
+		tipoEsame = InputDati.leggiChar(MSG_TIPO);
 		
-		InputDati.leggiStringa(MSG_RACC);
-		System.out.println(raccomandazione);
+		giorno = InputDati.leggiIntero(MSG_GIORNO, 1, 31);
+		mese = InputDati.leggiIntero(MSG_MESE, 1, 12);
+		anno = InputDati.leggiIntero(MSG_ANNO);
+		ora = InputDati.leggiIntero(MSG_ORA, 0, 23);
+		minuti = InputDati.leggiIntero(MSG_MINUTI, 0, 59);
 		
-		InputDati.leggiStringaNonVuota(MSG_TIPO);
-		System.out.println(tipoEsame);
+		ospedale = InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
+		viaEsame = InputDati.leggiStringaNonVuota(MSG_VIA);
+		comuneEsame = InputDati.leggiStringaNonVuota(MSG_COMUNE);
+		provinciaEsame = InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
 		
-		
-		
-		InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
-		System.out.println(ospedale);
-		InputDati.leggiStringaNonVuota(MSG_VIA);
-		System.out.println(viaEsame);
-		InputDati.leggiStringaNonVuota(MSG_COMUNE);
-		System.out.println(comuneEsame);
-		InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
-		System.out.println(provinciaEsame);
+		sogliaMax = InputDati.leggiDouble(SOGLIA_MAX);
+		sogliaMin = InputDati.leggiDouble(SOGLIA_MIN); 
 		
 		prenotato = Esame.ESAME_PRENOTATO;
 		
-		return new Esame();
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 	}
 	
 	
@@ -233,20 +238,37 @@ public class SalvaELeggi
 	/**
 	 * Metodo per scrivere su file e memorizzare i dati
 	 */
-	public void scrittura()
+	public void scritturaUtente()
 	{
 		try
 		{
 			fileout = new FileOutputStream("Salvataggio.dat");
 			fout = new ObjectOutputStream(fileout);
 			
-			utente = new Paziente();
-			fout.writeObject(utente); 
-			
+			utente = new Paziente(nome, cognome, sesso, peso, altezza, anno, mese, giorno, codF, fattoreRh, gruppoS, via, comune, provincia, comuneN, provinciaN, cap, telefono);
+			fout.writeObject(utente);
 			
 			fout.close();
 		}
 		catch (IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	public void scritturaMalattia()
+	{
+		try
+		{
+			fileout = new FileOutputStream("Salvataggio.dat");
+			fout = new ObjectOutputStream(fileout);
+			
+			patologia = new Malattia(nomeMalattia, dataInizioMalattia, dataFineMalattia, sintomiMalattia, diagnosiMalattia, esamiAssociati, terapiaAssociata);
+			fout.writeObject(patologia);
+			
+			fout.close();
+		}
+		catch(IOException e)
 		{
 			System.out.println(e);
 		}
