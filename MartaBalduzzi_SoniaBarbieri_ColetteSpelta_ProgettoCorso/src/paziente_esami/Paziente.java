@@ -1,5 +1,7 @@
 package paziente_esami;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import mainETest.MainProgetto;
@@ -13,9 +15,8 @@ import it.unibs.fp.mylib.*;
  * Classe svolta da Barbieri Sonia
  *
  */
-public class Paziente
+public class Paziente 
 {
-
 	//COSTANTI
 	public final static String [] FATTORE = {"POSITIVO","NEGATIVO"};
 	public final static String [] GRUPPO = {"0","A","B","AB"};
@@ -31,7 +32,7 @@ public class Paziente
 	public final static String TEL_CF ="Telefono:  %s          Codice Fiscale:  %s";
 	public final static String SANGUE = "Gruppo sanguigno: %s %s";
 	public final static String CF_SBAGLIATO = "Il codice fiscale inserito non e' corretto. Rinserire il CF: ";
-	
+		
 	//ATTRIBUTI
 	private static String nome;
 	private static String cognome;
@@ -52,7 +53,7 @@ public class Paziente
 	private static String provinciaNascita;
 	private static int capCasa;
 	private static String telefono;
-	
+		
 	/**
 	 * COSTRUTTORE
 	 * @param _nome il nome del paziente
@@ -112,13 +113,14 @@ public class Paziente
 		
 		else
 		{
-			for(int i=0; i<codiceFiscale.length(); i++)
+			ArrayList <String> codFiscale = new ArrayList <String>();
+			codFiscale.add(codiceFiscale);
+			for(int i=0; i<codFiscale.size(); i++)
 			{
 				for(int j=0; j<POSIZIONE_LETTERE.length; j++)
 				{
 					while(i == POSIZIONE_LETTERE[j])
 					{
-						i=POSIZIONE_LETTERE[j];
 						controlloLettera(codiceFiscale.substring(i));
 						if(controlloLettera(codiceFiscale.substring(i)) == false)
 						{
@@ -132,7 +134,6 @@ public class Paziente
 				{
 					while(i == POSIZIONE_NUMERI[j])
 					{
-						i=POSIZIONE_NUMERI[j];
 						controlloNumero(codiceFiscale.substring(i));
 						if(controlloNumero(codiceFiscale.substring(i)) == false)
 						{
@@ -166,12 +167,12 @@ public class Paziente
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
-		str.append(String.format(NOME_COGNOME, nome, cognome));
+		str.append(String.format(NOME_COGNOME, nome.toUpperCase(), cognome.toUpperCase()));
 		str.append(String.format("\n" + SESSO_PESO_ALTEZZA, sesso, peso, altezza));
-		str.append(String.format("\n" + NASCITA, giorno, mese, anno, comuneNascita, provinciaNascita));
-		str.append(String.format("\n" + DOMICILIO, viaCasa, comuneCasa, provinciaCasa, capCasa));
+		str.append(String.format("\n" + NASCITA, giorno, mese, anno, comuneNascita.toUpperCase(), provinciaNascita.toUpperCase()));
+		str.append(String.format("\n" + DOMICILIO, viaCasa.toUpperCase(), comuneCasa.toUpperCase(), provinciaCasa.toUpperCase(), capCasa));
 		str.append(String.format("\n" + TEL_CF, telefono, codiceFiscale.toUpperCase()));
-		str.append(String.format("\n" + SANGUE, gruppoSanguigno, fattoreRh));
+		str.append(String.format("\n" + SANGUE, gruppoSanguigno.toUpperCase(), fattoreRh.toUpperCase()));
 		return str.toString();
 	}
 	
@@ -203,8 +204,7 @@ public class Paziente
 		for(int i=0; i<NUMERI.length; i++)
 		{
 			int num = Integer.parseInt(str);
-
-			while(num == NUMERI[i])
+				while(num == NUMERI[i])
 			{
 				return true;
 			}
@@ -222,7 +222,7 @@ public class Paziente
 		mese = dataNascita.get(GregorianCalendar.MONTH) + 1; // i mesi iniziano da 0 nel GregorianCalendar
 		giorno = dataNascita.get(GregorianCalendar.DATE);
 	}
-	
+
 	/**
 	 * METODO per prendere il nome del paziente
 	 * @return il nome del paziente
@@ -240,5 +240,4 @@ public class Paziente
 	{
 		return cognome;
 	}
-
 }
