@@ -1,8 +1,11 @@
 package malattia_salvataggio;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
+
 import it.unibs.fp.mylib.*;
+
 import java.util.*;
 
 /**
@@ -14,21 +17,21 @@ import java.util.*;
  *
  */
 
-public class Malattia 
+public class Malattia implements Serializable 
 {	
 	/**
 	 * ATTRIBUTI
 	 */
 	private static String nomeMalattia;
-	private static GregorianCalendar dataInizioMalattia;
-	private static GregorianCalendar dataFineMalattia;
-	private static ArrayList <String> sintomiMalattia;
+	private static GregorianCalendar dataInizioMalattia = new GregorianCalendar();
+	private static GregorianCalendar dataFineMalattia = new GregorianCalendar();
+	private static ArrayList <String> sintomiMalattia = new ArrayList<String>();
 	private static String sintomo;
-	private static ArrayList <String> diagnosiMalattia;
+	private static ArrayList <String> diagnosiMalattia = new ArrayList<String>();
 	private static String diagnosi;
-	private static ArrayList <String> esamiAssociati;
+	private static ArrayList <String> esamiAssociati = new ArrayList<String>();
 	private static String esame;
-	private static ArrayList <String> terapiaAssociata;
+	private static ArrayList <String> terapiaAssociata = new ArrayList<String>();
 	private static String terapia;
 
 	private static int giornoInizio;
@@ -44,41 +47,36 @@ public class Malattia
 	 * COSTRUTTORE
 	 * @param _nomeMalattia Nome della malattia del paziente
 	 */
-	public Malattia (String _nomeMalattia)
+	public Malattia (String _nomeMalattia, GregorianCalendar _dataInizioMalattia, GregorianCalendar _dataFineMalattia, ArrayList<String> _sintomiMalattia, ArrayList<String> _diagnosiMalattia, ArrayList<String> _esamiAssociati, ArrayList<String> _terapiaAssociata)
 	{
 		nomeMalattia = _nomeMalattia;
-		dataInizioMalattia = new GregorianCalendar();
-		dataFineMalattia = new GregorianCalendar();
-		sintomiMalattia = new ArrayList <String>();
-		sintomo = null; 
-		diagnosiMalattia = new ArrayList <String>();
-		diagnosi = null;
-		esamiAssociati = new ArrayList <String>();
-		esame = null;
-		terapiaAssociata = new ArrayList <String>();
-		terapia = null;
-		
+		dataInizioMalattia = _dataInizioMalattia;
+		dataFineMalattia = _dataFineMalattia;
+		sintomiMalattia = _sintomiMalattia;
+		diagnosiMalattia = _diagnosiMalattia;
+		esamiAssociati = _esamiAssociati;
+		terapiaAssociata = _terapiaAssociata;
 	}
 	
 	/**
 	 * Metodi per aggiungere sintomi, diagnosi, esami associati o terapie
 	 */
-	public void aggiungiSintomi (String nuovoSintomo)
+	public static void aggiungiSintomi (String nuovoSintomo)
 	{
 		sintomiMalattia.add(nuovoSintomo);
 	}
 	
-	public void aggiungiDiagnosi (String nuovaDiagnosi)
+	public static void aggiungiDiagnosi (String nuovaDiagnosi)
 	{
 		diagnosiMalattia.add(nuovaDiagnosi);
 	}
 	
-	public void aggiungiEsami (String nuovoEsame)
+	public static void aggiungiEsami (String nuovoEsame)
 	{
 		esamiAssociati.add(nuovoEsame);
 	}
 	
-	public void aggiungiTerapia (String nuovaTerapia)
+	public static void aggiungiTerapia (String nuovaTerapia)
 	{
 		terapiaAssociata.add(nuovaTerapia);
 	}
@@ -117,7 +115,7 @@ public class Malattia
 	/**
 	 * Metodo per visualizzare un toString completo per descrivere la malattia
 	 */
-	public String toStringCompleto()
+	public static String toStringCompleto(String nomeDellaMalattia)
 	{
 		StringBuffer stringa = new StringBuffer();
 		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" +
@@ -139,6 +137,7 @@ public class Malattia
 		elenco.add(nomeMalattia);
 		return elenco;
 	}
+	
 	
 }
 
