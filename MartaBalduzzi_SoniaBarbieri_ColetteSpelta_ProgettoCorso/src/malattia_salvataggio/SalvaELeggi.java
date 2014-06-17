@@ -129,7 +129,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per creare un nuovo paziente
 	 */
-	public static Paziente utente()
+	public static Paziente creaUtente()
 	{
 		nome = InputDati.leggiStringaNonVuota(NOME);
 		cognome = InputDati.leggiStringaNonVuota(COGNOME);
@@ -245,7 +245,7 @@ public class SalvaELeggi
 			fileout = new FileOutputStream("Salvataggio.dat");
 			fout = new ObjectOutputStream(fileout);
 			
-			utente = new Paziente(nome, cognome, sesso, peso, altezza, anno, mese, giorno, codF, fattoreRh, gruppoS, via, comune, provincia, comuneN, provinciaN, cap, telefono);
+			utente = SalvaELeggi.creaUtente();
 			fout.writeObject(utente);
 			
 			fout.close();
@@ -263,7 +263,7 @@ public class SalvaELeggi
 			fileout = new FileOutputStream("Salvataggio.dat");
 			fout = new ObjectOutputStream(fileout);
 			
-			patologia = new Malattia(nomeMalattia, dataInizioMalattia, dataFineMalattia, sintomiMalattia, diagnosiMalattia, esamiAssociati, terapiaAssociata);
+			patologia = SalvaELeggi.nuovaMalattia();
 			fout.writeObject(patologia);
 			
 			fout.close();
