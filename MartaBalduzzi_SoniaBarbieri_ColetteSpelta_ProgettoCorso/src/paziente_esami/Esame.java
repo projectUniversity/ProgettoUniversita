@@ -251,6 +251,10 @@ public class Esame
 		return str.toString();
 	}
 	
+	/**
+	 * METODO per a visualizzazione completa degli esami
+	 * @return la stringa completa con la descrizione dell'esame
+	 */
 	public String toStringCompleto()
 	{
 		StringBuffer str = new StringBuffer();
@@ -276,6 +280,32 @@ public class Esame
 			}
 		}
 		
+		return str.toString();
+	}
+	
+	/**
+	 * METODO per visualizzare gli esami prenotati
+	 * @return gli esami prenotati
+	 */
+	public String toStringPrenotati()
+	{
+		StringBuffer str = new StringBuffer();
+		for(int i=0; i<esamePeriodico.size(); i++)
+		{
+			if(prenotato == ESAME_PRENOTATO)
+			{
+				str.append("Esame periodico prenotato: " + esamePeriodico.get(i));
+			}
+		}
+			
+		for(int i=0; i<esameDiagnostico.size(); i++)
+		{
+			if(prenotato == ESAME_PRENOTATO)
+			{
+				str.append("Esame diagnostico prenotato: " + esameDiagnostico.get(i));
+			}
+		}
+
 		return str.toString();
 	}
 }
