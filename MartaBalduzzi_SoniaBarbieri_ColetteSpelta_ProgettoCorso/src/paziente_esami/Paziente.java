@@ -121,8 +121,8 @@ public class Paziente implements Serializable
 				{
 					while(i == POSIZIONE_LETTERE[j])
 					{
-						controlloLettera(codiceFiscale.substring(i));
-						if(controlloLettera(codiceFiscale.substring(i)) == false)
+						controlloLettera(codFiscale.get(i));
+						if(controlloLettera(codFiscale.get(i)) == false)
 						{
 							System.out.println(CF_SBAGLIATO);
 							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
@@ -134,8 +134,8 @@ public class Paziente implements Serializable
 				{
 					while(i == POSIZIONE_NUMERI[j])
 					{
-						controlloNumero(codiceFiscale.substring(i));
-						if(controlloNumero(codiceFiscale.substring(i)) == false)
+						controlloNumero(codFiscale.get(i));
+						if(controlloNumero(codFiscale.get(i)) == false)
 						{
 							System.out.println(CF_SBAGLIATO);
 							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
