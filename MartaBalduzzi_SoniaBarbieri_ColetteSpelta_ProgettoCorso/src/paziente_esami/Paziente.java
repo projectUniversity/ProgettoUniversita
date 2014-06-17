@@ -101,14 +101,13 @@ public class Paziente
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return il codice fiscale del paziente
 	 */
-	public String controlloCf()
+	public static String controlloCf()
 	{
 		
 		if(codiceFiscale.length() != LUNGH_MAX_CF)
 		{
 			System.out.println(CF_SBAGLIATO);
 			codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
-			return codiceFiscale;
 		}
 		
 		else
@@ -119,6 +118,7 @@ public class Paziente
 				{
 					while(i == POSIZIONE_LETTERE[j])
 					{
+						i=POSIZIONE_LETTERE[j];
 						controlloLettera(codiceFiscale.substring(i));
 						if(controlloLettera(codiceFiscale.substring(i)) == false)
 						{
@@ -132,6 +132,7 @@ public class Paziente
 				{
 					while(i == POSIZIONE_NUMERI[j])
 					{
+						i=POSIZIONE_NUMERI[j];
 						controlloNumero(codiceFiscale.substring(i));
 						if(controlloNumero(codiceFiscale.substring(i)) == false)
 						{
@@ -141,9 +142,8 @@ public class Paziente
 					}// while dei numeri
 				}// for dei numeri
 			}// for del codice fiscale
-			
-			return codiceFiscale;
 		}//else
+		return codiceFiscale;
 	}
 	
 	/**

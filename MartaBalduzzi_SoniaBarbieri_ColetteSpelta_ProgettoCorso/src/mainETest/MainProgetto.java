@@ -67,8 +67,8 @@ public class MainProgetto {
 				System.out.println();
 				//utilizzare il salva per creare l'utente
 				new Paziente(InputDati.leggiStringaNonVuota(NOME),InputDati.leggiStringaNonVuota(COGNOME),InputDati.leggiChar(SESSO),InputDati.leggiDoubleConMinimo(PESO, 0),InputDati.leggiDoubleConMinimo(ALTEZZA, 0),InputDati.leggiIntero(ANNO),InputDati.leggiIntero(MESE, 1, 12),InputDati.leggiIntero(GIORNO, 1, 31),InputDati.leggiStringaNonVuota(COD_FISC),InputDati.leggiStringaNonVuota(RH),InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO),InputDati.leggiStringaNonVuota(VIA),InputDati.leggiStringaNonVuota(COMUNE),InputDati.leggiStringaNonVuota(PROVINCIA),InputDati.leggiStringaNonVuota(COMUNE_NASCITA),InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA),InputDati.leggiIntero(CAP),InputDati.leggiStringaNonVuota(TEL));
-				//System.out.println(Paziente.controlloCf());
-				//System.out.println(Paziente.controlloGruppo());
+				System.out.println(Paziente.controlloCf());
+				
 			break;
 			case 2:
 				System.out.println();
