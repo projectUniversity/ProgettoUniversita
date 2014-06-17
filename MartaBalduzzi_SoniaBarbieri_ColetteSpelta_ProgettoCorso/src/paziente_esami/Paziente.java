@@ -34,7 +34,7 @@ public class Paziente
 	private static int giorno;
 	private static int mese;
 	private static int anno;
-	private static String [] codiceFiscale = new String [LUNGH_MAX_CF];
+	private static String codiceFiscale;
 	private static String fattoreRh;
 	private static String gruppoSanguigno;
 	private static String viaCasa;
@@ -65,7 +65,7 @@ public class Paziente
 	 * @param _provinciaNascita la provincia dove e' nato
 	 * @param _capCasa il cap di dove abita
 	 */
-	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String [] _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa)
+	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String  _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa)
 	{
 		nome = _nome;
 		cognome = _cognome;
@@ -92,7 +92,7 @@ public class Paziente
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return true il codice fisclae e' corretto, altrimenti false
 	 */
-	public boolean controlloCf()
+/*	public boolean controlloCf()
 	{
 		
 		if(codiceFiscale.length != LUNGH_MAX_CF)
@@ -123,7 +123,7 @@ public class Paziente
 			
 			return true;
 		}//else
-	}
+	}*/
 	
 	/**
 	 * METODO per la visualizzazione sintetica dei dati del paziente (nome e cognome)
@@ -146,16 +146,16 @@ public class Paziente
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
-		str.append("Nome: " + nome);
+		str.append(String.format("Nome: " + nome));
 		str.append("Cognome: " + cognome);
 		str.append("Sesso: " + sesso + " - " + "Peso (kg) : " + peso + " - " + "Altezza (m): " + altezza);
 		str.append("Nato il: " + giorno + "/" + mese + "/" + anno + " a " + comuneNascita + " in provincia di " + provinciaNascita);
 		str.append("Abita in via " + viaCasa + " - " + comuneCasa + "In provincia di: " + provinciaCasa + " CAP: " + capCasa);
-		
-		for(int i=0; i<codiceFiscale.length; i++)
+		str.append("CF: "+codiceFiscale.toUpperCase());
+		/*for(int i=0; i<codiceFiscale.length; i++)
 		{
 			str.append("CF: " + codiceFiscale[i].toUpperCase());
-		}
+		}*/
 		
 		str.append("Gruppo sanguigno: " + gruppoSanguigno + fattoreRh);
 		
