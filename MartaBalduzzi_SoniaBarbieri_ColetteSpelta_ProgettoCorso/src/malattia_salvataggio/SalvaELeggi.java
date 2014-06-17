@@ -3,7 +3,7 @@ package malattia_salvataggio;
 import it.unibs.fp.mylib.InputDati;
 
 import java.io.*;
-
+import java.util.*;
 import paziente_esami.*;
 
 import java.util.ArrayList;
@@ -74,11 +74,12 @@ public class SalvaELeggi
 	private static String prenotato; 
 	
 	
-	FileWriter fileout;
-	PrintWriter fout;
-	FileReader filein;
-	BufferedReader fin;
-	String s;
+	private FileOutputStream fileout;
+	private ObjectOutputStream fout;
+	private FileInputStream filein;
+	private ObjectInputStream fin;
+	
+	
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
@@ -106,6 +107,7 @@ public class SalvaELeggi
 		InputDati.leggiStringa(MSG_TERAPIA);
 		System.out.println(terapiaAssociata);	
 	}
+	
 	
 	/**
 	 * Metodo per creare un nuovo esame
@@ -168,18 +170,14 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileWriter("Salvataggio.txt");
-			InputStreamReader input = new InputStreamReader(System.in);
-			BufferedReader tastiera = new BufferedReader(input);
+			fileout = new FileOutputStream("Salvataggio.dat");
+			fout = new ObjectOutputStream(fileout);
 			
-			while(!(s = tastiera.readLine()).equals("fine"))
-			{
-				fout.println(s);
-			}
+			
 			
 			fout.close();
 		}
-		catch(IOException e)
+		catch (IOException e)
 		{
 			System.out.println(e);
 		}
@@ -193,14 +191,25 @@ public class SalvaELeggi
 	{
 		try
 		{
-			filein = new FileReader("Salvataggio.txt");
-			fin = new BufferedReader(filein);
-			while ((s = fin.readLine()) != null)
+			filein = new FileInputStream("Salvataggio.dat");
+			fin = new ObjectInputStream(filein);
+			boolean fineFile = false;
+			while(!fineFile)
 			{
-				System.out.println(s);
+				try
+				{
+					
+				}
+				catch(EOFException e)
+				{
+					fineFile = true;
+				}
 			}
-			
 			fin.close();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
 		}
 		catch(IOException e)
 		{

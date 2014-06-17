@@ -38,7 +38,7 @@ public class Malattia
 	private static int meseFine;
 	private static int annoFine;
 	
-	private static Vector<String> elenco;
+	private static ArrayList<String> elenco;
 	
 	/**
 	 * COSTRUTTORE
@@ -57,7 +57,7 @@ public class Malattia
 		esame = null;
 		terapiaAssociata = new ArrayList <String>();
 		terapia = null;
-		elenco = new Vector<String> ();
+		
 	}
 	
 	/**
@@ -134,9 +134,10 @@ public class Malattia
 	/**
 	 * Metodo per memorizzare i nomi di tutte le malattie (Vector di String)
 	 */
-	public void aggiungiMalattia(String nomeMalattia)
+	public static ArrayList<String> aggiungiMalattia()  
 	{
 		elenco.add(nomeMalattia);
+		return elenco;
 	}
 	
 }
