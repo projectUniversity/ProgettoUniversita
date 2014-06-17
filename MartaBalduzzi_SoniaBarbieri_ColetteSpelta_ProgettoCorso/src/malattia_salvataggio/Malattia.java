@@ -3,6 +3,7 @@ package malattia_salvataggio;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.*;
+import java.util.*;
 
 /**
  * Classe che rappresenta le malattie del paziente con le relative caratteristiche.
@@ -37,6 +38,7 @@ public class Malattia
 	private static int meseFine;
 	private static int annoFine;
 	
+	private static Vector<String> elenco;
 	
 	/**
 	 * COSTRUTTORE
@@ -55,14 +57,7 @@ public class Malattia
 		esame = null;
 		terapiaAssociata = new ArrayList <String>();
 		terapia = null;
-		
-		giornoInizio = dataInizioMalattia.get(GregorianCalendar.DATE);
-		meseInizio = dataInizioMalattia.get(GregorianCalendar.MONTH)+1;
-		annoInizio = dataInizioMalattia.get(GregorianCalendar.YEAR);
-		giornoFine = dataFineMalattia.get(GregorianCalendar.DATE);
-		meseFine = dataFineMalattia.get(GregorianCalendar.MONTH)+1;
-		annoFine = dataFineMalattia.get(GregorianCalendar.YEAR);
-		
+		elenco = new Vector<String> ();
 	}
 	
 	/**
@@ -89,6 +84,25 @@ public class Malattia
 	}
 	
 	
+	/**
+	 * Metodo per inserire la data di inizio malattia
+	 */
+	public void inizioMalattia()
+	{
+		giornoInizio = dataInizioMalattia.get(GregorianCalendar.DATE);
+		meseInizio = dataInizioMalattia.get(GregorianCalendar.MONTH)+1;
+		annoInizio = dataInizioMalattia.get(GregorianCalendar.YEAR);
+	}
+	
+	/**
+	 * Metodo per inserire la data di fine malattia
+	 */
+	public void fineMalattia()
+	{
+		giornoFine = dataFineMalattia.get(GregorianCalendar.DATE);
+		meseFine = dataFineMalattia.get(GregorianCalendar.MONTH)+1;
+		annoFine = dataFineMalattia.get(GregorianCalendar.YEAR);
+	}
 	
 	/**
 	 * Metodo per visualizzare un toString sintetico per descrivere la malattia
@@ -115,6 +129,14 @@ public class Malattia
 						"Esami associati: " + esamiAssociati + "\n" +
 						"Terapia da seguire: " + terapiaAssociata));
 		return stringa.toString();
+	}
+	
+	/**
+	 * Metodo per memorizzare i nomi di tutte le malattie (Vector di String)
+	 */
+	public void aggiungiMalattia(String nomeMalattia)
+	{
+		elenco.add(nomeMalattia);
 	}
 	
 }

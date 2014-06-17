@@ -35,6 +35,11 @@ public class SalvaELeggi
 	private final static String MSG_TIPO = "Specificare il tipo dell'esame (P = periodico, D = diagnostico): ";
 	private final static String MSG_DATA = "Inserire la data in cui si intende fare l'esame: ";
 	private final static String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
+	private final static String MSG_OSPEDALE = "Specificare il nome della struttura in cui si intende fare l'esame: ";
+	private final static String MSG_VIA = "Specificare la via della struttura sopracitata: ";
+	private final static String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
+	private final static String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
+	private final static String MSG_ESITO = "Inserire l'esito dell'esame: ";
 	
 	/**
 	 * ATTRIBUTI
@@ -48,27 +53,25 @@ public class SalvaELeggi
 	private static String esame;
 	private static ArrayList <String> terapiaAssociata;
 	private static String terapia;
-	
-	private static int giornoInizio;
-	private static int meseInizio;
-	private static int annoInizio;
-	private static int giornoFine;
-	private static int meseFine;
-	private static int annoFine;
+	private static GregorianCalendar dataInizioMalattia;
+	private static GregorianCalendar dataFineMalattia;
 	
 	private static String nomeEsame;
 	private static String raccomandazione;
 	private static char tipoEsame;
-	static GregorianCalendar dataEsame;
-	private String viaEsame;
-	private String comuneEsame;
-	private String provinciaEsame;
-	int [] capEsame;
-	static GregorianCalendar oraEsame;
-	ArrayList <Double> esitoPeriodico;
-	ArrayList <String> esitoDiagnostico;
-	ArrayList <String> esamePeriodico;
-	ArrayList <String> esameDiagnostico;
+	private static GregorianCalendar dataEsame;
+	private static String ospedale;
+	private static String viaEsame;
+	private static String comuneEsame;
+	private static String provinciaEsame;
+	private static GregorianCalendar oraEsame;
+	
+	private static ArrayList <Double> esitoPeriodico;
+	private static ArrayList <String> esitoDiagnostico;
+	private static double esito_P;
+	private static String esito_D;
+	
+	private static String prenotato; 
 	
 	
 	FileWriter fileout;
@@ -82,30 +85,25 @@ public class SalvaELeggi
 	 */
 	public static void nuovaMalattia ()
 	{
-		System.out.println(MSG_NOME);
-		InputDati.leggiStringaNonVuota(nomeMalattia);
+		InputDati.leggiStringaNonVuota(MSG_NOME);
 		System.out.println(nomeMalattia);
 		
 		System.out.println(MSG_DATA_INIZIO);
-		System.out.println(giornoInizio + "-" + meseInizio + "-" + annoInizio);
+		System.out.println(dataInizioMalattia);
 		
 		System.out.println(MSG_DATA_FINE);
-		System.out.println(giornoFine + "-" + meseFine + "-" + annoFine);
+		System.out.println(dataFineMalattia);
 		
-		System.out.println(MSG_SINTOMI);
-		InputDati.leggiStringa(sintomo);
+		InputDati.leggiStringa(MSG_SINTOMI);
 		System.out.println(sintomiMalattia);
 		
-		System.out.println(MSG_DIAGNOSI);
-		InputDati.leggiStringa(diagnosi);
+		InputDati.leggiStringa(MSG_DIAGNOSI);
 		System.out.println(diagnosiMalattia);
 		
-		System.out.println(MSG_ESAMI);
-		InputDati.leggiStringa(esame);
+		InputDati.leggiStringa(MSG_ESAMI);
 		System.out.println(esamiAssociati);
 		
-		System.out.println(MSG_TERAPIA);
-		InputDati.leggiStringa(terapia);
+		InputDati.leggiStringa(MSG_TERAPIA);
 		System.out.println(terapiaAssociata);	
 	}
 	
@@ -127,6 +125,39 @@ public class SalvaELeggi
 		System.out.println(dataEsame);
 		InputDati.leggiStringaNonVuota(MSG_ORA);
 		System.out.println(oraEsame);
+		
+		InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
+		System.out.println(ospedale);
+		InputDati.leggiStringaNonVuota(MSG_VIA);
+		System.out.println(viaEsame);
+		InputDati.leggiStringaNonVuota(MSG_COMUNE);
+		System.out.println(comuneEsame);
+		InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
+		System.out.println(provinciaEsame);
+		
+		prenotato = Esame.ESAME_PRENOTATO;
+	}
+	
+	
+	/**
+	 * Metodo per inserire l'esito degli esami effettuati
+	 */
+	public void inserisciEsito()
+	{
+		if(tipoEsame == Esame.PERIODICO)
+		{
+			Esame.aggiungiEsitoPeriodico(MSG_ESITO, esito_P);
+			prenotato = null;
+			System.out.println(esitoPeriodico);
+			
+		}
+		else
+			if(tipoEsame == Esame.DIAGNOSTICO)
+			{
+				Esame.aggiungiEsitoDiagnostico(MSG_ESITO, esito_D);
+				prenotato = null;
+				System.out.println(esitoDiagnostico);
+			}
 	}
 	
 	
