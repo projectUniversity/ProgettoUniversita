@@ -26,7 +26,7 @@ public class Paziente
 	public final static String SESSO_PESO_ALTEZZA = "Sesso: %c - Peso: %1.2f - Altezza: %1.2f";
 	public final static String NASCITA = "Nato il %d/%d/%d a %s in provincia di %s";
 	public final static String DOMICILIO = "Abita in via %s a %s in provicia di %s      CAP  %d";
-	public final static String TEL_CF ="Telefono  %d          Codice Fiscale  %s";
+	public final static String TEL_CF ="Telefono  %s          Codice Fiscale  %s";
 	public final static String SANGUE = "Gruppo sanguigno %s %s";
 	
 	//ATTRIBUTI
@@ -48,7 +48,7 @@ public class Paziente
 	private static String comuneNascita;
 	private static String provinciaNascita;
 	private static int capCasa;
-	private static int telefono;
+	private static String telefono;
 	
 	/**
 	 * COSTRUTTORE
@@ -71,7 +71,7 @@ public class Paziente
 	 * @param _capCasa il cap di dove abita
 	 * @param _telefono il numero di telefono del paziente
 	 */
-	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String  _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa, int _telefono)
+	public Paziente(String _nome, String _cognome, char _sesso, double _peso, double _altezza, int _anno, int _mese, int _giorno, String  _codiceFiscale, String _fattoreRh, String _gruppoSanguigno, String _viaCasa, String _comuneCasa, String _provinciaCasa, String _comuneNascita, String _provinciaNascita, int _capCasa, String _telefono)
 	{
 		nome = _nome;
 		cognome = _cognome;
@@ -98,7 +98,7 @@ public class Paziente
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return true il codice fisclae e' corretto, altrimenti false
 	 */
-	public boolean controlloCf()
+	public static boolean controlloCf()
 	{
 		
 		if(codiceFiscale.length() != LUNGH_MAX_CF)
@@ -165,7 +165,7 @@ public class Paziente
 	 * @param msg messaggio il controllo fallisce
 	 * @return true se il controllo va a buon fine, altrimenti ritorna false
 	 */
-	public boolean controlloGruppo()
+	public static boolean controlloGruppo()
 	{
 		for(int i=0; i<FATTORE.length; i++)
 		{
@@ -189,7 +189,7 @@ public class Paziente
 	 * @param str la stringa che viene controllata
 	 * @return true se la stringa contiene lettere, altrimenti false
 	 */
-	public boolean controlloLettera(String str)
+	public static boolean controlloLettera(String str)
 	{
 		for(int i=0; i<LETTERE.length; i++)
 		{
@@ -207,7 +207,7 @@ public class Paziente
 	 * @param str la stringa che viene controllata
 	 * @return true se la stringa contiene numeri, altrimenti false
 	 */
-	public boolean controlloNumero(String str)
+	public static boolean controlloNumero(String str)
 	{
 		for(int i=0; i<NUMERI.length; i++)
 		{
@@ -236,7 +236,7 @@ public class Paziente
 	 * METODO per prendere il nome del paziente
 	 * @return il nome del paziente
 	 */
-	public String getNome()
+	public static String getNome()
 	{
 		return nome;
 	}
@@ -245,17 +245,9 @@ public class Paziente
 	 * METODO per prendere il cognome del paziente
 	 * @return il cognome del paziente
 	 */
-	public String getCognome()
+	public static String getCognome()
 	{
 		return cognome;
 	}
-	
-	/**
-	 * METODO per prendere il codice fiscale del paziente
-	 * @return il codice fiscale del paziente
-	 */
-	public String getCoFiscale()
-	{
-		return codiceFiscale;
-	}
+
 }
