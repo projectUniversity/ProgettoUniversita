@@ -186,8 +186,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per creare un nuovo esame
 	 */
-	public static Esame nuovoEsame()  //Basarsi sul paziente per rifare questo metodo
-										//return new Esame()
+	public static Esame nuovoEsame()  
 	{
 		nomeEsame = InputDati.leggiStringaNonVuota(NOME_ESAME);
 		raccomandazione = InputDati.leggiStringa(MSG_RACC);
@@ -242,7 +241,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.txt");
+			fileout = new FileOutputStream("Salvataggio.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			utente = SalvaELeggi.creaUtente();
@@ -260,11 +259,29 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.txt");
+			fileout = new FileOutputStream("Salvataggio.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			patologia = SalvaELeggi.nuovaMalattia();
 			fout.writeObject(patologia);
+			
+			fout.close();
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	public void scritturaEsame()
+	{
+		try
+		{
+			fileout = new FileOutputStream("Salvataggio.dat");
+			fout = new ObjectOutputStream(fileout);
+			
+			visitaMedica = SalvaELeggi.nuovoEsame();
+			fout.writeObject(visitaMedica);
 			
 			fout.close();
 		}
@@ -282,7 +299,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			filein = new FileInputStream("Salvataggio.txt");
+			filein = new FileInputStream("Salvataggio.dat");
 			fin = new ObjectInputStream(filein);
 			boolean fineFile = false;
 			while(!fineFile)

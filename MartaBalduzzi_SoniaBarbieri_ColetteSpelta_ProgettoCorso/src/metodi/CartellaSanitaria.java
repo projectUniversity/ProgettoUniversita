@@ -14,6 +14,8 @@ public class CartellaSanitaria {
 	//COSTANTE
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
 	
+	//ATTRIBUTI
+	private SalvaELeggi file=new SalvaELeggi();
 	//METODI
 	/**
 	 * Metodo toString()
@@ -21,11 +23,12 @@ public class CartellaSanitaria {
 	 */
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
+		file.lettura();
 		System.out.println(MSG+Paziente.getCognome()+""+Paziente.getNome());
-		//frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
-		//if((Esame.toStringSintetico().equals(null))&&(Esame.toStringPrenotati().equals(null))){
+		frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
+		if((Esame.toStringSintetico().equals(null))&&(Esame.toStringPrenotati().equals(null))){
 			frase.append(String.format(Paziente.toStringCompleto()));
-		//}
+		}
 		return frase.toString();
 	}
 }
