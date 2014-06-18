@@ -126,8 +126,11 @@ public class SalvaELeggi
 	private static char sesso;
 	private static double peso,altezza;
 	private static int anno,mese,giorno,cap, ora, minuti;
+	
 	/**
 	 * Metodo per creare un nuovo paziente
+	 * 
+	 * @return nuovo oggetto di tipo Paziente
 	 */
 	public static Paziente creaUtente()
 	{
@@ -155,6 +158,8 @@ public class SalvaELeggi
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
+	 * 
+	 * @return nuovo oggetto di tipo Malattia
 	 */
 	public static Malattia nuovaMalattia ()
 	{
@@ -185,6 +190,8 @@ public class SalvaELeggi
 	
 	/**
 	 * Metodo per creare un nuovo esame
+	 * 
+	 * @return nuovo oggetto di tipo Esame
 	 */
 	public static Esame nuovoEsame()  
 	{
@@ -213,7 +220,7 @@ public class SalvaELeggi
 	
 	
 	/**
-	 * Metodo per inserire l'esito degli esami effettuati
+	 * Metodo di tipo void per inserire l'esito degli esami effettuati
 	 */
 	public void inserisciEsito()
 	{
@@ -235,13 +242,13 @@ public class SalvaELeggi
 	
 	
 	/**
-	 * Metodo per scrivere su file e memorizzare i dati
+	 * Metodo per scrivere su file e memorizzare i dati del paziente
 	 */
 	public void scritturaUtente()
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("SalvataggioUtente.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			utente = SalvaELeggi.creaUtente();
@@ -255,11 +262,14 @@ public class SalvaELeggi
 		}
 	}
 	
+	/**
+	 * Metodo per scrivere su file i dati relativi ad una malattia
+	 */
 	public void scritturaMalattia()
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("SalvataggioMalattia.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			patologia = SalvaELeggi.nuovaMalattia();
@@ -273,11 +283,14 @@ public class SalvaELeggi
 		}
 	}
 	
+	/**
+	 * Metodo per memorizzare su file i dati relativi ad un esame
+	 */
 	public void scritturaEsame()
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("SalvataggioEsame.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			visitaMedica = SalvaELeggi.nuovoEsame();
@@ -291,15 +304,50 @@ public class SalvaELeggi
 		}
 	}
 	
-	
 	/**
-	 * Metodo per leggere da file
+	 * Metodo per leggere da file i dati relativi all'utente
 	 */
-	public void lettura()
+	public void letturaUtente()
 	{
 		try
 		{
-			filein = new FileInputStream("Salvataggio.dat");
+			filein = new FileInputStream("SalvataggioUtente.dat");
+			fin = new ObjectInputStream(filein);
+			boolean fineFile = false;
+			while(!fineFile)
+			{
+				try
+				{
+					utente = (Paziente)fin.readObject();
+					System.out.println(utente);
+					
+				}
+				catch(EOFException e)
+				{
+					fineFile = true;
+				}
+			}
+			fin.close();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	
+	/**
+	 * Metodo per leggere da file i dati relativi ad una malattia
+	 */
+	public void letturaMalattia()
+	{
+		try
+		{
+			filein = new FileInputStream("SalvataggioMalattia.dat");
 			fin = new ObjectInputStream(filein);
 			boolean fineFile = false;
 			while(!fineFile)
@@ -308,6 +356,41 @@ public class SalvaELeggi
 				{
 					patologia = (Malattia)fin.readObject();
 					System.out.println(patologia);
+					
+				}
+				catch(EOFException e)
+				{
+					fineFile = true;
+				}
+			}
+			fin.close();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	/**
+	 * Metodo per leggere da file i dati relativi ad un esame
+	 */
+	public void letturaEsame()
+	{
+		try
+		{
+			filein = new FileInputStream("SalvataggioEsame.dat");
+			fin = new ObjectInputStream(filein);
+			boolean fineFile = false;
+			while(!fineFile)
+			{
+				try
+				{
+					visitaMedica = (Esame)fin.readObject();
+					System.out.println(visitaMedica);
 					
 				}
 				catch(EOFException e)
