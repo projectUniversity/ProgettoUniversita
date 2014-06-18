@@ -5,6 +5,15 @@ import org.junit.Test.*;
 
 import it.unibs.fp.mylib.*;
 
+/**
+ * Classe di test per i metodi di utilità
+ * 
+ * @author Marta Balduzzi, Sonia Barbieri, Colette Spelta
+ * 
+ * Classe curata da Marta Balduzzi
+ *
+ */
+
 public class TestUtilita 
 {
 	@TestUtilita

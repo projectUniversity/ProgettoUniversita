@@ -126,8 +126,11 @@ public class SalvaELeggi
 	private static char sesso;
 	private static double peso,altezza;
 	private static int anno,mese,giorno,cap, ora, minuti;
+	
 	/**
 	 * Metodo per creare un nuovo paziente
+	 * 
+	 * @return nuovo oggetto di tipo Paziente
 	 */
 	public static Paziente creaUtente()
 	{
@@ -155,6 +158,8 @@ public class SalvaELeggi
 	
 	/**
 	 * Metodo che permette di creare una nuova malattia
+	 * 
+	 * @return nuovo oggetto di tipo Malattia
 	 */
 	public static Malattia nuovaMalattia ()
 	{
@@ -185,6 +190,8 @@ public class SalvaELeggi
 	
 	/**
 	 * Metodo per creare un nuovo esame
+	 * 
+	 * @return nuovo oggetto di tipo Esame
 	 */
 	public static Esame nuovoEsame()  
 	{
@@ -213,7 +220,7 @@ public class SalvaELeggi
 	
 	
 	/**
-	 * Metodo per inserire l'esito degli esami effettuati
+	 * Metodo di tipo void per inserire l'esito degli esami effettuati
 	 */
 	public void inserisciEsito()
 	{
@@ -235,7 +242,7 @@ public class SalvaELeggi
 	
 	
 	/**
-	 * Metodo per scrivere su file e memorizzare i dati
+	 * Metodo per scrivere su file e memorizzare i dati del paziente
 	 */
 	public void scritturaUtente()
 	{
@@ -255,6 +262,9 @@ public class SalvaELeggi
 		}
 	}
 	
+	/**
+	 * Metodo per scrivere su file i dati relativi ad una malattia
+	 */
 	public void scritturaMalattia()
 	{
 		try
@@ -273,6 +283,9 @@ public class SalvaELeggi
 		}
 	}
 	
+	/**
+	 * Metodo per memorizzare su file i dati relativi ad un esame
+	 */
 	public void scritturaEsame()
 	{
 		try
@@ -293,7 +306,7 @@ public class SalvaELeggi
 	
 	
 	/**
-	 * Metodo per leggere da file
+	 * Metodo per leggere da file i dati salvati
 	 */
 	public void lettura()
 	{

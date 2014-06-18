@@ -46,6 +46,12 @@ public class Malattia implements Serializable
 	/**
 	 * COSTRUTTORE
 	 * @param _nomeMalattia Nome della malattia del paziente
+	 * @param _dataInizioMalattia Data di inizio della malattia
+	 * @param _dataFineMalattia Data di termine della malattia
+	 * @param _sintomiMalattia ArrayList di String che contiene tutti i sintomi della malattia
+	 * @param _diagnosiMalattia ArrayList di String che contiene la diagnosi della malattia
+	 * @param _esamiAssociati ArrayList di String che contiene l'elenco degli esami associati alla malattia
+	 * @param _terapiaAssociata ArrayList di String che contiene la terapia da seguire per guarire la malattia
 	 */
 	public Malattia (String _nomeMalattia, GregorianCalendar _dataInizioMalattia, GregorianCalendar _dataFineMalattia, ArrayList<String> _sintomiMalattia, ArrayList<String> _diagnosiMalattia, ArrayList<String> _esamiAssociati, ArrayList<String> _terapiaAssociata)
 	{
@@ -104,6 +110,8 @@ public class Malattia implements Serializable
 	
 	/**
 	 * Metodo per visualizzare un toString sintetico per descrivere la malattia
+	 * 
+	 * @return Un toString che descrive sinteticamente la malattia
 	 */
 	public static String toStringSintetico()
 	{
@@ -114,6 +122,8 @@ public class Malattia implements Serializable
 	
 	/**
 	 * Metodo per visualizzare un toString completo per descrivere la malattia
+	 * 
+	 * @return Un toString che descrive in modo completo la malattia
 	 */
 	public static String toStringCompleto(String nomeDellaMalattia)
 	{
@@ -131,6 +141,8 @@ public class Malattia implements Serializable
 	
 	/**
 	 * Metodo per memorizzare i nomi di tutte le malattie (Vector di String)
+	 * 
+	 * @return elenco delle malattie inserite
 	 */
 	public static ArrayList<String> aggiungiMalattia()  
 	{
