@@ -148,6 +148,7 @@ public class Malattia implements Serializable
 	{
 		for(int i = 0; i < elenco.size(); i++)
 		{
+			//Inserire il richiamo al metodo per la lettura della malattia
 			elenco.add(nomeMalattia);
 		}
 		return elenco;
