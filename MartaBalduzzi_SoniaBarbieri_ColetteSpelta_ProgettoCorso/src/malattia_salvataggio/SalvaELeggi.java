@@ -120,6 +120,7 @@ public class SalvaELeggi
 	private Paziente utente;
 	private Malattia patologia;
 	private Esame visitaMedica;
+
 	
 	
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
@@ -222,14 +223,13 @@ public class SalvaELeggi
 	/**
 	 * Metodo di tipo void per inserire l'esito degli esami effettuati
 	 */
-	public void inserisciEsito()
+	public static void inserisciEsito()
 	{
 		if(tipoEsame == Esame.PERIODICO)
 		{
 			Esame.aggiungiEsitoPeriodico(MSG_ESITO, esito_P);
 			prenotato = null;
-			System.out.println(esitoPeriodico);
-			
+			System.out.println(esitoPeriodico);	
 		}
 		else
 			if(tipoEsame == Esame.DIAGNOSTICO)
@@ -295,6 +295,9 @@ public class SalvaELeggi
 			
 			visitaMedica = SalvaELeggi.nuovoEsame();
 			fout.writeObject(visitaMedica);
+			
+			fout.writeObject(esitoPeriodico);
+			fout.writeObject(esitoDiagnostico);
 			
 			fout.close();
 		}
@@ -391,7 +394,6 @@ public class SalvaELeggi
 				{
 					visitaMedica = (Esame)fin.readObject();
 					System.out.println(visitaMedica);
-					
 				}
 				catch(EOFException e)
 				{
