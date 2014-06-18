@@ -65,7 +65,7 @@ public class MainProgetto {
 			case 1:
 				System.out.println();
 				file.scritturaUtente();
-				System.out.println(Paziente.controlloCf());
+				Paziente.controlloCf();
 				
 			break;
 			case 2:
