@@ -306,9 +306,9 @@ public class SalvaELeggi
 	
 	
 	/**
-	 * Metodo per leggere da file i dati salvati
+	 * Metodo per leggere da file i dati relativi ad una malattia
 	 */
-	public void lettura()
+	public void letturaMalattia()
 	{
 		try
 		{
@@ -321,6 +321,41 @@ public class SalvaELeggi
 				{
 					patologia = (Malattia)fin.readObject();
 					System.out.println(patologia);
+					
+				}
+				catch(EOFException e)
+				{
+					fineFile = true;
+				}
+			}
+			fin.close();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	/**
+	 * Metodo per leggere da file i dati relativi ad un esame
+	 */
+	public void letturaEsame()
+	{
+		try
+		{
+			filein = new FileInputStream("Salvataggio.dat");
+			fin = new ObjectInputStream(filein);
+			boolean fineFile = false;
+			while(!fineFile)
+			{
+				try
+				{
+					visitaMedica = (Esame)fin.readObject();
+					System.out.println(visitaMedica);
 					
 				}
 				catch(EOFException e)
