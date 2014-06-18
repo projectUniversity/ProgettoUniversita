@@ -24,22 +24,41 @@ public class CartellaSanitaria {
 		String cognome=Paziente.getCognome();
 		String nome=Paziente.getNome();
 		
-		System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
+	//	System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
 		System.out.println(CORNICE);
 		System.out.println();
 		try{
 			frase.append(String.format(Paziente.toStringCompleto(),"/n",Esame.toStringSintetico(),"/n",Malattia.toStringSintetico(),"/n",Esame.toStringPrenotati()));
 		}
 		catch(NullPointerException e){
-			try{
+		
+		}
+		try{
 			Esame.toStringPrenotati();
 			Esame.toStringSintetico();
+			Malattia.toStringSintetico();
 		}
-			catch(NullPointerException ex){
-				frase.append(String.format(Paziente.toStringCompleto()));
-			}
+		catch(NullPointerException e){
+			frase.append(String.format(Paziente.toStringCompleto()));
 		}
-		
+		try{
+			Esame.toStringSintetico();
+		}
+		catch(NullPointerException e){
+			frase.append(String.format(Paziente.toStringCompleto(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
+		}
+		try{
+			Malattia.toStringSintetico();
+		}
+		catch(NullPointerException e){
+			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Esame.toStringPrenotati()));
+		}
+		try{
+			Esame.toStringPrenotati();
+		}
+		catch(NullPointerException e){
+			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico()));
+		}
 		return frase.toString();
 	}
 }
