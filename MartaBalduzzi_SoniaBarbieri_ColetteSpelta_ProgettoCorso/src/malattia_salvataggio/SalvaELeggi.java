@@ -248,7 +248,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("SalvataggioUtente.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			utente = SalvaELeggi.creaUtente();
@@ -269,7 +269,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("SalvataggioMalattia.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			patologia = SalvaELeggi.nuovaMalattia();
@@ -290,13 +290,48 @@ public class SalvaELeggi
 	{
 		try
 		{
-			fileout = new FileOutputStream("Salvataggio.dat");
+			fileout = new FileOutputStream("SalvataggioEsame.dat");
 			fout = new ObjectOutputStream(fileout);
 			
 			visitaMedica = SalvaELeggi.nuovoEsame();
 			fout.writeObject(visitaMedica);
 			
 			fout.close();
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	/**
+	 * Metodo per leggere da file i dati relativi all'utente
+	 */
+	public void letturaUtente()
+	{
+		try
+		{
+			filein = new FileInputStream("SalvataggioUtente.dat");
+			fin = new ObjectInputStream(filein);
+			boolean fineFile = false;
+			while(!fineFile)
+			{
+				try
+				{
+					utente = (Paziente)fin.readObject();
+					System.out.println(utente);
+					
+				}
+				catch(EOFException e)
+				{
+					fineFile = true;
+				}
+			}
+			fin.close();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
 		}
 		catch(IOException e)
 		{
@@ -312,7 +347,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			filein = new FileInputStream("Salvataggio.dat");
+			filein = new FileInputStream("SalvataggioMalattia.dat");
 			fin = new ObjectInputStream(filein);
 			boolean fineFile = false;
 			while(!fineFile)
@@ -347,7 +382,7 @@ public class SalvaELeggi
 	{
 		try
 		{
-			filein = new FileInputStream("Salvataggio.dat");
+			filein = new FileInputStream("SalvataggioEsame.dat");
 			fin = new ObjectInputStream(filein);
 			boolean fineFile = false;
 			while(!fineFile)
