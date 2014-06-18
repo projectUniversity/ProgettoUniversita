@@ -11,11 +11,9 @@ public class CartellaSanitaria {
 	 *Questa classe non presenta il costruttore perché non è necessario
 	 */
 	
-	//COSTANTE
+	//COSTANTI
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
-	
-	//ATTRIBUTI
-	private SalvaELeggi file=new SalvaELeggi();
+	public static final String CORNICE="_____________________________________________";
 	//METODI
 	/**
 	 * Metodo toString()
@@ -23,14 +21,25 @@ public class CartellaSanitaria {
 	 */
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
-	
-		System.out.println(MSG+Paziente.getCognome()+" "+Paziente.getNome());
-		//if((Esame.toStringSintetico().equals(null))&&(Esame.toStringPrenotati().equals(null))){
-		//	frase.append(String.format(Paziente.toStringCompleto()));
-		//}
-		//else{
-			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
-		//}
+		String cognome=Paziente.getCognome();
+		String nome=Paziente.getNome();
+		
+		System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
+		System.out.println(CORNICE);
+		System.out.println();
+		try{
+			frase.append(String.format(Paziente.toStringCompleto(),"/n",Esame.toStringSintetico(),"/n",Malattia.toStringSintetico(),"/n",Esame.toStringPrenotati()));
+		}
+		catch(NullPointerException e){
+			try{
+			Esame.toStringPrenotati();
+			Esame.toStringSintetico();
+		}
+			catch(NullPointerException ex){
+				frase.append(String.format(Paziente.toStringCompleto()));
+			}
+		}
+		
 		return frase.toString();
 	}
 }
