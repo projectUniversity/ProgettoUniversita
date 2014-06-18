@@ -20,26 +20,7 @@ public class MainProgetto {
 	public static final String[] SCELTE={"Inserimento dei dati del paziente","Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
 	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
-	public static final String CORNICE="*******************************************************************";
-	public static final String MSG_SCELTA="Digitare il numero dell'opzione desiderata --> ";
-	public static final String NOME="Inserisci il nome: ";
-	public static final String COGNOME="Inserisci il cognome: ";
-	public static final String SESSO="Inserisci il genere (F=femmina, M=maschio): ";
-	public static final String ALTEZZA="Inserisci l'altezza (in metri): ";
-	public static final String PESO="Inserisci il peso (in kilogrammi): ";
-	public static final String RH="Inserisci il fattore Rh del gruppo sanguigno: ";
-	public static final String GRUPPO_SANGUIGNO="Inserisci il gruppo sanguigno: ";
-	public static final String VIA="Inserisci la via di residenza:via ";
-	public static final String COMUNE="Inserisci il comune di residenza: ";
-	public static final String PROVINCIA="Inserisci la provincia di residenza: ";
-	public static final String COMUNE_NASCITA="Inserisci il comune di nascita: ";
-	public static final String PROVINCIA_NASCITA="Inserisci la provincia di nascita: ";
-	public static final String ANNO="Inserisci l'anno di nascita: ";
-	public static final String MESE="Inserisci il mese di nascita: ";
-	public static final String GIORNO="Inserisci il giorno di nascita: ";
 	public static final String COD_FISC="Inserisci il codice fiscale: ";
-	public static final String CAP="Inserisci il cap di residenza: ";
-	public static final String TEL="Inserisci il numero di telefono del paziente: ";
 	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli";
 	
 	//ATTRIBUTI
