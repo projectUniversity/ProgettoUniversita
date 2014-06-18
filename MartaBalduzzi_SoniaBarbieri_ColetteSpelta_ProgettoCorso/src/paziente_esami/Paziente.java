@@ -59,8 +59,8 @@ public class Paziente implements Serializable
 	 * @param _nome il nome del paziente
 	 * @param _cognome il cognome del paziente
 	 * @param _sesso il sesso del paziente (M/F)
-	 * @param _peso il peso del paziente (ex. 72.5 kg)
-	 * @param _altezza l'altezza del paziente (ex. 1.5 m)
+	 * @param _peso il peso del paziente (ex. 72,5 kg)
+	 * @param _altezza l'altezza del paziente (ex. 1,50 m)
 	 * @param _anno l'anno di nascita del paziente
 	 * @param _mese il mese in cui e' nato
 	 * @param _giorno il giorno in cui e' nato
