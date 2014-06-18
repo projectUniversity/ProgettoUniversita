@@ -1,7 +1,9 @@
 package mainETest;
 
 import static org.junit.Assert.*;
-import org.junit.Test.*;
+
+import org.junit.Test;
+
 
 import it.unibs.fp.mylib.*;
 
@@ -16,7 +18,7 @@ import it.unibs.fp.mylib.*;
 
 public class TestUtilita 
 {
-	@TestUtilita
+	@Test
 	public void leggiInteroTest() throws Exception 
 	{
 		int x;
@@ -26,7 +28,7 @@ public class TestUtilita
 		assertEquals(20,x,0.1);
 	}
 	
-	@TestUtilita
+	@Test
 	public void leggiStringaTest() throws Exception 
 	{
 		String stringa;
@@ -34,7 +36,7 @@ public class TestUtilita
 		assertEquals("ciao",stringa);
 	}
 	
-	@TestUtilita
+	@Test
 	public void leggiDoubleTest() throws Exception 
 	{
 		double x;
@@ -44,7 +46,7 @@ public class TestUtilita
 		assertEquals(0.210,x,0.001);
 	}
 	
-	@TestUtilita
+	@Test
 	public void leggiInteroMaxMinTest() throws Exception
 	{
 		int x;
@@ -52,7 +54,7 @@ public class TestUtilita
 		assertEquals(4,x,0.001);
 	}
 	
-	@TestUtilita
+	@Test
 	public void leggiStringaNonVuotaTest() throws Exception
 	{
 		String stringa;

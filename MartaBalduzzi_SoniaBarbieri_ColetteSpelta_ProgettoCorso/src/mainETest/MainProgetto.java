@@ -46,8 +46,7 @@ public class MainProgetto {
 			case 1:
 				System.out.println();
 				file.scritturaUtente();
-				Paziente.controlloCf();
-				
+				//Paziente.controlloCf();
 			break;
 			case 2:
 				System.out.println();
@@ -55,6 +54,7 @@ public class MainProgetto {
 			break;
 			case 3:
 				System.out.println();
+				file.letturaEsame();
 				System.out.println(Esame.toStringPrenotati());
 				file.inserisciEsito();
 			break;
@@ -64,6 +64,7 @@ public class MainProgetto {
 			break;
 			case 5:
 				System.out.println();
+				file.letturaMalattia();
 				malattia=Malattia.aggiungiMalattia();
 				for(int i=0;i<malattia.size();i++){
 					System.out.println((i+1)+")"+malattia.get(i));
@@ -73,6 +74,9 @@ public class MainProgetto {
 			break;
 			case 6:
 				System.out.println();
+				file.letturaEsame();
+				file.letturaMalattia();
+				file.letturaUtente();
 				System.out.println(cartSan.toString());
 			break;
 			default:

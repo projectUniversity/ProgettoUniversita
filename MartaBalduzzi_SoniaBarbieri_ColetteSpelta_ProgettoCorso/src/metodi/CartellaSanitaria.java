@@ -23,11 +23,13 @@ public class CartellaSanitaria {
 	 */
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
-		file.lettura();
-		System.out.println(MSG+Paziente.getCognome()+""+Paziente.getNome());
-		frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
+	
+		System.out.println(MSG+Paziente.getCognome()+" "+Paziente.getNome());
 		if((Esame.toStringSintetico().equals(null))&&(Esame.toStringPrenotati().equals(null))){
 			frase.append(String.format(Paziente.toStringCompleto()));
+		}
+		else{
+			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
 		}
 		return frase.toString();
 	}
