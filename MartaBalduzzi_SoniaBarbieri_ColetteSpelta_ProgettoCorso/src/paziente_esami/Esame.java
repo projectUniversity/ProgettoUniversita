@@ -30,6 +30,10 @@ public class Esame implements Serializable
 	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
 	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d";
 	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
+	public final static String PERIODICI_PRENOTATI = "Esami periodici: %s";
+	public final static String DIAGNOSTICI_PRENOTATI = "Esami diagnostici prenotati: %s";
+	public final static String NO_PERIODICI = "Non ci sono esami periodici prenotati";
+	public final static String NO_DIAGNOSTICI = "Non ci sono esami diagnostici prenotati";
 	
 	//ATTRIBUTI
 	private static String nomeEsame;
@@ -322,17 +326,27 @@ public class Esame implements Serializable
 		str.append(String.format(ELENCO_PRENOTATI));
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
-			if(prenotato == ESAME_PRENOTATO)
+			if(prenotato.equalsIgnoreCase(ESAME_PRENOTATO))
 			{
-				str.append(String.format("\n" + esamePeriodico.get(i)));
+				str.append(String.format("\n" + PERIODICI_PRENOTATI, esamePeriodico.get(i)));
+			}
+			
+			else
+			{
+				System.out.println(NO_PERIODICI);
 			}
 		}
 			
 		for(int i=0; i<esameDiagnostico.size(); i++)
 		{
-			if(prenotato == ESAME_PRENOTATO)
+			if(prenotato.equalsIgnoreCase(ESAME_PRENOTATO))
 			{
-				str.append(String.format("\n" + esameDiagnostico.get(i)));
+				str.append(String.format("\n" + DIAGNOSTICI_PRENOTATI, esameDiagnostico.get(i)));
+			}
+			
+			else
+			{
+				System.out.println(NO_DIAGNOSTICI);
 			}
 		}
 
