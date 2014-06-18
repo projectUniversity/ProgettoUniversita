@@ -58,7 +58,7 @@ public class SalvaELeggi
 	public static final String PESO="Inserisci il peso (in kilogrammi): ";
 	public static final String RH="Inserisci il fattore Rh del gruppo sanguigno: ";
 	public static final String GRUPPO_SANGUIGNO="Inserisci il gruppo sanguigno: ";
-	public static final String VIA="Inserisci la via di residenza: via ";
+	public static final String VIA="Inserisci la via di residenza:via ";
 	public static final String COMUNE="Inserisci il comune di residenza: ";
 	public static final String PROVINCIA="Inserisci la provincia di residenza: ";
 	public static final String COMUNE_NASCITA="Inserisci il comune di nascita: ";

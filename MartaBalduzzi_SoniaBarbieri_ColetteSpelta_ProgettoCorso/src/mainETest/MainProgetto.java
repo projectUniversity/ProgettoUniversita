@@ -74,8 +74,8 @@ public class MainProgetto {
 			break;
 			case 6:
 				System.out.println();
-				file.letturaEsame();
-				file.letturaMalattia();
+			//	file.letturaEsame();
+			//	file.letturaMalattia();
 				file.letturaUtente();
 				System.out.println(cartSan.toString());
 			break;

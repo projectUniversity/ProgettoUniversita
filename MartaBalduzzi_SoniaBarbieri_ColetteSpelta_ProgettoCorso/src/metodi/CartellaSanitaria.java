@@ -25,12 +25,12 @@ public class CartellaSanitaria {
 		StringBuffer frase=new StringBuffer();
 	
 		System.out.println(MSG+Paziente.getCognome()+" "+Paziente.getNome());
-		if((Esame.toStringSintetico().equals(null))&&(Esame.toStringPrenotati().equals(null))){
-			frase.append(String.format(Paziente.toStringCompleto()));
-		}
-		else{
+		//if((Esame.toStringSintetico().equals(null))&&(Esame.toStringPrenotati().equals(null))){
+		//	frase.append(String.format(Paziente.toStringCompleto()));
+		//}
+		//else{
 			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
-		}
+		//}
 		return frase.toString();
 	}
 }
