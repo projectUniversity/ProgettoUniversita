@@ -1,6 +1,8 @@
 package mainETest;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import paziente_esami.*;
 import it.unibs.fp.mylib.*;
@@ -20,17 +22,46 @@ public class MainProgetto {
 	public static final String[] SCELTE={"Inserimento dei dati del paziente","Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
 	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
-	public static final String COD_FISC="Inserisci il codice fiscale: ";
-	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli";
+	//public static final String COD_FISC="Inserisci il codice fiscale: ";
+	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli ";
+	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	
-	/*public static final String NOME="Inserisci il nome: ";
+	public static final String MSG_NOME = "Inserire il nome della malattia: ";
+	public static final String GIORNO_I = "Inserire il giorno di inizio della malattia: ";
+	public static final String MESE_I = "Inserire il mese di inizio della malattia: ";
+	public static final String ANNO_I = "Inserire l'anno di inizio della malattia: ";
+	public static final String GIORNO_F = "Inserire il giorno di termine della malattia: ";
+	public static final String MESE_F = "Inserire il mese di termine della malattia: ";
+	public static final String ANNO_F = "Inserire l'anno di termine della malattia: ";
+	public static final String MSG_SINTOMI = "Inserire i sintomi della malattia: ";
+	public static final String MSG_DIAGNOSI = "Indicare la diagnosi finale: ";
+	public static final String MSG_ESAMI = "Inserire gli esami indicati per la patologia: ";
+	public static final String MSG_TERAPIA = "Indicare la terapia da seguire: ";
+	
+	public static final String NOME_ESAME = "Inserire il nome dell'esame: ";
+	public static final String MSG_RACC = "Inserire eventuali raccomandazioni: ";
+	public static final String MSG_TIPO = "Specificare il tipo dell'esame (P = periodico, D = diagnostico): ";
+	public static final String MSG_GIORNO = "Inserire il giorno in cui si intende fare l'esame: "; 
+	public static final String MSG_MESE = "Inserire il mese in cui si intende fare l'esame: ";
+	public static final String MSG_ANNO = "Inserire l'anno in cui si intende fare l'esame: ";
+	public static final String MSG_MINUTI = "Inserire i minuti: ";
+	public static final String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
+	public static final String MSG_OSPEDALE = "Specificare il nome della struttura in cui si intende fare l'esame: ";
+	public static final String MSG_VIA = "Specificare la via della struttura sopracitata: ";
+	public static final String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
+	public static final String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
+	public static final String MSG_ESITO = "Inserire l'esito dell'esame: ";
+	public static final String SOGLIA_MAX = "Inserire il massimo valore che l'esame può presentare (0 se diagnostico): ";
+	public static final String SOGLIA_MIN = "Inserire il minimo valore che l'esame deve avere (0 se diagnostico): ";
+	
+	public static final String NOME="Inserisci il nome: ";
 	public static final String COGNOME="Inserisci il cognome: ";
 	public static final String SESSO="Inserisci il genere (F=femmina, M=maschio): ";
 	public static final String ALTEZZA="Inserisci l'altezza (in metri): ";
 	public static final String PESO="Inserisci il peso (in kilogrammi): ";
 	public static final String RH="Inserisci il fattore Rh del gruppo sanguigno: ";
 	public static final String GRUPPO_SANGUIGNO="Inserisci il gruppo sanguigno: ";
-	public static final String VIA="Inserisci la via di residenza:via ";
+	public static final String VIA="Inserisci la via di residenza: via ";
 	public static final String COMUNE="Inserisci il comune di residenza: ";
 	public static final String PROVINCIA="Inserisci la provincia di residenza: ";
 	public static final String COMUNE_NASCITA="Inserisci il comune di nascita: ";
@@ -40,21 +71,62 @@ public class MainProgetto {
 	public static final String GIORNO="Inserisci il giorno di nascita: ";
 	public static final String COD_FISC="Inserisci il codice fiscale: ";
 	public static final String CAP="Inserisci il cap di residenza: ";
-	public static final String MSG_TELEFONO = "Inserisci il numero di telefono: ";*/
+	public static final String MSG_TELEFONO = "Inserisci il numero di telefono: ";
 	
 	//ATTRIBUTI
 	private static boolean finito=false;
 	private static Menu myMenu=new Menu(SCELTE);
 	private static int scelta;
-	private static String nomeMalattia;
+	private static String nomeMalattiaScelta;
 	private static CartellaSanitaria cartSan=new CartellaSanitaria();
-	private static SalvaELeggi file=new SalvaELeggi();
+	private static Paziente utente;
+	private static Esame esam,esito;
+	private static Malattia mal;
 	private static ArrayList <String> malattia;
 	
-	/*private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
+	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
 	private static double peso,altezza;
-	private static int anno,mese,giorno,cap, ora, minuti;*/
+	private static int anno,mese,giorno,cap, ora, minuti;
+	
+	private static String nomeMalattia;
+	private static ArrayList <String> sintomiMalattia;
+	private static String sintomo;
+	private static ArrayList <String> diagnosiMalattia;
+	private static String diagnosi;
+	private static ArrayList <String> esamiAssociati;
+	private static String esame;
+	private static ArrayList <String> terapiaAssociata;
+	private static String terapia;
+	private static GregorianCalendar dataInizioMalattia;
+	private static GregorianCalendar dataFineMalattia;
+	
+	private static int giornoInizio;
+	private static int meseInizio;
+	private static int annoInizio;
+	private static int giornoFine;
+	private static int meseFine;
+	private static int annoFine;
+	
+	private static String nomeEsame;
+	private static String raccomandazione;
+	private static char tipoEsame;
+	private static GregorianCalendar dataEsame;
+	private static String ospedale;
+	private static String viaEsame;
+	private static String comuneEsame;
+	private static String provinciaEsame;
+	private static GregorianCalendar oraEsame;
+	private static double sogliaMax; 
+	private static double sogliaMin;
+	
+	private static ArrayList <Double> esitoPeriodico;
+	private static ArrayList <String> esitoDiagnostico;
+	
+	private static String prenotato; 
+	private static File salvataggioMalattia=new File("SalvataggioMalattia.dat");
+	private static File salvataggioEsame=new File("SalvataggioEsame.dat");
+	private static File salvataggioUtente=new File("SalvataggioUtente.dat");
 	
 	/**
 	 * Metodo main
@@ -68,42 +140,53 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				//Paziente utente=creaUtente();
-				file.scritturaUtente();
-				Paziente.controlloCf();
+				utente=creaUtente();
+				//utente.controlloCf();
+				ServizioFile.salvaSingoloOggetto(salvataggioUtente, utente);
 			break;
 			case 2:
 				System.out.println();
-				file.scritturaEsame();
+				esam=nuovoEsame();
+				ServizioFile.salvaSingoloOggetto(salvataggioEsame, esam);
 				//new Esame(InputDati.leggiStringaNonVuota("Inserisci l'esame"),InputDati.leggiStringaNonVuota("Raccomandazioni"),InputDati.leggiChar("tipo esame"),InputDati.leggiIntero("giorno"),InputDati.leggiIntero("mese"),InputDati.leggiIntero("anno"),InputDati.leggiIntero("ora"),InputDati.leggiIntero("min"),InputDati.leggiStringaNonVuota("ospedale"),InputDati.leggiStringaNonVuota("via ospedale"),InputDati.leggiStringaNonVuota("comune ospedale"),InputDati.leggiStringaNonVuota("provincia ospedale"),InputDati.leggiDouble("soglia max"),InputDati.leggiDouble("soglia min"),InputDati.leggiStringaNonVuota("prenotato"));
 			break;
 			case 3:
 				System.out.println();
-				file.letturaEsame();
+				ServizioFile.caricaSingoloOggetto(salvataggioEsame);
 				System.out.println(Esame.toStringPrenotati());
-				//String nomeEsame=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
-				//Esame.aggiungiEsitoDiagnostico(nomeEsame, InputDati.leggiStringaNonVuota("Inserisci l'esito"));
-				file.inserisciEsito();
+				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
+				if(tipoEsame == Esame.PERIODICO){
+					double esitoP=InputDati.leggiDouble(MSG_ESITO);
+				//	esito=Esame.aggiungiEsitoPeriodico(nomeEsame, esitoP);
+					prenotato = null;
+				}
+				else{
+					if(tipoEsame == Esame.DIAGNOSTICO){
+						String esitoD=InputDati.leggiStringa(MSG_ESITO);
+					//	esito=Esame.aggiungiEsitoDiagnostico(nomeEsame, esitoD);
+						prenotato = null;
+					}
+				}
+				ServizioFile.salvaSingoloOggetto(salvataggioEsame, esito);
+				
 			break;
 			case 4:
 				System.out.println();
-				file.scritturaMalattia();
+				mal=nuovaMalattia();
+				ServizioFile.salvaSingoloOggetto(salvataggioMalattia, mal);
 			break;
 			case 5:
 				System.out.println();
-				file.letturaMalattia();
+				ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
 				malattia=Malattia.aggiungiMalattia();
 				for(int i=0;i<malattia.size();i++){
 					System.out.println((i+1)+")"+malattia.get(i));
 				}
-				nomeMalattia=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
-				Malattia.toStringCompleto(nomeMalattia);
+				nomeMalattiaScelta=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
+				System.out.println(Malattia.toStringCompleto(nomeMalattiaScelta));
 			break;
 			case 6:
 				System.out.println();
-				file.letturaEsame();
-				file.letturaMalattia();
-				file.letturaUtente();
 				System.out.println(cartSan.toString());
 			break;
 			default:
@@ -115,8 +198,12 @@ public class MainProgetto {
 		while(!finito);
 	}
 	
-	/*public static Paziente creaUtente()
-	{
+	/**
+	 * Metodo per creare un nuovo paziente
+	 * 
+	 * @return nuovo oggetto di tipo Paziente
+	 */
+	public static Paziente creaUtente(){
 		nome = InputDati.leggiStringaNonVuota(NOME);
 		cognome = InputDati.leggiStringaNonVuota(COGNOME);
 		sesso = InputDati.leggiChar(SESSO);
@@ -137,5 +224,62 @@ public class MainProgetto {
 		telefono = InputDati.leggiStringaNonVuota(MSG_TELEFONO);
 		
 		return new Paziente(nome, cognome, sesso, peso, altezza, anno, mese, giorno, codF, fattoreRh, gruppoS, via, comune, provincia, comuneN, provinciaN, cap, telefono);
-	}*/
+	}
+	
+	/**
+	 * Metodo che permette di creare una nuova malattia
+	 * 
+	 * @return nuovo oggetto di tipo Malattia
+	 */
+	public static Malattia nuovaMalattia (){
+		nomeMalattia = InputDati.leggiStringaNonVuota(MSG_NOME);
+		
+		giornoInizio = InputDati.leggiIntero(GIORNO_I, 1, 31);
+		meseInizio = InputDati.leggiIntero(MESE_I, 1, 12);
+		annoInizio = InputDati.leggiIntero(ANNO_I);
+		giornoFine = InputDati.leggiIntero(GIORNO_F, 0, 31);
+		meseFine = InputDati.leggiIntero(MESE_F, 0, 12);
+		annoFine = InputDati.leggiIntero(ANNO_F);
+		
+		sintomo = InputDati.leggiStringa(MSG_SINTOMI);
+		
+		diagnosi = InputDati.leggiStringa(MSG_DIAGNOSI);
+		
+		esame = InputDati.leggiStringa(MSG_ESAMI);
+		
+		terapia = InputDati.leggiStringa(MSG_TERAPIA);
+		
+		return new Malattia(nomeMalattia, dataInizioMalattia,dataFineMalattia,sintomo,diagnosi,esame,terapia);
+	}
+	
+	
+	/**
+	 * Metodo per creare un nuovo esame
+	 * 
+	 * @return nuovo oggetto di tipo Esame
+	 */
+	public static Esame nuovoEsame(){
+		nomeEsame = InputDati.leggiStringaNonVuota(NOME_ESAME);
+		raccomandazione = InputDati.leggiStringa(MSG_RACC);
+		tipoEsame = InputDati.leggiChar(MSG_TIPO);
+		
+		giorno = InputDati.leggiIntero(MSG_GIORNO, 1, 31);
+		mese = InputDati.leggiIntero(MSG_MESE, 1, 12);
+		anno = InputDati.leggiIntero(MSG_ANNO);
+		ora = InputDati.leggiIntero(MSG_ORA, 0, 23);
+		minuti = InputDati.leggiIntero(MSG_MINUTI, 0, 59);
+		
+		ospedale = InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
+		viaEsame = InputDati.leggiStringaNonVuota(MSG_VIA);
+		comuneEsame = InputDati.leggiStringaNonVuota(MSG_COMUNE);
+		provinciaEsame = InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
+		
+		sogliaMax = InputDati.leggiDouble(SOGLIA_MAX);
+		sogliaMin = InputDati.leggiDouble(SOGLIA_MIN); 
+		
+		
+		prenotato = Esame.ESAME_PRENOTATO;
+		
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
+	}
 }

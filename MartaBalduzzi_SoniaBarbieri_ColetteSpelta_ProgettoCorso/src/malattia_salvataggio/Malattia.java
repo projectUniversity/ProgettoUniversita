@@ -43,7 +43,7 @@ public class Malattia implements Serializable
 	private static int annoFine;
 	
 	private static File salvataggioMalattia = new File("SalvataggioMalattia.dat");
-	private static ArrayList<String> elenco = (ArrayList)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
+	private static ArrayList<String> elenco;
 	
 	
 	/**

@@ -1,5 +1,8 @@
 package metodi;
 
+import java.io.File;
+
+import it.unibs.fp.mylib.ServizioFile;
 import paziente_esami.*;
 import malattia_salvataggio.*;
 public class CartellaSanitaria {
@@ -14,6 +17,12 @@ public class CartellaSanitaria {
 	//COSTANTI
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
 	public static final String CORNICE="_____________________________________________";
+	
+	//ATTRIBUTI
+	private static File salvataggioMalattia=new File("SalvataggioMalattia.dat");
+	private static File salvataggioEsame=new File("SalvataggioEsame.dat");
+	private static File salvataggioUtente=new File("SalvataggioUtente.dat");
+	
 	//METODI
 	/**
 	 * Metodo toString()
@@ -21,44 +30,27 @@ public class CartellaSanitaria {
 	 */
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
-		String cognome=Paziente.getCognome();
-		String nome=Paziente.getNome();
+		Paziente utente=null;
+		Esame esame=null;
+		Malattia malattia=null;
 		
-	//	System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
+		try{
+			String cognome=utente.getCognome();
+			String nome=utente.getNome();
+			System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
+		}
+		catch(NullPointerException exLet){
+			utente=(Paziente)ServizioFile.caricaSingoloOggetto(salvataggioUtente);
+			esame=(Esame)ServizioFile.caricaSingoloOggetto(salvataggioEsame);
+			malattia=(Malattia)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
+			String cognomeL=utente.getCognome();
+			String nomeL=utente.getNome();
+			System.out.println(MSG+cognomeL.substring(0, 1).toUpperCase()+cognomeL.substring(1, cognomeL.length())+" "+nomeL.substring(0, 1).toUpperCase()+nomeL.substring(1, nomeL.length()));
+		}
 		System.out.println(CORNICE);
 		System.out.println();
-		try{
-			frase.append(String.format(Paziente.toStringCompleto(),"/n",Esame.toStringSintetico(),"/n",Malattia.toStringSintetico(),"/n",Esame.toStringPrenotati()));
-		}
-		catch(NullPointerException e){
+		frase.append(String.format(utente.toStringCompleto(),"/n",esame.toStringSintetico(),"/n",malattia.toStringSintetico(),"/n",esame.toStringPrenotati()));
 		
-		}
-		try{
-			Esame.toStringPrenotati();
-			Esame.toStringSintetico();
-			Malattia.toStringSintetico();
-		}
-		catch(NullPointerException e){
-			frase.append(String.format(Paziente.toStringCompleto()));
-		}
-		try{
-			Esame.toStringSintetico();
-		}
-		catch(NullPointerException e){
-			frase.append(String.format(Paziente.toStringCompleto(),Malattia.toStringSintetico(),Esame.toStringPrenotati()));
-		}
-		try{
-			Malattia.toStringSintetico();
-		}
-		catch(NullPointerException e){
-			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Esame.toStringPrenotati()));
-		}
-		try{
-			Esame.toStringPrenotati();
-		}
-		catch(NullPointerException e){
-			frase.append(String.format(Paziente.toStringCompleto(),Esame.toStringSintetico(),Malattia.toStringSintetico()));
-		}
 		return frase.toString();
 	}
 }
