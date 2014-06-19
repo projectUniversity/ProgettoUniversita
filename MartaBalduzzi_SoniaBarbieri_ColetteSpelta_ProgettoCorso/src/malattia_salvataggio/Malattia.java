@@ -1,5 +1,6 @@
 package malattia_salvataggio;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
@@ -25,13 +26,13 @@ public class Malattia implements Serializable
 	private static String nomeMalattia;
 	private static GregorianCalendar dataInizioMalattia = new GregorianCalendar();
 	private static GregorianCalendar dataFineMalattia = new GregorianCalendar();
-	private static ArrayList <String> sintomiMalattia = new ArrayList<String>();
+	//private static ArrayList <String> sintomiMalattia = new ArrayList<String>();
 	private static String sintomo;
-	private static ArrayList <String> diagnosiMalattia = new ArrayList<String>();
+	//private static ArrayList <String> diagnosiMalattia = new ArrayList<String>();
 	private static String diagnosi;
-	private static ArrayList <String> esamiAssociati = new ArrayList<String>();
+	//private static ArrayList <String> esamiAssociati = new ArrayList<String>();
 	private static String esame;
-	private static ArrayList <String> terapiaAssociata = new ArrayList<String>();
+	//private static ArrayList <String> terapiaAssociata = new ArrayList<String>();
 	private static String terapia;
 
 	private static int giornoInizio;
@@ -41,33 +42,39 @@ public class Malattia implements Serializable
 	private static int meseFine;
 	private static int annoFine;
 	
-	private static ArrayList<String> elenco;
+	private static File salvataggioMalattia = new File("SalvataggioMalattia.dat");
+	private static ArrayList<String> elenco = (ArrayList)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
+	
 	
 	/**
 	 * COSTRUTTORE
 	 * @param _nomeMalattia Nome della malattia del paziente
 	 * @param _dataInizioMalattia Data di inizio della malattia
 	 * @param _dataFineMalattia Data di termine della malattia
-	 * @param _sintomiMalattia ArrayList di String che contiene tutti i sintomi della malattia
-	 * @param _diagnosiMalattia ArrayList di String che contiene la diagnosi della malattia
-	 * @param _esamiAssociati ArrayList di String che contiene l'elenco degli esami associati alla malattia
-	 * @param _terapiaAssociata ArrayList di String che contiene la terapia da seguire per guarire la malattia
+	 * @param _sintomo String che contiene tutti i sintomi della malattia
+	 * @param _diagnosi String che contiene la diagnosi della malattia
+	 * @param _esame String che contiene l'elenco degli esami associati alla malattia
+	 * @param _terapia String che contiene la terapia da seguire per guarire la malattia
 	 */
-	public Malattia (String _nomeMalattia, GregorianCalendar _dataInizioMalattia, GregorianCalendar _dataFineMalattia, ArrayList<String> _sintomiMalattia, ArrayList<String> _diagnosiMalattia, ArrayList<String> _esamiAssociati, ArrayList<String> _terapiaAssociata)
+	public Malattia (String _nomeMalattia, GregorianCalendar _dataInizioMalattia, GregorianCalendar _dataFineMalattia, String _sintomo, String _diagnosi, String _esame, String _terapia)
 	{
 		nomeMalattia = _nomeMalattia;
 		dataInizioMalattia = _dataInizioMalattia;
 		dataFineMalattia = _dataFineMalattia;
-		sintomiMalattia = _sintomiMalattia;
+		sintomo = _sintomo;
+		diagnosi = _diagnosi;
+		esame = _esame;
+		terapia = _terapia;
+		/**sintomiMalattia = _sintomiMalattia;
 		diagnosiMalattia = _diagnosiMalattia;
 		esamiAssociati = _esamiAssociati;
-		terapiaAssociata = _terapiaAssociata;
+		terapiaAssociata = _terapiaAssociata;**/
 	}
 	
 	/**
 	 * Metodi per aggiungere sintomi, diagnosi, esami associati o terapie
 	 */
-	public static void aggiungiSintomi (String nuovoSintomo)
+	/**public static void aggiungiSintomi (String nuovoSintomo)
 	{
 		sintomiMalattia.add(nuovoSintomo);
 	}
@@ -85,7 +92,7 @@ public class Malattia implements Serializable
 	public static void aggiungiTerapia (String nuovaTerapia)
 	{
 		terapiaAssociata.add(nuovaTerapia);
-	}
+	}**/
 	
 	
 	/**
@@ -132,10 +139,10 @@ public class Malattia implements Serializable
 						"Nome: " + nomeMalattia + "\n" +
 						"Data d'inizio: " + dataInizioMalattia + "\n" +
 						"Data di termine: " + dataFineMalattia + "\n" +
-						"Sintomi: " + sintomiMalattia + "\n" +
-						"Diagnosi: " + diagnosiMalattia + "\n" +
-						"Esami associati: " + esamiAssociati + "\n" +
-						"Terapia da seguire: " + terapiaAssociata));
+						"Sintomi: " + sintomo + "\n" +
+						"Diagnosi: " + diagnosi + "\n" +
+						"Esami associati: " + esame + "\n" +
+						"Terapia da seguire: " + terapia));
 		return stringa.toString();
 	}
 	
@@ -148,7 +155,6 @@ public class Malattia implements Serializable
 	{
 		for(int i = 0; i < elenco.size(); i++)
 		{
-			//Inserire il richiamo al metodo per la lettura della malattia
 			elenco.add(nomeMalattia);
 		}
 		return elenco;

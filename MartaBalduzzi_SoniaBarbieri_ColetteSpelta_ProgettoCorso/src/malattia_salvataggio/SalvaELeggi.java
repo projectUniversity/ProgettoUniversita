@@ -23,33 +23,33 @@ public class SalvaELeggi
 	/**
 	 * COSTANTI
 	 */
-	private final static String MSG_NOME = "Inserire il nome della malattia: ";
-	private final static String GIORNO_I = "Inserire il giorno di inizio della malattia: ";
-	private final static String MESE_I = "Inserire il mese di inizio della malattia: ";
-	private final static String ANNO_I = "Inserire l'anno di inizio della malattia: ";
-	private final static String GIORNO_F = "Inserire il giorno di termine della malattia: ";
-	private final static String MESE_F = "Inserire il mese di termine della malattia: ";
-	private final static String ANNO_F = "Inserire l'anno di termine della malattia: ";
-	private final static String MSG_SINTOMI = "Inserire i sintomi della malattia: ";
-	private final static String MSG_DIAGNOSI = "Indicare la diagnosi finale: ";
-	private final static String MSG_ESAMI = "Inserire gli esami indicati per la patologia: ";
-	private final static String MSG_TERAPIA = "Indicare la terapia da seguire: ";
+	private static final String MSG_NOME = "Inserire il nome della malattia: ";
+	private static final String GIORNO_I = "Inserire il giorno di inizio della malattia: ";
+	private static final String MESE_I = "Inserire il mese di inizio della malattia: ";
+	private static final String ANNO_I = "Inserire l'anno di inizio della malattia: ";
+	private static final String GIORNO_F = "Inserire il giorno di termine della malattia: ";
+	private static final String MESE_F = "Inserire il mese di termine della malattia: ";
+	private static final String ANNO_F = "Inserire l'anno di termine della malattia: ";
+	private static final String MSG_SINTOMI = "Inserire i sintomi della malattia: ";
+	private static final String MSG_DIAGNOSI = "Indicare la diagnosi finale: ";
+	private static final String MSG_ESAMI = "Inserire gli esami indicati per la patologia: ";
+	private static final String MSG_TERAPIA = "Indicare la terapia da seguire: ";
 	
-	private final static String NOME_ESAME = "Inserire il nome dell'esame: ";
-	private final static String MSG_RACC = "Inserire eventuali raccomandazioni: ";
-	private final static String MSG_TIPO = "Specificare il tipo dell'esame (P = periodico, D = diagnostico): ";
-	private final static String MSG_GIORNO = "Inserire il giorno in cui si intende fare l'esame: "; 
-	private final static String MSG_MESE = "Inserire il mese in cui si intende fare l'esame: ";
-	private final static String MSG_ANNO = "Inserire l'anno in cui si intende fare l'esame: ";
-	private final static String MSG_MINUTI = "Inserire i minuti: ";
-	private final static String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
-	private final static String MSG_OSPEDALE = "Specificare il nome della struttura in cui si intende fare l'esame: ";
-	private final static String MSG_VIA = "Specificare la via della struttura sopracitata: ";
-	private final static String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
-	private final static String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
-	private final static String MSG_ESITO = "Inserire l'esito dell'esame: ";
-	private final static String SOGLIA_MAX = "Inserire il massimo valore che l'esame può presentare: ";
-	private final static String SOGLIA_MIN = "Inserire il minimo valore che l'esame deve avere: ";
+	private static final String NOME_ESAME = "Inserire il nome dell'esame: ";
+	private static final String MSG_RACC = "Inserire eventuali raccomandazioni: ";
+	private static final String MSG_TIPO = "Specificare il tipo dell'esame (P = periodico, D = diagnostico): ";
+	private static final String MSG_GIORNO = "Inserire il giorno in cui si intende fare l'esame: "; 
+	private static final String MSG_MESE = "Inserire il mese in cui si intende fare l'esame: ";
+	private static final String MSG_ANNO = "Inserire l'anno in cui si intende fare l'esame: ";
+	private static final String MSG_MINUTI = "Inserire i minuti: ";
+	private static final String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
+	private static final String MSG_OSPEDALE = "Specificare il nome della struttura in cui si intende fare l'esame: ";
+	private static final String MSG_VIA = "Specificare la via della struttura sopracitata: ";
+	private static final String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
+	private static final String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
+	private static final String MSG_ESITO = "Inserire l'esito dell'esame: ";
+	private static final String SOGLIA_MAX = "Inserire il massimo valore che l'esame può presentare: ";
+	private static final String SOGLIA_MIN = "Inserire il minimo valore che l'esame deve avere: ";
 	
 	public static final String NOME="Inserisci il nome: ";
 	public static final String COGNOME="Inserisci il cognome: ";
@@ -174,18 +174,18 @@ public class SalvaELeggi
 		annoFine = InputDati.leggiIntero(ANNO_F);
 		
 		sintomo = InputDati.leggiStringa(MSG_SINTOMI);
-		Malattia.aggiungiSintomi(sintomo);
+		//Malattia.aggiungiSintomi(sintomo);
 		
 		diagnosi = InputDati.leggiStringa(MSG_DIAGNOSI);
-		Malattia.aggiungiDiagnosi(diagnosi);
+		//Malattia.aggiungiDiagnosi(diagnosi);
 		
 		esame = InputDati.leggiStringa(MSG_ESAMI);
-		Malattia.aggiungiEsami(esame);;
+		//Malattia.aggiungiEsami(esame);;
 		
 		terapia = InputDati.leggiStringa(MSG_TERAPIA);
-		Malattia.aggiungiTerapia(terapia);
+		//Malattia.aggiungiTerapia(terapia);
 		
-		return new Malattia(nomeMalattia, dataInizioMalattia, dataFineMalattia, sintomiMalattia, diagnosiMalattia, esamiAssociati, terapiaAssociata);
+		return new Malattia(nomeMalattia, dataInizioMalattia, dataFineMalattia, sintomo, diagnosi, esame, terapia);
 	}
 	
 	
