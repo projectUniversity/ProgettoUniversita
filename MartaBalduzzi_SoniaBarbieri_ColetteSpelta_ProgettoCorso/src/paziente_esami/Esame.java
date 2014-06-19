@@ -116,9 +116,9 @@ public class Esame implements Serializable
 	 * @param nuovoEsame l'esame che voglio inserire
 	 * @return true se il nuovoEsame e' gia' presente nella lista, altrimenti false;
 	 */
-	public boolean esameDoppio(String nuovoEsame)
+	/*public boolean esameDoppio(String nuovoEsame)
 	{
-		if(tipoEsame == DIAGNOSTICO)
+		if(tipoEsame == DIAGNOSTICO && prenotato == null)
 		{
 			for(String esame: esameDiagnostico)
 			{
@@ -130,7 +130,7 @@ public class Esame implements Serializable
 			}// for
 		}// if
 		
-		else if(tipoEsame == PERIODICO)
+		else if(tipoEsame == PERIODICO && prenotato == null)
 		{
 			for(String esame: esamePeriodico)
 			{
@@ -141,8 +141,19 @@ public class Esame implements Serializable
 			}// for
 		}// else if
 		
+		else if(prenotato == ESAME_PRENOTATO)
+		{
+			for(String esame: esamePrenotato)
+			{
+				if(nuovoEsame.equalsIgnoreCase(esame))
+				{
+					return true;
+				}
+			}
+		}
+		
 		return false;
-	}
+	}*/
 	
 	/**
 	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici oppure di quelli prenotati
@@ -303,7 +314,7 @@ public class Esame implements Serializable
 		str.append(String.format(ELENCO_PRENOTATI));
 		for(int i=0; i<esamePrenotato.size(); i++)
 		{
-			str.append(String.format("\n" + esamePeriodico.get(i)));
+			str.append(String.format("\n" + "%s", esamePrenotato.get(i)));
 		}
 
 		return str.toString();
