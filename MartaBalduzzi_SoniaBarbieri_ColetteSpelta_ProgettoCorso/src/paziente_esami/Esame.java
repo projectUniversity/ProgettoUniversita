@@ -97,7 +97,7 @@ public class Esame implements Serializable
 	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici oppure di quelli prenotati
 	 * @param il nuovo esame che aggiungo alla lista corrispondente
 	 */
-	public void aggiungiEsame(String nuovoEsame)
+	public static void aggiungiEsame(String nuovoEsame)
 	{
 		if(tipoEsame == DIAGNOSTICO && prenotato == null)
 		{
@@ -117,22 +117,59 @@ public class Esame implements Serializable
 	}
 	
 	/**
+	 * METODO per vedere se un esame e' gia' presente nella lista
+	 * @param nome il nome dell'esame che cerco nella lista
+	 * @return true se l'esame e' gia' presente, altrimenti false
+	 */
+	public static boolean esameDoppio(String nome)
+	{
+		if(tipoEsame == PERIODICO)
+		{
+			for(String esame: esamePeriodico)
+			{
+				if(nome.equalsIgnoreCase(esame))
+				{
+					return true;
+				}
+			}
+		}
+		
+		else if(tipoEsame == DIAGNOSTICO)
+		{
+			for(String esame: esameDiagnostico)
+			{
+				if(nome.equalsIgnoreCase(esame))
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * METODO per aggiungere l'esito di un esame periodico
-	 * @param esame il nome dell'esame da ricercare nell'elenco per poter aggiungere l'esito
+	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunti) per poter aggiungere l'esito
 	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
 	 */
 	public static Esame aggiungiEsitoPeriodico(String esame, double esito)
 	{
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
-			if(esame.equalsIgnoreCase(esamePeriodico.get(i)))
-			{
+			if(esameDoppio(esame))
+			{	
+				if(esame.equalsIgnoreCase(esamePeriodico.get(i)))
+				{
 					esitoPeriodico.add(esito);
+				}
 			}
 			
 			else
 			{
-				System.out.println(MSG_ASSENTE);
+				prenotato = null;
+				aggiungiEsame(esame);
+				esitoPeriodico.add(esito);
 			}
 		}// for
 		
@@ -141,21 +178,26 @@ public class Esame implements Serializable
 	
 	/**
 	 * METODO per aggiungere l'esito di un esame diagnostico
-	 * @param esame il nome dell'esame da ricercare nell'elenco per poter aggiungere l'esito
+	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunto) per poter aggiungere l'esito
 	 * @param esito il vaolre dell'esito come stringa (si tratta di un esame diagnostico)
 	 */
 	public static Esame aggiungiEsitoDiagnostico(String esame, String esito)
 	{
 		for(int i=0; i<esameDiagnostico.size(); i++)
 		{
-			if(esame.equalsIgnoreCase(esameDiagnostico.get(i)))
+			if(esameDoppio(esame))
 			{
-				esitoDiagnostico.add(esito);
+				if(esame.equalsIgnoreCase(esameDiagnostico.get(i)))
+				{
+					esitoDiagnostico.add(esito);
+				}
 			}
-				
+			
 			else
 			{
-				System.out.println(MSG_ASSENTE);
+				prenotato = null;
+				aggiungiEsame(esame);
+				esitoDiagnostico.add(esito);
 			}
 		}// for
 		
