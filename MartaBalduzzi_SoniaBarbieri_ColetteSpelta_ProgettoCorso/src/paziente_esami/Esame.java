@@ -20,7 +20,6 @@ public class Esame implements Serializable
 	public final static char PERIODICO = 'P';
 	public final static char DIAGNOSTICO = 'D';
 	public final static String MSG_ASSENTE = "L'esame non e' presente nella lista";
-	public final static String PRENOTATO = "L'esame %s e' stato prenotato";
 	public final static String ESAME_P_ESITI = "Esame: %s      Esito: %f  svolto in data %d/%d/%d";
 	public final static String ESAME_D = "Esame %s     svolto in data %d/%d/%d";
 	public final static String RACCOMANDAZIONI = "Esame: %s       Raccomandazioni: %s";
@@ -30,10 +29,7 @@ public class Esame implements Serializable
 	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
 	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d";
 	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
-	public final static String PERIODICI_PRENOTATI = "Esami periodici: %s";
-	public final static String DIAGNOSTICI_PRENOTATI = "Esami diagnostici prenotati: %s";
-	public final static String NO_PERIODICI = "Non ci sono esami periodici prenotati";
-	public final static String NO_DIAGNOSTICI = "Non ci sono esami diagnostici prenotati";
+	public final static String MSG_PRESENTE = "L'esame e' gia' presente in elenco";
 	
 	//ATTRIBUTI
 	private static String nomeEsame;
@@ -57,6 +53,7 @@ public class Esame implements Serializable
 	private static double sogliaMax;
 	private static double sogliaMin;
 	private static String prenotato;
+	private static ArrayList <String> esamePrenotato;
 	
 	/**
 	 * COSTRUTTORE
@@ -99,6 +96,7 @@ public class Esame implements Serializable
 		sogliaMax = _sogliaMax;
 		sogliaMin = _sogliaMin;
 		prenotato = _prenotato;
+		esamePrenotato = new ArrayList <String>();
 	}
 	
 	/**
@@ -114,23 +112,6 @@ public class Esame implements Serializable
 	}
 	
 	/**
-	 * METODO per vedere se un esame e' gia' stato prenotato o meno
-	 * @return true se l'esame e' gia' stato prenotato, altrimenti false
-	 */
-	public static boolean prenotazione()
-	{
-		if(prenotato.equals(ESAME_PRENOTATO))
-		{
-			return true;
-		}
-		
-		else
-		{
-			return false; 
-		}
-	}
-	
-	/**
 	 * METODO per vedere se un esame periodico o diagnostico e' gia' presente nel rispettivo elenco
 	 * @param nuovoEsame l'esame che voglio inserire
 	 * @return true se il nuovoEsame e' gia' presente nella lista, altrimenti false;
@@ -143,6 +124,7 @@ public class Esame implements Serializable
 			{
 				if(nuovoEsame.equalsIgnoreCase(esame))
 				{
+					System.out.println(MSG_PRESENTE);
 					return true;
 				}
 			}// for
@@ -163,19 +145,25 @@ public class Esame implements Serializable
 	}
 	
 	/**
-	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici
-	 * @param nuovoEsame il nuovo esame che aggiungo alla lista
+	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici oppure di quelli prenotati
+	 * @param il nuovo esame che aggiungo alla lista corrispondente
 	 */
 	public void aggiungiEsame(String nuovoEsame)
 	{
-		if(tipoEsame == DIAGNOSTICO)
+		if(tipoEsame == DIAGNOSTICO && prenotato == null)
 		{
+			esamePrenotato.remove(nuovoEsame); //il nuovo esame viene rimosso dalla lista dei prenotati quando viene aggiunto l'esito
 			esameDiagnostico.add(nuovoEsame);
 		}
 		
-		else if(tipoEsame == PERIODICO)
+		else if(tipoEsame == PERIODICO && prenotato == null)
 		{
+			esamePrenotato.remove(nuovoEsame); //il nuovo esame viene rimosso dalla lista dei prenotati quando viene aggiunto l'esito
 			esamePeriodico.add(nuovoEsame);
+		}
+		else if(prenotato == ESAME_PRENOTATO)
+		{
+			esamePrenotato.add(nuovoEsame);
 		}
 	}
 	
@@ -184,7 +172,7 @@ public class Esame implements Serializable
 	 * @param esame il nome dell'esame da ricercare nell'elenco per poter aggiungere l'esito
 	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
 	 */
-	public static void aggiungiEsitoPeriodico(String esame, double esito)
+	public static Esame aggiungiEsitoPeriodico(String esame, double esito)
 	{
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
@@ -198,6 +186,8 @@ public class Esame implements Serializable
 				System.out.println(MSG_ASSENTE);
 			}
 		}// for
+		
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 	}// metodo
 	
 	/**
@@ -205,7 +195,7 @@ public class Esame implements Serializable
 	 * @param esame il nome dell'esame da ricercare nell'elenco per poter aggiungere l'esito
 	 * @param esito il vaolre dell'esito come stringa (si tratta di un esame diagnostico)
 	 */
-	public static void aggiungiEsitoDiagnostico(String esame, String esito)
+	public static Esame aggiungiEsitoDiagnostico(String esame, String esito)
 	{
 		for(int i=0; i<esameDiagnostico.size(); i++)
 		{
@@ -219,6 +209,8 @@ public class Esame implements Serializable
 				System.out.println(MSG_ASSENTE);
 			}
 		}// for
+		
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 	}// metodo
 	
 	/**
@@ -252,30 +244,15 @@ public class Esame implements Serializable
 		StringBuffer str = new StringBuffer();
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
-			if(prenotazione())
+			for(int j=0; j<esitoPeriodico.size(); j++)
 			{
-				str.append(String.format(PRENOTATO, esamePeriodico.get(i)));
-			}
-			
-			else
-			{
-				for(int j=0; j<esitoPeriodico.size(); j++)
-				{
-					str.append(String.format(ESAME_P_ESITI, esamePeriodico.get(i), esitoPeriodico.get(j), giorno, mese, anno));
-				}
+				str.append(String.format(ESAME_P_ESITI, esamePeriodico.get(i), esitoPeriodico.get(j), giorno, mese, anno));
 			}
 		}
 		
 		for(int i=0; i<esameDiagnostico.size(); i++)
 		{
-			if(prenotazione())
-			{
-				str.append(String.format(PRENOTATO, esameDiagnostico.get(i)));
-			}
-			else
-			{
-				str.append(String.format(ESAME_D, esameDiagnostico.get(i), giorno, mese, anno));
-			}
+			str.append(String.format(ESAME_D, esameDiagnostico.get(i), giorno, mese, anno));
 		}	
 		
 		return str.toString();
@@ -324,30 +301,9 @@ public class Esame implements Serializable
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(String.format(ELENCO_PRENOTATI));
-		for(int i=0; i<esamePeriodico.size(); i++)
+		for(int i=0; i<esamePrenotato.size(); i++)
 		{
-			if(prenotato.equalsIgnoreCase(ESAME_PRENOTATO))
-			{
-				str.append(String.format("\n" + PERIODICI_PRENOTATI, esamePeriodico.get(i)));
-			}
-			
-			else
-			{
-				System.out.println(NO_PERIODICI);
-			}
-		}
-			
-		for(int i=0; i<esameDiagnostico.size(); i++)
-		{
-			if(prenotato.equalsIgnoreCase(ESAME_PRENOTATO))
-			{
-				str.append(String.format("\n" + DIAGNOSTICI_PRENOTATI, esameDiagnostico.get(i)));
-			}
-			
-			else
-			{
-				System.out.println(NO_DIAGNOSTICI);
-			}
+			str.append(String.format("\n" + esamePeriodico.get(i)));
 		}
 
 		return str.toString();
