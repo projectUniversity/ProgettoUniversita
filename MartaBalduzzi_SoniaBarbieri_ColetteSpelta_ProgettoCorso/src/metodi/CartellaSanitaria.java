@@ -40,8 +40,8 @@ public class CartellaSanitaria {
 			System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
 		}
 		catch(NullPointerException exLet){
-			utente=(Paziente)ServizioFile.caricaSingoloOggetto(salvataggioUtente);
-			esame=(Esame)ServizioFile.caricaSingoloOggetto(salvataggioEsame);
+			//utente=(Paziente)ServizioFile.caricaSingoloOggetto(salvataggioUtente);
+			//esame=(Esame)ServizioFile.caricaSingoloOggetto(salvataggioEsame);
 			malattia=(Malattia)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
 			String cognomeL=utente.getCognome();
 			String nomeL=utente.getNome();

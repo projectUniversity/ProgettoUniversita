@@ -1,8 +1,7 @@
 package mainETest;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.io.*;
+import java.util.*;
 
 import paziente_esami.*;
 import it.unibs.fp.mylib.*;
@@ -81,8 +80,7 @@ public class MainProgetto {
 	private static CartellaSanitaria cartSan=new CartellaSanitaria();
 	private static Paziente utente;
 	private static Esame esam,esito;
-	private static Malattia mal;
-	private static ArrayList <String> malattia;
+	private static Malattia malattia;
 	
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
@@ -90,16 +88,10 @@ public class MainProgetto {
 	private static int anno,mese,giorno,cap, ora, minuti;
 	
 	private static String nomeMalattia;
-	private static ArrayList <String> sintomiMalattia;
 	private static String sintomo;
-	private static ArrayList <String> diagnosiMalattia;
 	private static String diagnosi;
-	private static ArrayList <String> esamiAssociati;
 	private static String esame;
-	private static ArrayList <String> terapiaAssociata;
 	private static String terapia;
-	private static GregorianCalendar dataInizioMalattia;
-	private static GregorianCalendar dataFineMalattia;
 	
 	private static int giornoInizio;
 	private static int meseInizio;
@@ -127,13 +119,14 @@ public class MainProgetto {
 	private static File salvataggioMalattia=new File("SalvataggioMalattia.dat");
 	private static File salvataggioEsame=new File("SalvataggioEsame.dat");
 	private static File salvataggioUtente=new File("SalvataggioUtente.dat");
+	private static boolean caricamento=false;
 	
 	/**
 	 * Metodo main
 	 * Questo metodo richiama i vari metodi delle altre classi e fa iniziare il programma
 	 * @param args
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) throws EOFException{
 		System.out.println(BENVENUTO);
 		do{
 			scelta=myMenu.seleziona();
@@ -172,16 +165,24 @@ public class MainProgetto {
 			break;
 			case 4:
 				System.out.println();
-				mal=nuovaMalattia();
-				ServizioFile.salvaSingoloOggetto(salvataggioMalattia, mal);
+				malattia=nuovaMalattia();
+				ServizioFile.salvaSingoloOggetto(salvataggioMalattia, malattia);
 			break;
 			case 5:
 				System.out.println();
-				ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
-				malattia=Malattia.aggiungiMalattia();
-				for(int i=0;i<malattia.size();i++){
-					System.out.println((i+1)+")"+malattia.get(i));
-				}
+				malattia=(Malattia)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
+				malattia.getNomeMalattia();
+				malattia.getTerapia();
+				malattia.getDiagnosi();
+				malattia.getAnnoFine();
+				malattia.getAnnoInizio();
+				malattia.getEsame();
+				malattia.getGiornoFine();
+				malattia.getGiornoInizio();
+				malattia.getMeseFine();
+				malattia.getMeseInizio();
+				malattia.getSintomo();
+				System.out.println(malattia.toStringSintetico());
 				nomeMalattiaScelta=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
 				System.out.println(Malattia.toStringCompleto(nomeMalattiaScelta));
 			break;
@@ -232,26 +233,26 @@ public class MainProgetto {
 	 * @return nuovo oggetto di tipo Malattia
 	 */
 	public static Malattia nuovaMalattia (){
+
 		nomeMalattia = InputDati.leggiStringaNonVuota(MSG_NOME);
-		
+			
 		giornoInizio = InputDati.leggiIntero(GIORNO_I, 1, 31);
 		meseInizio = InputDati.leggiIntero(MESE_I, 1, 12);
 		annoInizio = InputDati.leggiIntero(ANNO_I);
 		giornoFine = InputDati.leggiIntero(GIORNO_F, 0, 31);
 		meseFine = InputDati.leggiIntero(MESE_F, 0, 12);
 		annoFine = InputDati.leggiIntero(ANNO_F);
-		
+			
 		sintomo = InputDati.leggiStringa(MSG_SINTOMI);
-		
+			
 		diagnosi = InputDati.leggiStringa(MSG_DIAGNOSI);
-		
+			
 		esame = InputDati.leggiStringa(MSG_ESAMI);
-		
+			
 		terapia = InputDati.leggiStringa(MSG_TERAPIA);
-		
-		return new Malattia(nomeMalattia, dataInizioMalattia,dataFineMalattia,sintomo,diagnosi,esame,terapia);
+				
+		return new Malattia(nomeMalattia, giornoInizio,meseInizio,annoInizio,giornoFine,meseFine,annoFine,sintomo,diagnosi,esame,terapia);
 	}
-	
 	
 	/**
 	 * Metodo per creare un nuovo esame

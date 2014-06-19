@@ -20,8 +20,6 @@ public class Paziente implements Serializable
 	public final static String [] GRUPPO = {"0","A","B","AB"};
 	public final static String [] LETTERE = {"A","B","C","D","E","F","G","H","J","K","I","L","M","N","O","P","Q","R","S","T","U","X","Y","W","V","Z"};
 	public final static int [] NUMERI = {0,1,2,3,4,5,6,7,8,9};
-	public final static int [] POSIZIONE_LETTERE = {0,1,2,3,4,5,8,11,15};
-	public final static int [] POSIZIONE_NUMERI = {6,7,9,10,12,13,14};
 	public final static int LUNGH_MAX_CF = 16;
 	public final static String NOME_COGNOME = "Nome: %s - Cognome: %s";
 	public final static String SESSO_PESO_ALTEZZA = "Sesso: %c - Peso: %1.2f - Altezza: %1.2f";
@@ -231,5 +229,149 @@ public class Paziente implements Serializable
 	public static String getCognome()
 	{
 		return cognome;
+	}
+
+	/**
+	 * METODO per prendere il sesso del paziente
+	 * @return il sesso del paziente
+	 */
+	public static char getSesso() 
+	{
+		return sesso;
+	}
+
+	/**
+	 * METODO per prendere il peso del paziente
+	 * @return il peso del paziente
+	 */
+	public static double getPeso() 
+	{
+		return peso;
+	}
+
+	/**
+	 * METODO per prendere l'altezza del paziente
+	 * @return l'altezza del paziente
+	 */
+	public static double getAltezza() 
+	{
+		return altezza;
+	}
+
+	/**
+	 * METODO per prendere il giorno di nascita del paziente
+	 * @return il giorno di nascita
+	 */
+	public static int getGiorno() 
+	{
+		return giorno;
+	}
+
+	/**
+	 * METODO per prendere il mese di nascita del paziente
+	 * @return il mese di nascita
+	 */
+	public static int getMese() 
+	{
+		return mese;
+	}
+
+	/**
+	 * METODO per prendere l'anno di nascita del paziente
+	 * @return l'anno di nascita
+	 */
+	public static int getAnno() 
+	{
+		return anno;
+	}
+
+	/**
+	 * METODO per prendere il codice fiscale del paziente
+	 * @return il codice fiscale 
+	 */
+	public static String getCodiceFiscale() 
+	{
+		return codiceFiscale;
+	}
+
+	/**
+	 * METODO per prendere il fattore Rh del sangue del paziente
+	 * @return il fasttore Rh del sangue
+	 */
+	public static String getFattoreRh() 
+	{
+		return fattoreRh;
+	}
+
+	/**
+	 * METODO per prendere il gruppo sanguigno del paziente
+	 * @return il gruppo sanguigno
+	 */
+	public static String getGruppoSanguigno() 
+	{
+		return gruppoSanguigno;
+	}
+
+	/**
+	 * METODO per prendere la via dove abita il paziente
+	 * @return la via di residenza
+	 */
+	public static String getViaCasa() 
+	{
+		return viaCasa;
+	}
+
+	/**
+	 * METODO per prendere il comune in cui abita il paziente
+	 * @return il comune di residenza
+	 */
+	public static String getComuneCasa() 
+	{
+		return comuneCasa;
+	}
+
+	/**
+	 * METODO per prendere la provincia del comune di residenza
+	 * @return la prvincia di residenza
+	 */
+	public static String getProvinciaCasa() 
+	{
+		return provinciaCasa;
+	}
+
+	/**
+	 * METODO per prendere il comune dove e' nato il paziente
+	 * @return il comune di nascita
+	 */
+	public static String getComuneNascita()
+	{
+		return comuneNascita;
+	}
+
+	/**
+	 * METODO per prendere la provincia del comune di nascita
+	 * @return la provincia di nascita
+	 */
+	public static String getProvinciaNascita()
+	{
+		return provinciaNascita;
+	}
+
+	/**
+	 * METODO per prendere il cap di dove abita il paziente
+	 * @return il cap di residenza
+	 */
+	public static int getCapCasa()
+	{
+		return capCasa;
+	}
+
+	/**
+	 * METODO per prendere il numero di telefono del paziente
+	 * @return il numero di telefono
+	 */
+	public static String getTelefono() 
+	{
+		return telefono;
 	}
 }
