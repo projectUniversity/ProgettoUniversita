@@ -96,62 +96,6 @@ public class Esame implements Serializable
 	}
 	
 	/**
-	 * METODO per ottenere informazioni rigardo la data e l'ora dell'esame
-	 */
-	/*public void dataOraEsame()
-	{
-		anno = dataEsame.get(GregorianCalendar.YEAR);
-		mese = dataEsame.get(GregorianCalendar.MONTH) + 1;
-		giorno = dataEsame.get(GregorianCalendar.DATE);
-		ora = oraEsame.get(GregorianCalendar.HOUR);
-		minuti = oraEsame.get(GregorianCalendar.MINUTE);
-	}*/
-	
-	/**
-	 * METODO per vedere se un esame periodico o diagnostico e' gia' presente nel rispettivo elenco
-	 * @param nuovoEsame l'esame che voglio inserire
-	 * @return true se il nuovoEsame e' gia' presente nella lista, altrimenti false;
-	 */
-	/*public boolean esameDoppio(String nuovoEsame)
-	{
-		if(tipoEsame == DIAGNOSTICO && prenotato == null)
-		{
-			for(String esame: esameDiagnostico)
-			{
-				if(nuovoEsame.equalsIgnoreCase(esame))
-				{
-					System.out.println(MSG_PRESENTE);
-					return true;
-				}
-			}// for
-		}// if
-		
-		else if(tipoEsame == PERIODICO && prenotato == null)
-		{
-			for(String esame: esamePeriodico)
-			{
-				if(nuovoEsame.equalsIgnoreCase(esame))
-				{
-					return true;
-				}
-			}// for
-		}// else if
-		
-		else if(prenotato == ESAME_PRENOTATO)
-		{
-			for(String esame: esamePrenotato)
-			{
-				if(nuovoEsame.equalsIgnoreCase(esame))
-				{
-					return true;
-				}
-			}
-		}
-		
-		return false;
-	}*/
-	
-	/**
 	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici oppure di quelli prenotati
 	 * @param il nuovo esame che aggiungo alla lista corrispondente
 	 */
