@@ -35,7 +35,6 @@ public class Esame implements Serializable
 	private static String nomeEsame;
 	private static String raccomandazione;
 	private static char tipoEsame;
-	private static GregorianCalendar dataEsame;
 	private static int giorno;
 	private static int mese;
 	private static int anno;
@@ -45,7 +44,6 @@ public class Esame implements Serializable
 	private static String viaEsame;
 	private static String comuneEsame;
 	private static String provinciaEsame;
-	private static GregorianCalendar oraEsame;
 	private static ArrayList <Double> esitoPeriodico;
 	private static ArrayList <String> esitoDiagnostico;
 	private static ArrayList <String> esamePeriodico;
@@ -78,7 +76,6 @@ public class Esame implements Serializable
 		nomeEsame = _nomeEsame;
 		raccomandazione = _raccomandazione;
 		tipoEsame = _tipoEsame;
-		dataEsame = new GregorianCalendar();
 		giorno = _giorno;
 		mese = _mese;
 		anno = _anno;
@@ -88,7 +85,6 @@ public class Esame implements Serializable
 		viaEsame = _viaEsame;
 		comuneEsame = _comuneEsame;
 		provinciaEsame = _provinciaEsame;
-		oraEsame = new GregorianCalendar();
 		esitoPeriodico = new ArrayList <Double>();
 		esitoDiagnostico = new ArrayList <String>();
 		esamePeriodico = new ArrayList <String>();
@@ -102,14 +98,14 @@ public class Esame implements Serializable
 	/**
 	 * METODO per ottenere informazioni rigardo la data e l'ora dell'esame
 	 */
-	public void dataOraEsame()
+	/*public void dataOraEsame()
 	{
 		anno = dataEsame.get(GregorianCalendar.YEAR);
 		mese = dataEsame.get(GregorianCalendar.MONTH) + 1;
 		giorno = dataEsame.get(GregorianCalendar.DATE);
 		ora = oraEsame.get(GregorianCalendar.HOUR);
 		minuti = oraEsame.get(GregorianCalendar.MINUTE);
-	}
+	}*/
 	
 	/**
 	 * METODO per vedere se un esame periodico o diagnostico e' gia' presente nel rispettivo elenco
