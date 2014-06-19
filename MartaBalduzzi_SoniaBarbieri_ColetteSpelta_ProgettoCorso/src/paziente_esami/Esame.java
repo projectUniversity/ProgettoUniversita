@@ -272,4 +272,184 @@ public class Esame implements Serializable
 		
 		return media;
 	}
+
+	/**
+	 * METODO per prendere il nome dell'esame
+	 * @return il nome dell'esame
+	 */
+	public static String getNomeEsame() 
+	{
+		return nomeEsame;
+	}
+
+	/**
+	 * METODO per prendere la raccomandazione pre-esame
+	 * @return la raccomandazione per l'esame
+	 */
+	public static String getRaccomandazione()
+	{
+		return raccomandazione;
+	}
+
+	/**
+	 * METODO per prendere il tipo dell'esame
+	 * @return il tipo dell'esame (P o D)
+	 */
+	public static char getTipoEsame()
+	{
+		return tipoEsame;
+	}
+
+	/**
+	 * METODO per prendere il giorno dell'esame
+	 * @return il giorno in cui e' stato eseguito l'esame
+	 */
+	public static int getGiorno()
+	{
+		return giorno;
+	}
+
+	/**
+	 * METODO per prendere il mese in cui eseguire l'esame
+	 * @return il mese in cui l'esame e' stato eseguito
+	 */
+	public static int getMese() 
+	{
+		return mese;
+	}
+
+	/**
+	 * METODO per prendere l'anno in cui eseguire l'esame
+	 * @return l'anno in cui eseguire l'esame
+	 */
+	public static int getAnno()
+	{
+		return anno;
+	}
+
+	/**
+	 * METODO per prendere l'ora a cui eseguire l'esame
+	 * @return l'ora dell'esame
+	 */
+	public static int getOra()
+	{
+		return ora;
+	}
+
+	/**
+	 * METODO per prendere i minuti a cui eseguite l'esame
+	 * @return i minuti in cui eseguire l'esame
+	 */
+	public static int getMinuti()
+	{
+		return minuti;
+	}
+
+	/**
+	 * METODO per prendere il nome dell'ospedale dove viene eseguito l'esame
+	 * @return il nome dell'ospedale
+	 */
+	public static String getOspedale() 
+	{
+		return ospedale;
+	}
+
+	/**
+	 * METODO per prendere la via dove viene eseguito l'esame
+	 * @return la via del luogo dove e' stato fatto l'esame
+	 */
+	public static String getViaEsame()
+	{
+		return viaEsame;
+	}
+
+	/**
+	 * METODO per prendere il comune dove e' stato eseguire l'esame
+	 * @return il comune dove e' stato eseguito l'esame
+	 */
+	public static String getComuneEsame()
+	{
+		return comuneEsame;
+	}
+
+	/**
+	 * METODO per prendere la provincia dove e' stato eseguito l'esame
+	 * @return la provincia del comune
+	 */
+	public static String getProvinciaEsame()
+	{
+		return provinciaEsame;
+	}
+
+	/**
+	 * METODO per prendere gli esiti di un esame periodico
+	 * @return la lista degli esiti di un esame periodico
+	 */
+	public static ArrayList<Double> getEsitoPeriodico() 
+	{
+		return esitoPeriodico;
+	}
+
+	/**
+	 * METODO per prendere l'esito di un esame diagnostico
+	 * @return l'esito dell'esame diagnostico
+	 */
+	public static ArrayList<String> getEsitoDiagnostico()
+	{
+		return esitoDiagnostico;
+	}
+
+	/**
+	 * METODO per prendere i nomi degli esami periodici
+	 * @return i nomi degli esami periodici
+	 */
+	public static ArrayList<String> getEsamePeriodico() 
+	{
+		return esamePeriodico;
+	}
+
+	/**
+	 * METODO per prendere i nomi degli esami diagnostici
+	 * @return i nomi degli esami diagnostici
+	 */
+	public static ArrayList<String> getEsameDiagnostico() 
+	{
+		return esameDiagnostico;
+	}
+
+	/**
+	 * METODO per prendere la soglia massima di normalita' consentita per un certo esame
+	 * @return la soglia massima consentita
+	 */
+	public static double getSogliaMax() 
+	{
+		return sogliaMax;
+	}
+
+	/**
+	 * METODO per prendere la soglia minima di normalita' consentita per un certo esame
+	 * @return la soglia minima consentita
+	 */
+	public static double getSogliaMin()
+	{
+		return sogliaMin;
+	}
+
+	/**
+	 * METODO per prendere se l'esame risulta PRENOTATO (cioe' e' stato prenotato) o null(cioe' e' sato inserito l'esito)
+	 * @return la variabile prenotato
+	 */
+	public static String getPrenotato()
+	{
+		return prenotato;
+	}
+
+	/**
+	 * METODO per prendere la lista degli esami prenotati
+	 * @return la lista degli esami prenotati
+	 */
+	public static ArrayList<String> getEsamePrenotato() 
+	{
+		return esamePrenotato;
+	}
 }
