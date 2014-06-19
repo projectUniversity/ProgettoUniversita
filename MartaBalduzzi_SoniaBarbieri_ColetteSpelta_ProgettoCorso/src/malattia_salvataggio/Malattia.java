@@ -163,57 +163,113 @@ public class Malattia implements Serializable
 		}
 		return elenco;
 	}
-
+	
+	
+	/**
+	 * Metodo get del nome della malattia
+	 * 
+	 * @return String nome della malattia
+	 */
 	public static String getNomeMalattia() 
 	{
 		return nomeMalattia;
 	}
 
+	/**
+	 * Metodo get dei sintomi della malattia
+	 * 
+	 * @return String sintomi della malattia 
+	 */
 	public static String getSintomo() 
 	{
 		return sintomo;
 	}
 
+	/**
+	 * Metodo get della diagnosi della malattia
+	 * 
+	 * @return String della diagnosi
+	 */
 	public static String getDiagnosi() 
 	{
 		return diagnosi;
 	}
 
+	/**
+	 * Metodo get degli esami associati alla cura della malattia
+	 * 
+	 * @return String esami associati alla malattia
+	 */
 	public static String getEsame() 
 	{
 		return esame;
 	}
 
+	/**
+	 * Metodo get della terapia da seguire per la cura della malattia
+	 * 
+	 * @return String terapia associata alla malattia
+	 */
 	public static String getTerapia() 
 	{
 		return terapia;
 	}
 
+	/**
+	 * Metodo get del numero del giorno d'inizio della malattia
+	 * 
+	 * @return int giorno di inizio
+	 */
 	public static int getGiornoInizio() 
 	{
 		return giornoInizio;
 	}
 
+	/**
+	 * Metodo get per il mese d'inizio della malattia
+	 * 
+	 * @return int mese d'inizio
+	 */
 	public static int getMeseInizio() 
 	{
 		return meseInizio;
 	}
 
+	/**
+	 * Metodo get per l'anno di inizio della malattia
+	 * 
+	 * @return int anno d'inizio
+	 */
 	public static int getAnnoInizio() 
 	{
 		return annoInizio;
 	}
 
+	/**
+	 * Metodo get del giorno di termine della malattia
+	 * 
+	 * @return int giorno di termine
+	 */
 	public static int getGiornoFine() 
 	{
 		return giornoFine;
 	}
 
+	/**
+	 * Metodo get del mese di termine della malattia
+	 * 
+	 * @return int mese di termine
+	 */
 	public static int getMeseFine() 
 	{
 		return meseFine;
 	}
 
+	/**
+	 * Metodo get dell'anno di termine della malattia
+	 * 
+	 * @return int anno di termine 
+	 */
 	public static int getAnnoFine() 
 	{
 		return annoFine;
