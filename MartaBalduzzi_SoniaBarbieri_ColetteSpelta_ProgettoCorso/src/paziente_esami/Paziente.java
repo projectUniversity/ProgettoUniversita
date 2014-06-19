@@ -1,8 +1,6 @@
 package paziente_esami;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 import mainETest.MainProgetto;
 import it.unibs.fp.mylib.*;

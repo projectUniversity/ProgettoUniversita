@@ -2,7 +2,6 @@ package paziente_esami;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 /**
  * Classe che rappresenta gli esami del pazinte con i rispettivi esiti e caratteristiche
@@ -23,11 +22,11 @@ public class Esame implements Serializable
 	public final static String ESAME_P_ESITI = "Esame: %s      Esito: %f  svolto in data %d/%d/%d";
 	public final static String ESAME_D = "Esame %s     svolto in data %d/%d/%d";
 	public final static String RACCOMANDAZIONI = "Esame: %s       Raccomandazioni: %s";
-	public final static String ESITI_P_DATA_ORA = "Esito: %1.2f    svolto in data %d/%d/%d   alle ore %d:%d";
-	public final static String LUOGO = "A %s in via %s, %s (%s)";
+	public final static String ESITI_P_DATA_ORA = "Esito: %1.2f    svolto in data %d/%d/%d   alle ore %d:%d  a %s in via %s, %s (%s)";
+	//public final static String LUOGO = "";
 	public final static String MEDIA = "La media dei valori registrati e' %1.2f";
 	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
-	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d";
+	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d   a %s in via %s, %s (%s)";
 	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
 	public final static String MSG_PRESENTE = "L'esame e' gia' presente in elenco";
 	
@@ -221,8 +220,7 @@ public class Esame implements Serializable
 			str.append(String.format(RACCOMANDAZIONI, nomeEsame, raccomandazione));
 			for(int i=0; i<esitoPeriodico.size(); i++)
 			{
-				str.append(String.format(ESITI_P_DATA_ORA, esitoPeriodico.get(i), giorno, mese, anno, ora, minuti));
-				str.append(String.format("\n" + "\t" + LUOGO, ospedale, viaEsame, comuneEsame, provinciaEsame));
+				str.append(String.format(ESITI_P_DATA_ORA, esitoPeriodico.get(i), giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame));
 				str.append(String.format("\n" + MEDIA, mediaEsiti()));
 				if(VerificaSoglia())
 				{
@@ -236,8 +234,7 @@ public class Esame implements Serializable
 			str.append(String.format(RACCOMANDAZIONI, nomeEsame, raccomandazione));
 			for(int i=0; i<esitoDiagnostico.size(); i++)
 			{
-				str.append(String.format("\n" + ESITO_D_DATA_ORA, esitoDiagnostico.get(i), giorno, mese, anno, ora, minuti));
-				str.append(String.format("\n" + "\t" + LUOGO, viaEsame, comuneEsame, provinciaEsame));
+				str.append(String.format("\n" + ESITO_D_DATA_ORA, esitoDiagnostico.get(i), giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame));
 			}
 		}
 		
