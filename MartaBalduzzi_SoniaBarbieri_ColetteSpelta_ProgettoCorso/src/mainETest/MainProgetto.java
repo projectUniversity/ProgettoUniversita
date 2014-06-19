@@ -70,7 +70,7 @@ public class MainProgetto {
 				System.out.println();
 				//Paziente utente=creaUtente();
 				file.scritturaUtente();
-			//	Paziente.controlloCf();
+				Paziente.controlloCf();
 			break;
 			case 2:
 				System.out.println();

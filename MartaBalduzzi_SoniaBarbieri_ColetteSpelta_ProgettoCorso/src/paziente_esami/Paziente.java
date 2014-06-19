@@ -113,36 +113,42 @@ public class Paziente implements Serializable
 		
 		else
 		{
-			ArrayList <String> codFiscale = new ArrayList <String>();
-			codFiscale.add(codiceFiscale);
-			for(int i=0; i<codFiscale.size(); i++)
+			if(controlloLettera(codiceFiscale.substring(0, 6)) == false)
 			{
-				for(int j=0; j<POSIZIONE_LETTERE.length; j++)
-				{
-					while(i == POSIZIONE_LETTERE[j])
-					{
-						controlloLettera(codFiscale.get(i));
-						if(controlloLettera(codFiscale.get(i)) == false)
-						{
-							System.out.println(CF_SBAGLIATO);
-							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
-						}
-					}// while delle lettere
-				}// for delle lettere
-				
-				for(int j=0; j<POSIZIONE_NUMERI.length; j++)
-				{
-					while(i == POSIZIONE_NUMERI[j])
-					{
-						controlloNumero(codFiscale.get(i));
-						if(controlloNumero(codFiscale.get(i)) == false)
-						{
-							System.out.println(CF_SBAGLIATO);
-							codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
-						}
-					}// while dei numeri
-				}// for dei numeri
-			}// for del codice fiscale
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			else if(controlloNumero(codiceFiscale.substring(6, 8)) == false)
+			{
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			else if(controlloLettera(codiceFiscale.substring(8, 9)) == false)
+			{
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			else if(controlloNumero(codiceFiscale.substring(9,11)) == false)
+			{
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			else if(controlloLettera(codiceFiscale.substring(11, 12)) == false)
+			{
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			else if(controlloNumero(codiceFiscale.substring(12, 15)) == false)
+			{
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			else if(controlloLettera(codiceFiscale.substring(15, codiceFiscale.length()+1)) == false)
+			{
+				System.out.println(CF_SBAGLIATO);
+				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			}
+			
 		}//else
 		return codiceFiscale;
 	}
