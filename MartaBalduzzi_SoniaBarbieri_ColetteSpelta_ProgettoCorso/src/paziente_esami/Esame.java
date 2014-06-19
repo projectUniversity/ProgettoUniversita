@@ -23,7 +23,6 @@ public class Esame implements Serializable
 	public final static String ESAME_D = "Esame %s     svolto in data %d/%d/%d";
 	public final static String RACCOMANDAZIONI = "Esame: %s       Raccomandazioni: %s";
 	public final static String ESITI_P_DATA_ORA = "Esito: %1.2f    svolto in data %d/%d/%d   alle ore %d:%d  a %s in via %s, %s (%s)";
-	//public final static String LUOGO = "";
 	public final static String MEDIA = "La media dei valori registrati e' %1.2f";
 	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
 	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d   a %s in via %s, %s (%s)";
