@@ -102,7 +102,7 @@ public class Paziente implements Serializable
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return il codice fiscale del paziente
 	 */
-	public String controlloCf()
+	public static String controlloCf()
 	{
 		
 		if(codiceFiscale.length() != LUNGH_MAX_CF)
