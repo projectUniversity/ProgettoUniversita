@@ -127,7 +127,7 @@ public class Malattia implements Serializable
 	public static String toStringSintetico()
 	{
 		StringBuffer stringa = new StringBuffer();
-		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" + "Nome: " + nomeMalattia + "\n" + "Data d'inizio: " + dataInizioMalattia + "\n" + "Data di termine: " + dataFineMalattia));
+		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" + "Nome: " + nomeMalattia + "\n" + "Data d'inizio: " + giornoInizio +"-" + meseInizio +"-" + annoInizio + "\n" + "Data di termine: " + giornoFine +"-"+ meseFine +"-"+ annoFine));
 		return stringa.toString(); 
 	}
 	
@@ -141,8 +141,8 @@ public class Malattia implements Serializable
 		StringBuffer stringa = new StringBuffer();
 		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" +
 						"Nome: " + nomeMalattia + "\n" +
-						"Data d'inizio: " + dataInizioMalattia + "\n" +
-						"Data di termine: " + dataFineMalattia + "\n" +
+						"Data d'inizio: " + giornoInizio +"-"+ meseInizio +"-"+ annoInizio + "\n" +
+						"Data di termine: " + giornoFine +"-"+ meseFine +"-"+ annoFine + "\n" +
 						"Sintomi: " + sintomo + "\n" +
 						"Diagnosi: " + diagnosi + "\n" +
 						"Esami associati: " + esame + "\n" +
