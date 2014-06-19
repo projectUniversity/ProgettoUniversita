@@ -39,7 +39,6 @@ public class Paziente implements Serializable
 	private static char sesso;
 	private static double peso;
 	private static double altezza;
-	private static GregorianCalendar dataNascita;
 	private static int giorno;
 	private static int mese;
 	private static int anno;
@@ -82,7 +81,6 @@ public class Paziente implements Serializable
 		sesso = _sesso;
 		peso = _peso;
 		altezza = _altezza;
-		dataNascita = new GregorianCalendar ();
 		anno = _anno;
 		mese = _mese;
 		giorno = _giorno;
@@ -217,16 +215,6 @@ public class Paziente implements Serializable
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * METODO per ottenere informazioni sulla data di nascita
-	 */
-	public void infoData()
-	{
-		anno = dataNascita.get(GregorianCalendar.YEAR);
-		mese = dataNascita.get(GregorianCalendar.MONTH) + 1; // i mesi iniziano da 0 nel GregorianCalendar
-		giorno = dataNascita.get(GregorianCalendar.DATE);
 	}
 
 	/**
