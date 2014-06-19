@@ -56,11 +56,15 @@ public class Malattia implements Serializable
 	 * @param _esame String che contiene l'elenco degli esami associati alla malattia
 	 * @param _terapia String che contiene la terapia da seguire per guarire la malattia
 	 */
-	public Malattia (String _nomeMalattia, GregorianCalendar _dataInizioMalattia, GregorianCalendar _dataFineMalattia, String _sintomo, String _diagnosi, String _esame, String _terapia)
+	public Malattia (String _nomeMalattia, int _giornoInizio, int _meseInizio, int _annoInizio, int _giornoFine, int _meseFine, int _annoFine, String _sintomo, String _diagnosi, String _esame, String _terapia)
 	{
 		nomeMalattia = _nomeMalattia;
-		dataInizioMalattia = _dataInizioMalattia;
-		dataFineMalattia = _dataFineMalattia;
+		giornoInizio = _giornoInizio;
+		meseInizio = _meseInizio;
+		annoInizio = _annoInizio;
+		giornoFine = _giornoFine;
+		meseFine = _meseFine;
+		annoFine = _annoFine;
 		sintomo = _sintomo;
 		diagnosi = _diagnosi;
 		esame = _esame;
@@ -98,22 +102,22 @@ public class Malattia implements Serializable
 	/**
 	 * Metodo per inserire la data di inizio malattia
 	 */
-	public void inizioMalattia()
+	/**public void inizioMalattia()
 	{
 		giornoInizio = dataInizioMalattia.get(GregorianCalendar.DATE);
 		meseInizio = dataInizioMalattia.get(GregorianCalendar.MONTH)+1;
 		annoInizio = dataInizioMalattia.get(GregorianCalendar.YEAR);
-	}
+	}**/
 	
 	/**
 	 * Metodo per inserire la data di fine malattia
 	 */
-	public void fineMalattia()
+	/**public void fineMalattia()
 	{
 		giornoFine = dataFineMalattia.get(GregorianCalendar.DATE);
 		meseFine = dataFineMalattia.get(GregorianCalendar.MONTH)+1;
 		annoFine = dataFineMalattia.get(GregorianCalendar.YEAR);
-	}
+	}**/
 	
 	/**
 	 * Metodo per visualizzare un toString sintetico per descrivere la malattia
@@ -159,6 +163,63 @@ public class Malattia implements Serializable
 		}
 		return elenco;
 	}
+
+	public static String getNomeMalattia() 
+	{
+		return nomeMalattia;
+	}
+
+	public static String getSintomo() 
+	{
+		return sintomo;
+	}
+
+	public static String getDiagnosi() 
+	{
+		return diagnosi;
+	}
+
+	public static String getEsame() 
+	{
+		return esame;
+	}
+
+	public static String getTerapia() 
+	{
+		return terapia;
+	}
+
+	public static int getGiornoInizio() 
+	{
+		return giornoInizio;
+	}
+
+	public static int getMeseInizio() 
+	{
+		return meseInizio;
+	}
+
+	public static int getAnnoInizio() 
+	{
+		return annoInizio;
+	}
+
+	public static int getGiornoFine() 
+	{
+		return giornoFine;
+	}
+
+	public static int getMeseFine() 
+	{
+		return meseFine;
+	}
+
+	public static int getAnnoFine() 
+	{
+		return annoFine;
+	}
+	
+	
 	
 	
 }
