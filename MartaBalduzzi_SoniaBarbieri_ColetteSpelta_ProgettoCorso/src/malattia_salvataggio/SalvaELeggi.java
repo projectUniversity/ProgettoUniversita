@@ -1,4 +1,4 @@
-package malattia_salvataggio;
+/**package malattia_salvataggio;
 
 import it.unibs.fp.mylib.InputDati;
 
@@ -18,12 +18,12 @@ import java.util.GregorianCalendar;
  * Classe realizzata da Marta Balduzzi
  */
 
-public class SalvaELeggi 
+/**public class SalvaELeggi 
 {
 	/**
 	 * COSTANTI
 	 */
-	private static final String MSG_NOME = "Inserire il nome della malattia: ";
+	/**private static final String MSG_NOME = "Inserire il nome della malattia: ";
 	private static final String GIORNO_I = "Inserire il giorno di inizio della malattia: ";
 	private static final String MESE_I = "Inserire il mese di inizio della malattia: ";
 	private static final String ANNO_I = "Inserire l'anno di inizio della malattia: ";
@@ -73,7 +73,7 @@ public class SalvaELeggi
 	/**
 	 * ATTRIBUTI
 	 */
-	private static String nomeMalattia;
+	/**private static String nomeMalattia;
 	private static ArrayList <String> sintomiMalattia;
 	private static String sintomo;
 	private static ArrayList <String> diagnosiMalattia;
@@ -133,7 +133,7 @@ public class SalvaELeggi
 	 * 
 	 * @return nuovo oggetto di tipo Paziente
 	 */
-	public static Paziente creaUtente()
+	/**public static Paziente creaUtente()
 	{
 		nome = InputDati.leggiStringaNonVuota(NOME);
 		cognome = InputDati.leggiStringaNonVuota(COGNOME);
@@ -162,7 +162,7 @@ public class SalvaELeggi
 	 * 
 	 * @return nuovo oggetto di tipo Malattia
 	 */
-	public static Malattia nuovaMalattia ()
+	/**public static Malattia nuovaMalattia ()
 	{
 		nomeMalattia = InputDati.leggiStringaNonVuota(MSG_NOME);
 		
@@ -194,7 +194,7 @@ public class SalvaELeggi
 	 * 
 	 * @return nuovo oggetto di tipo Esame
 	 */
-	public static Esame nuovoEsame()  
+	/**public static Esame nuovoEsame()  
 	{
 		nomeEsame = InputDati.leggiStringaNonVuota(NOME_ESAME);
 		raccomandazione = InputDati.leggiStringa(MSG_RACC);
@@ -223,7 +223,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo di tipo void per inserire l'esito degli esami effettuati
 	 */
-	public static void inserisciEsito()
+	/**public static void inserisciEsito()
 	{
 		if(tipoEsame == Esame.PERIODICO)
 		{
@@ -244,7 +244,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per scrivere su file e memorizzare i dati del paziente
 	 */
-	public void scritturaUtente()
+	/**public void scritturaUtente()
 	{
 		try
 		{
@@ -265,7 +265,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per scrivere su file i dati relativi ad una malattia
 	 */
-	public void scritturaMalattia()
+	/**public void scritturaMalattia()
 	{
 		try
 		{
@@ -286,7 +286,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per memorizzare su file i dati relativi ad un esame
 	 */
-	public void scritturaEsame()
+	/**public void scritturaEsame()
 	{
 		try
 		{
@@ -310,7 +310,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per leggere da file i dati relativi all'utente
 	 */
-	public void letturaUtente()
+	/**public void letturaUtente()
 	{
 		try
 		{
@@ -346,7 +346,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per leggere da file i dati relativi ad una malattia
 	 */
-	public void letturaMalattia()
+	/**public void letturaMalattia()
 	{
 		try
 		{
@@ -380,7 +380,7 @@ public class SalvaELeggi
 	/**
 	 * Metodo per leggere da file i dati relativi ad un esame
 	 */
-	public void letturaEsame()
+	/**public void letturaEsame()
 	{
 		try
 		{
@@ -411,4 +411,4 @@ public class SalvaELeggi
 		}
 	}
 	
-}
+}**/
