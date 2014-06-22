@@ -161,6 +161,7 @@ public class Esame implements Serializable
 			{	
 				if(esame.equalsIgnoreCase(esamePeriodico.get(i)))
 				{
+					prenotato = null;
 					esitoPeriodico.add(esito);
 				}
 			}
@@ -189,6 +190,7 @@ public class Esame implements Serializable
 			{
 				if(esame.equalsIgnoreCase(esameDiagnostico.get(i)))
 				{
+					prenotato = null;
 					esitoDiagnostico.add(esito);
 				}
 			}
