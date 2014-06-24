@@ -80,7 +80,7 @@ public class MainProgetto {
 	private static CartellaSanitaria cartSan;
 	private static Paziente utente;
 	private static Esame esam,esito;
-	private static Malattia malattia;
+	private static ArrayList<Malattia> malattia=new ArrayList();
 	
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
@@ -163,31 +163,26 @@ public class MainProgetto {
 			break;
 			case 4:
 				System.out.println();
-				malattia=nuovaMalattia();
+				malattia.add(nuovaMalattia());
+		
+				ServizioFile.salvaSingoloOggetto(salvataggioMalattia, malattia);
 				
 			break;
 			case 5:
 				System.out.println();
-				malattia=(Malattia)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
-				malattia.getNomeMalattia();
-				malattia.getTerapia();
-				malattia.getDiagnosi();
-				malattia.getAnnoFine();
-				malattia.getAnnoInizio();
-				malattia.getEsame();
-				malattia.getGiornoFine();
-				malattia.getGiornoInizio();
-				malattia.getMeseFine();
-				malattia.getMeseInizio();
-				malattia.getSintomo();
-				System.out.println(malattia.toStringSintetico());
+				malattia=getMalattia();
+				for(int i=0;i<malattia.size();i++){
+					System.out.println(malattia.get(i).toStringSintetico());
+				}
 				nomeMalattiaScelta=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
 				System.out.println(Malattia.toStringCompleto(nomeMalattiaScelta));
 			break;
 			case 6:
 				System.out.println();
 				cartSan=new CartellaSanitaria();
-				System.out.println(cartSan.toString());
+				utente=getUtente();
+				System.out.println(utente.toStringCompleto());
+				//System.out.println(cartSan.toString());
 			break;
 			default:
 				System.out.println();
@@ -234,7 +229,7 @@ public class MainProgetto {
 	 * @return nuovo oggetto di tipo Malattia
 	 */
 	public static Malattia nuovaMalattia (){
-
+		
 		nomeMalattia = InputDati.leggiStringaNonVuota(MSG_NOME);
 		giornoInizio = InputDati.leggiIntero(GIORNO_I, 1, 31);
 		meseInizio = InputDati.leggiIntero(MESE_I, 1, 12);
@@ -246,9 +241,8 @@ public class MainProgetto {
 		diagnosi = InputDati.leggiStringa(MSG_DIAGNOSI);
 		esame = InputDati.leggiStringa(MSG_ESAMI);
 		terapia = InputDati.leggiStringa(MSG_TERAPIA);
-		
 		Malattia malattiaRegistrata=new Malattia(nomeMalattia, giornoInizio,meseInizio,annoInizio,giornoFine,meseFine,annoFine,sintomo,diagnosi,esame,terapia);
-		ServizioFile.salvaSingoloOggetto(salvataggioMalattia, malattiaRegistrata);
+		
 		return malattiaRegistrata;
 	}
 	
@@ -277,6 +271,51 @@ public class MainProgetto {
 		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 		ServizioFile.salvaSingoloOggetto(salvataggioEsame, esame);
 		return esame;
+	}
+	
+	public static ArrayList<Malattia> getMalattia(){
+		ArrayList <Malattia> malattia=(ArrayList<Malattia>)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
+		Malattia malattiaL;
 		
+		for(int i=0;i<malattia.size();i++){
+			String nome=malattia.get(i).getNomeMalattia();
+			int giornoI=malattia.get(i).getGiornoInizio();
+			int meseI=malattia.get(i).getMeseInizio();
+			int annoI=malattia.get(i).getAnnoInizio();
+			int giornoF=malattia.get(i).getGiornoFine();
+			int meseF=malattia.get(i).getMeseFine();
+			int annoF=malattia.get(i).getAnnoFine();
+			String sintomo=malattia.get(i).getSintomo();
+			String diagnosi=malattia.get(i).getDiagnosi();
+			String esame=malattia.get(i).getEsame();
+			String terapia=malattia.get(i).getTerapia();
+			malattiaL=new Malattia(nome,giornoI,meseI,annoI,giornoF,meseF,annoF,sintomo,diagnosi,esame,terapia);
+			malattia.add(malattiaL);
+		}
+		
+		return malattia;
+	}
+	
+	public static Paziente getUtente(){
+		utente=(Paziente)ServizioFile.caricaSingoloOggetto(salvataggioUtente);
+		/*nome=utenteR.getNome();
+		cognome=utenteR.getCognome();
+		fattoreRh=utenteR.getFattoreRh();
+		gruppoS=utenteR.getGruppoSanguigno();
+		via=utenteR.getViaCasa();
+		comune=utenteR.getComuneCasa();
+		comuneN=utenteR.getComuneNascita();
+		provincia=utenteR.getProvinciaCasa();
+		provinciaN=utenteR.getProvinciaNascita();
+		peso=utenteR.getPeso();
+		codF=utenteR.getCodiceFiscale();
+		telefono=utenteR.getTelefono();
+		sesso=utenteR.getSesso();
+		altezza=utenteR.getAltezza();
+		anno=utenteR.getAnno();
+		mese=utenteR.getMese();
+		giorno=utenteR.getGiorno();
+		cap=utenteR.getCapCasa();*/
+		return utente;
 	}
 }

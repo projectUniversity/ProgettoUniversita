@@ -1,12 +1,12 @@
 package metodi;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.Serializable;
 
 import it.unibs.fp.mylib.ServizioFile;
 import paziente_esami.*;
 import malattia_salvataggio.*;
+
 public class CartellaSanitaria implements Serializable {
 
 	/**
@@ -66,25 +66,7 @@ public class CartellaSanitaria implements Serializable {
 	public String toString(){
 		StringBuffer frase=new StringBuffer();
 		
-		utente=(Paziente)ServizioFile.caricaSingoloOggetto(salvataggioUtente);
-		nome=utente.getNome();
-		cognome=utente.getCognome();
-		fattoreRh=utente.getFattoreRh();
-		gruppoS=utente.getGruppoSanguigno();
-		via=utente.getViaCasa();
-		comune=utente.getComuneCasa();
-		comuneN=utente.getComuneNascita();
-		provincia=utente.getProvinciaCasa();
-		provinciaN=utente.getProvinciaNascita();
-		peso=utente.getPeso();
-		codF=utente.getCodiceFiscale();
-		telefono=utente.getTelefono();
-		sesso=utente.getSesso();
-		altezza=utente.getAltezza();
-		anno=utente.getAnno();
-		mese=utente.getMese();
-		giorno=utente.getGiorno();
-		cap=utente.getCapCasa();
+		
 		
 		esameR=(Esame)ServizioFile.caricaSingoloOggetto(salvataggioEsame);
 		nomeEsame=esameR.getNomeEsame();
@@ -102,21 +84,9 @@ public class CartellaSanitaria implements Serializable {
 		sogliaMin=esameR.getSogliaMin();
 		sogliaMax=esameR.getSogliaMax();
 		
-		malattia=(Malattia)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
-		malattia.getNomeMalattia();
-		malattia.getTerapia();
-		malattia.getDiagnosi();
-		malattia.getAnnoFine();
-		malattia.getAnnoInizio();
-		malattia.getEsame();
-		malattia.getGiornoFine();
-		malattia.getGiornoInizio();
-		malattia.getMeseFine();
-		malattia.getMeseInizio();
-		malattia.getSintomo();
 		
-		//String cognome=utente.getCognome();
-		//String nome=utente.getNome();
+		String cognome=utente.getCognome();
+		String nome=utente.getNome();
 		System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
 		
 		System.out.println(CORNICE);
