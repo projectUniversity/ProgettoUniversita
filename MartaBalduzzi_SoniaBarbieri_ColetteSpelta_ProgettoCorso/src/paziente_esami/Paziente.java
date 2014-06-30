@@ -30,24 +30,24 @@ public class Paziente implements Serializable
 	public final static String CF_SBAGLIATO = "Il codice fiscale inserito non e' corretto. Rinserire il CF: ";
 		
 	//ATTRIBUTI
-	private static String nome;
-	private static String cognome;
-	private static char sesso;
-	private static double peso;
-	private static double altezza;
-	private static int giorno;
-	private static int mese;
-	private static int anno;
-	private static String codiceFiscale;
-	private static String fattoreRh;
-	private static String gruppoSanguigno;
-	private static String viaCasa;
-	private static String comuneCasa;
-	private static String provinciaCasa;
-	private static String comuneNascita;
-	private static String provinciaNascita;
-	private static int capCasa;
-	private static String telefono;
+	private String nome;
+	private String cognome;
+	private char sesso;
+	private double peso;
+	private double altezza;
+	private int giorno;
+	private int mese;
+	private int anno;
+	private String codiceFiscale;
+	private String fattoreRh;
+	private String gruppoSanguigno;
+	private String viaCasa;
+	private String comuneCasa;
+	private String provinciaCasa;
+	private String comuneNascita;
+	private String provinciaNascita;
+	private int capCasa;
+	private String telefono;
 		
 	/**
 	 * COSTRUTTORE
@@ -96,7 +96,7 @@ public class Paziente implements Serializable
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return il codice fiscale del paziente
 	 */
-	public static String controlloCf()
+	public String controlloCf()
 	{
 		
 		if(codiceFiscale.length() != LUNGH_MAX_CF)
@@ -163,7 +163,7 @@ public class Paziente implements Serializable
 	 * METODO per la visualizzazione completa dei dati anagrafici del paziente
 	 * @return tutti i dati anagrafici del paziente
 	 */
-	public static String toStringCompleto()
+	public String toStringCompleto()
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
@@ -217,8 +217,7 @@ public class Paziente implements Serializable
 	 * METODO per prendere il nome del paziente
 	 * @return il nome del paziente
 	 */
-	public static String getNome()
-	{
+	public String getNome(){
 		return nome;
 	}
 	
@@ -226,152 +225,7 @@ public class Paziente implements Serializable
 	 * METODO per prendere il cognome del paziente
 	 * @return il cognome del paziente
 	 */
-	public static String getCognome()
-	{
+	public String getCognome(){
 		return cognome;
-	}
-
-	/**
-	 * METODO per prendere il sesso del paziente
-	 * @return il sesso del paziente
-	 */
-	public static char getSesso() 
-	{
-		return sesso;
-	}
-
-	/**
-	 * METODO per prendere il peso del paziente
-	 * @return il peso del paziente
-	 */
-	public static double getPeso() 
-	{
-		return peso;
-	}
-
-	/**
-	 * METODO per prendere l'altezza del paziente
-	 * @return l'altezza del paziente
-	 */
-	public static double getAltezza() 
-	{
-		return altezza;
-	}
-
-	/**
-	 * METODO per prendere il giorno di nascita del paziente
-	 * @return il giorno di nascita
-	 */
-	public static int getGiorno() 
-	{
-		return giorno;
-	}
-
-	/**
-	 * METODO per prendere il mese di nascita del paziente
-	 * @return il mese di nascita
-	 */
-	public static int getMese() 
-	{
-		return mese;
-	}
-
-	/**
-	 * METODO per prendere l'anno di nascita del paziente
-	 * @return l'anno di nascita
-	 */
-	public static int getAnno() 
-	{
-		return anno;
-	}
-
-	/**
-	 * METODO per prendere il codice fiscale del paziente
-	 * @return il codice fiscale 
-	 */
-	public static String getCodiceFiscale() 
-	{
-		return codiceFiscale;
-	}
-
-	/**
-	 * METODO per prendere il fattore Rh del sangue del paziente
-	 * @return il fasttore Rh del sangue
-	 */
-	public static String getFattoreRh() 
-	{
-		return fattoreRh;
-	}
-
-	/**
-	 * METODO per prendere il gruppo sanguigno del paziente
-	 * @return il gruppo sanguigno
-	 */
-	public static String getGruppoSanguigno() 
-	{
-		return gruppoSanguigno;
-	}
-
-	/**
-	 * METODO per prendere la via dove abita il paziente
-	 * @return la via di residenza
-	 */
-	public static String getViaCasa() 
-	{
-		return viaCasa;
-	}
-
-	/**
-	 * METODO per prendere il comune in cui abita il paziente
-	 * @return il comune di residenza
-	 */
-	public static String getComuneCasa() 
-	{
-		return comuneCasa;
-	}
-
-	/**
-	 * METODO per prendere la provincia del comune di residenza
-	 * @return la prvincia di residenza
-	 */
-	public static String getProvinciaCasa() 
-	{
-		return provinciaCasa;
-	}
-
-	/**
-	 * METODO per prendere il comune dove e' nato il paziente
-	 * @return il comune di nascita
-	 */
-	public static String getComuneNascita()
-	{
-		return comuneNascita;
-	}
-
-	/**
-	 * METODO per prendere la provincia del comune di nascita
-	 * @return la provincia di nascita
-	 */
-	public static String getProvinciaNascita()
-	{
-		return provinciaNascita;
-	}
-
-	/**
-	 * METODO per prendere il cap di dove abita il paziente
-	 * @return il cap di residenza
-	 */
-	public static int getCapCasa()
-	{
-		return capCasa;
-	}
-
-	/**
-	 * METODO per prendere il numero di telefono del paziente
-	 * @return il numero di telefono
-	 */
-	public static String getTelefono() 
-	{
-		return telefono;
 	}
 }

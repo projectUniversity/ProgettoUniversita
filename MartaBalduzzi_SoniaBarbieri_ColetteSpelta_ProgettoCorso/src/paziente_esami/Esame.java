@@ -30,26 +30,26 @@ public class Esame implements Serializable
 	public final static String MSG_PRESENTE = "L'esame e' gia' presente in elenco";
 	
 	//ATTRIBUTI
-	private static String nomeEsame;
-	private static String raccomandazione;
-	private static char tipoEsame;
-	private static int giorno;
-	private static int mese;
-	private static int anno;
-	private static int ora;
-	private static int minuti;
-	private static String ospedale;
-	private static String viaEsame;
-	private static String comuneEsame;
-	private static String provinciaEsame;
-	private static ArrayList <Double> esitoPeriodico;
-	private static ArrayList <String> esitoDiagnostico;
-	private static ArrayList <String> esamePeriodico;
-	private static ArrayList <String> esameDiagnostico;
-	private static double sogliaMax;
-	private static double sogliaMin;
-	private static String prenotato;
-	private static ArrayList <String> esamePrenotato;
+	private String nomeEsame;
+	private String raccomandazione;
+	private char tipoEsame;
+	private int giorno;
+	private int mese;
+	private int anno;
+	private int ora;
+	private int minuti;
+	private String ospedale;
+	private String viaEsame;
+	private String comuneEsame;
+	private String provinciaEsame;
+	private ArrayList <Double> esitoPeriodico;
+	private ArrayList <String> esitoDiagnostico;
+	private ArrayList <String> esamePeriodico;
+	private ArrayList <String> esameDiagnostico;
+	private double sogliaMax;
+	private double sogliaMin;
+	private String prenotato;
+	private ArrayList <String> esamePrenotato;
 	
 	/**
 	 * COSTRUTTORE
@@ -97,7 +97,7 @@ public class Esame implements Serializable
 	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici oppure di quelli prenotati
 	 * @param il nuovo esame che aggiungo alla lista corrispondente
 	 */
-	public static void aggiungiEsame(String nuovoEsame)
+	public void aggiungiEsame(String nuovoEsame)
 	{
 		if(tipoEsame == DIAGNOSTICO && prenotato == null)
 		{
@@ -121,7 +121,7 @@ public class Esame implements Serializable
 	 * @param nome il nome dell'esame che cerco nella lista
 	 * @return true se l'esame e' gia' presente, altrimenti false
 	 */
-	public static boolean esameDoppio(String nome)
+	public boolean esameDoppio(String nome)
 	{
 		if(tipoEsame == PERIODICO)
 		{
@@ -153,7 +153,7 @@ public class Esame implements Serializable
 	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunti) per poter aggiungere l'esito
 	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
 	 */
-	public static Esame aggiungiEsitoPeriodico(String esame, double esito)
+	public Esame aggiungiEsitoPeriodico(String esame, double esito)
 	{
 		for(int i=0; i<esamePeriodico.size(); i++)
 		{
@@ -182,7 +182,7 @@ public class Esame implements Serializable
 	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunto) per poter aggiungere l'esito
 	 * @param esito il vaolre dell'esito come stringa (si tratta di un esame diagnostico)
 	 */
-	public static Esame aggiungiEsitoDiagnostico(String esame, String esito)
+	public Esame aggiungiEsitoDiagnostico(String esame, String esito)
 	{
 		for(int i=0; i<esameDiagnostico.size(); i++)
 		{
@@ -232,7 +232,7 @@ public class Esame implements Serializable
 	 * METODO per la visualizzazione sintetica degli esami
 	 * @return gli esami con i rispettivi esiti e date
 	 */
-	public static String toStringSintetico()
+	public String toStringSintetico()
 	{
 		StringBuffer str = new StringBuffer();
 		for(int i=0; i<esamePeriodico.size(); i++)
@@ -288,7 +288,7 @@ public class Esame implements Serializable
 	 * METODO per visualizzare gli esami prenotati
 	 * @return gli esami prenotati
 	 */
-	public static String toStringPrenotati()
+	public String toStringPrenotati()
 	{
 		StringBuffer str = new StringBuffer();
 		str.append(String.format(ELENCO_PRENOTATI));
@@ -317,183 +317,4 @@ public class Esame implements Serializable
 		return media;
 	}
 
-	/**
-	 * METODO per prendere il nome dell'esame
-	 * @return il nome dell'esame
-	 */
-	public static String getNomeEsame() 
-	{
-		return nomeEsame;
-	}
-
-	/**
-	 * METODO per prendere la raccomandazione pre-esame
-	 * @return la raccomandazione per l'esame
-	 */
-	public static String getRaccomandazione()
-	{
-		return raccomandazione;
-	}
-
-	/**
-	 * METODO per prendere il tipo dell'esame
-	 * @return il tipo dell'esame (P o D)
-	 */
-	public static char getTipoEsame()
-	{
-		return tipoEsame;
-	}
-
-	/**
-	 * METODO per prendere il giorno dell'esame
-	 * @return il giorno in cui e' stato eseguito l'esame
-	 */
-	public static int getGiorno()
-	{
-		return giorno;
-	}
-
-	/**
-	 * METODO per prendere il mese in cui eseguire l'esame
-	 * @return il mese in cui l'esame e' stato eseguito
-	 */
-	public static int getMese() 
-	{
-		return mese;
-	}
-
-	/**
-	 * METODO per prendere l'anno in cui eseguire l'esame
-	 * @return l'anno in cui eseguire l'esame
-	 */
-	public static int getAnno()
-	{
-		return anno;
-	}
-
-	/**
-	 * METODO per prendere l'ora a cui eseguire l'esame
-	 * @return l'ora dell'esame
-	 */
-	public static int getOra()
-	{
-		return ora;
-	}
-
-	/**
-	 * METODO per prendere i minuti a cui eseguite l'esame
-	 * @return i minuti in cui eseguire l'esame
-	 */
-	public static int getMinuti()
-	{
-		return minuti;
-	}
-
-	/**
-	 * METODO per prendere il nome dell'ospedale dove viene eseguito l'esame
-	 * @return il nome dell'ospedale
-	 */
-	public static String getOspedale() 
-	{
-		return ospedale;
-	}
-
-	/**
-	 * METODO per prendere la via dove viene eseguito l'esame
-	 * @return la via del luogo dove e' stato fatto l'esame
-	 */
-	public static String getViaEsame()
-	{
-		return viaEsame;
-	}
-
-	/**
-	 * METODO per prendere il comune dove e' stato eseguire l'esame
-	 * @return il comune dove e' stato eseguito l'esame
-	 */
-	public static String getComuneEsame()
-	{
-		return comuneEsame;
-	}
-
-	/**
-	 * METODO per prendere la provincia dove e' stato eseguito l'esame
-	 * @return la provincia del comune
-	 */
-	public static String getProvinciaEsame()
-	{
-		return provinciaEsame;
-	}
-
-	/**
-	 * METODO per prendere gli esiti di un esame periodico
-	 * @return la lista degli esiti di un esame periodico
-	 */
-	public static ArrayList<Double> getEsitoPeriodico() 
-	{
-		return esitoPeriodico;
-	}
-
-	/**
-	 * METODO per prendere l'esito di un esame diagnostico
-	 * @return l'esito dell'esame diagnostico
-	 */
-	public static ArrayList<String> getEsitoDiagnostico()
-	{
-		return esitoDiagnostico;
-	}
-
-	/**
-	 * METODO per prendere i nomi degli esami periodici
-	 * @return i nomi degli esami periodici
-	 */
-	public static ArrayList<String> getEsamePeriodico() 
-	{
-		return esamePeriodico;
-	}
-
-	/**
-	 * METODO per prendere i nomi degli esami diagnostici
-	 * @return i nomi degli esami diagnostici
-	 */
-	public static ArrayList<String> getEsameDiagnostico() 
-	{
-		return esameDiagnostico;
-	}
-
-	/**
-	 * METODO per prendere la soglia massima di normalita' consentita per un certo esame
-	 * @return la soglia massima consentita
-	 */
-	public static double getSogliaMax() 
-	{
-		return sogliaMax;
-	}
-
-	/**
-	 * METODO per prendere la soglia minima di normalita' consentita per un certo esame
-	 * @return la soglia minima consentita
-	 */
-	public static double getSogliaMin()
-	{
-		return sogliaMin;
-	}
-
-	/**
-	 * METODO per prendere se l'esame risulta PRENOTATO (cioe' e' stato prenotato) o null(cioe' e' sato inserito l'esito)
-	 * @return la variabile prenotato
-	 */
-	public static String getPrenotato()
-	{
-		return prenotato;
-	}
-
-	/**
-	 * METODO per prendere la lista degli esami prenotati
-	 * @return la lista degli esami prenotati
-	 */
-	public static ArrayList<String> getEsamePrenotato() 
-	{
-		return esamePrenotato;
-	}
 }

@@ -23,27 +23,26 @@ public class Malattia implements Serializable
 	/**
 	 * ATTRIBUTI
 	 */
-	private static String nomeMalattia;
-	private static GregorianCalendar dataInizioMalattia = new GregorianCalendar();
-	private static GregorianCalendar dataFineMalattia = new GregorianCalendar();
+	private String nomeMalattia;
+	private GregorianCalendar dataInizioMalattia = new GregorianCalendar();
+	private GregorianCalendar dataFineMalattia = new GregorianCalendar();
 	//private static ArrayList <String> sintomiMalattia = new ArrayList<String>();
-	private static String sintomo;
+	private String sintomo;
 	//private static ArrayList <String> diagnosiMalattia = new ArrayList<String>();
-	private static String diagnosi;
+	private String diagnosi;
 	//private static ArrayList <String> esamiAssociati = new ArrayList<String>();
-	private static String esame;
+	private String esame;
 	//private static ArrayList <String> terapiaAssociata = new ArrayList<String>();
-	private static String terapia;
+	private String terapia;
 
-	private static int giornoInizio;
-	private static int meseInizio;
-	private static int annoInizio;
-	private static int giornoFine;
-	private static int meseFine;
-	private static int annoFine;
+	private int giornoInizio;
+	private int meseInizio;
+	private int annoInizio;
+	private int giornoFine;
+	private int meseFine;
+	private int annoFine;
 	
-	private static File salvataggioMalattia = new File("SalvataggioMalattia.dat");
-	private static ArrayList<String> elenco;
+	private ArrayList<String> elenco;
 	
 	
 	/**
@@ -124,7 +123,7 @@ public class Malattia implements Serializable
 	 * 
 	 * @return Un toString che descrive sinteticamente la malattia
 	 */
-	public static String toStringSintetico()
+	public String toStringSintetico()
 	{
 		StringBuffer stringa = new StringBuffer();
 		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" + "Nome: " + nomeMalattia + "\n" + "Data d'inizio: " + giornoInizio +"-" + meseInizio +"-" + annoInizio + "\n" + "Data di termine: " + giornoFine +"-"+ meseFine +"-"+ annoFine));
@@ -136,7 +135,7 @@ public class Malattia implements Serializable
 	 * 
 	 * @return Un toString che descrive in modo completo la malattia
 	 */
-	public static String toStringCompleto(String nomeDellaMalattia)
+	public String toStringCompleto(String nomeDellaMalattia)
 	{
 		StringBuffer stringa = new StringBuffer();
 		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" +
@@ -155,7 +154,7 @@ public class Malattia implements Serializable
 	 * 
 	 * @return elenco delle malattie inserite
 	 */
-	public static ArrayList<String> aggiungiMalattia()  
+	public ArrayList<String> aggiungiMalattia()  
 	{
 		for(int i = 0; i < elenco.size(); i++)
 		{
@@ -163,120 +162,5 @@ public class Malattia implements Serializable
 		}
 		return elenco;
 	}
-	
-	
-	/**
-	 * Metodo get del nome della malattia
-	 * 
-	 * @return String nome della malattia
-	 */
-	public static String getNomeMalattia() 
-	{
-		return nomeMalattia;
-	}
-
-	/**
-	 * Metodo get dei sintomi della malattia
-	 * 
-	 * @return String sintomi della malattia 
-	 */
-	public static String getSintomo() 
-	{
-		return sintomo;
-	}
-
-	/**
-	 * Metodo get della diagnosi della malattia
-	 * 
-	 * @return String della diagnosi
-	 */
-	public static String getDiagnosi() 
-	{
-		return diagnosi;
-	}
-
-	/**
-	 * Metodo get degli esami associati alla cura della malattia
-	 * 
-	 * @return String esami associati alla malattia
-	 */
-	public static String getEsame() 
-	{
-		return esame;
-	}
-
-	/**
-	 * Metodo get della terapia da seguire per la cura della malattia
-	 * 
-	 * @return String terapia associata alla malattia
-	 */
-	public static String getTerapia() 
-	{
-		return terapia;
-	}
-
-	/**
-	 * Metodo get del numero del giorno d'inizio della malattia
-	 * 
-	 * @return int giorno di inizio
-	 */
-	public static int getGiornoInizio() 
-	{
-		return giornoInizio;
-	}
-
-	/**
-	 * Metodo get per il mese d'inizio della malattia
-	 * 
-	 * @return int mese d'inizio
-	 */
-	public static int getMeseInizio() 
-	{
-		return meseInizio;
-	}
-
-	/**
-	 * Metodo get per l'anno di inizio della malattia
-	 * 
-	 * @return int anno d'inizio
-	 */
-	public static int getAnnoInizio() 
-	{
-		return annoInizio;
-	}
-
-	/**
-	 * Metodo get del giorno di termine della malattia
-	 * 
-	 * @return int giorno di termine
-	 */
-	public static int getGiornoFine() 
-	{
-		return giornoFine;
-	}
-
-	/**
-	 * Metodo get del mese di termine della malattia
-	 * 
-	 * @return int mese di termine
-	 */
-	public static int getMeseFine() 
-	{
-		return meseFine;
-	}
-
-	/**
-	 * Metodo get dell'anno di termine della malattia
-	 * 
-	 * @return int anno di termine 
-	 */
-	public static int getAnnoFine() 
-	{
-		return annoFine;
-	}
-	
-	
-	
-	
 }
 

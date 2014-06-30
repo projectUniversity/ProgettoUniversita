@@ -140,18 +140,18 @@ public class MainProgetto {
 				if(contenitore==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				System.out.println("Il contenitore contiene le informazioni");
+				//System.out.println("Il contenitore contiene le informazioni");
 				utente=contenitore.getUtente();
 				System.out.println(utente.toStringSintetico());
 				if(utente==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				System.out.println("Il contenitore contiene le informazioni");
+			//	System.out.println("Il contenitore contiene le informazioni");
 				malattia=contenitore.getMalattia();
 				if(malattia==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				System.out.println("Il contenitore contiene le informazioni");
+			//	System.out.println("Il contenitore contiene le informazioni");
 				esam=contenitore.getEsame();
 				if(esam==null){
 					System.out.println("Il contenitore è settato a null");
@@ -191,7 +191,9 @@ public class MainProgetto {
 			case 3:
 				System.out.println();
 			//	ServizioFile.caricaSingoloOggetto(salvataggioEsame);
-				System.out.println(Esame.toStringPrenotati());
+				for(int i=1;i<esam.size();i++){
+					System.out.println(esam.get(i).toStringPrenotati());
+				}
 				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
 				if(tipoEsame == Esame.PERIODICO){
 					double esitoP=InputDati.leggiDouble(MSG_ESITO);
@@ -219,7 +221,10 @@ public class MainProgetto {
 					System.out.println(malattia.get(i).toStringSintetico());
 				}
 				nomeMalattiaScelta=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
-				System.out.println(Malattia.toStringCompleto(nomeMalattiaScelta));
+				for(int i=1;i<malattia.size();i++){
+					System.out.println(malattia.get(i).toStringCompleto(nomeMalattiaScelta));
+				}
+				
 			break;
 			case 6:
 				System.out.println();
@@ -265,24 +270,24 @@ public class MainProgetto {
 	 * @return nuovo oggetto di tipo Paziente
 	 */
 	public static Paziente creaUtente(){
-		nome = InputDati.leggiStringaNonVuota(NOME);
-		cognome = InputDati.leggiStringaNonVuota(COGNOME);
-		sesso = InputDati.leggiChar(SESSO);
-		peso = InputDati.leggiDoubleConMinimo(PESO, 0);
-		altezza = InputDati.leggiDoubleConMinimo(ALTEZZA, 0);
-		anno = InputDati.leggiIntero(ANNO);
-		mese = InputDati.leggiIntero(MESE, 1, 12);
-		giorno = InputDati.leggiIntero(GIORNO, 1, 31);
-		codF = InputDati.leggiStringaNonVuota(COD_FISC);
-		fattoreRh = InputDati.leggiStringaNonVuota(RH);
-		gruppoS = InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO);
-		via = InputDati.leggiStringaNonVuota(VIA);
-		comune = InputDati.leggiStringaNonVuota(COMUNE);
-		provincia = InputDati.leggiStringaNonVuota(PROVINCIA);
-		comuneN = InputDati.leggiStringaNonVuota(COMUNE_NASCITA);
-		provinciaN = InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA);
-		cap = InputDati.leggiIntero(CAP);
-		telefono = InputDati.leggiStringaNonVuota(MSG_TELEFONO);
+		nome=InputDati.leggiStringaNonVuota(NOME);
+		cognome=InputDati.leggiStringaNonVuota(COGNOME);
+		sesso=InputDati.leggiChar(SESSO);
+		peso=InputDati.leggiDoubleConMinimo(PESO, 0);
+		altezza=InputDati.leggiDoubleConMinimo(ALTEZZA, 0);
+		anno=InputDati.leggiIntero(ANNO);
+		mese=InputDati.leggiIntero(MESE, 1, 12);
+		giorno=InputDati.leggiIntero(GIORNO, 1, 31);
+		codF=InputDati.leggiStringaNonVuota(COD_FISC);
+		fattoreRh=InputDati.leggiStringaNonVuota(RH);
+		gruppoS=InputDati.leggiStringaNonVuota(GRUPPO_SANGUIGNO);
+		via=InputDati.leggiStringaNonVuota(VIA);
+		comune=InputDati.leggiStringaNonVuota(COMUNE);
+		provincia=InputDati.leggiStringaNonVuota(PROVINCIA);
+		comuneN=InputDati.leggiStringaNonVuota(COMUNE_NASCITA);
+		provinciaN=InputDati.leggiStringaNonVuota(PROVINCIA_NASCITA);
+		cap=InputDati.leggiIntero(CAP);
+		telefono=InputDati.leggiStringaNonVuota(MSG_TELEFONO);
 		
 		Paziente paziente=new Paziente(nome, cognome, sesso, peso, altezza, anno, mese, giorno, codF, fattoreRh, gruppoS, via, comune, provincia, comuneN, provinciaN, cap, telefono);
 	//	ServizioFile.salvaSingoloOggetto(salvataggioUtente, paziente);
@@ -296,17 +301,17 @@ public class MainProgetto {
 	 */
 	public static Malattia nuovaMalattia (){
 		
-		nomeMalattia = InputDati.leggiStringaNonVuota(MSG_NOME);
-		giornoInizio = InputDati.leggiIntero(GIORNO_I, 1, 31);
-		meseInizio = InputDati.leggiIntero(MESE_I, 1, 12);
-		annoInizio = InputDati.leggiIntero(ANNO_I);
-		giornoFine = InputDati.leggiIntero(GIORNO_F, 0, 31);
-		meseFine = InputDati.leggiIntero(MESE_F, 0, 12);
-		annoFine = InputDati.leggiIntero(ANNO_F);
-		sintomo = InputDati.leggiStringa(MSG_SINTOMI);
-		diagnosi = InputDati.leggiStringa(MSG_DIAGNOSI);
-		esame = InputDati.leggiStringa(MSG_ESAMI);
-		terapia = InputDati.leggiStringa(MSG_TERAPIA);
+		nomeMalattia=InputDati.leggiStringaNonVuota(MSG_NOME);
+		giornoInizio=InputDati.leggiIntero(GIORNO_I, 1, 31);
+		meseInizio=InputDati.leggiIntero(MESE_I, 1, 12);
+		annoInizio=InputDati.leggiIntero(ANNO_I);
+		giornoFine=InputDati.leggiIntero(GIORNO_F, 0, 31);
+		meseFine=InputDati.leggiIntero(MESE_F, 0, 12);
+		annoFine=InputDati.leggiIntero(ANNO_F);
+		sintomo=InputDati.leggiStringa(MSG_SINTOMI);
+		diagnosi=InputDati.leggiStringa(MSG_DIAGNOSI);
+		esame=InputDati.leggiStringa(MSG_ESAMI);
+		terapia=InputDati.leggiStringa(MSG_TERAPIA);
 		Malattia malattiaRegistrata=new Malattia(nomeMalattia, giornoInizio,meseInizio,annoInizio,giornoFine,meseFine,annoFine,sintomo,diagnosi,esame,terapia);
 		
 		return malattiaRegistrata;
@@ -318,21 +323,21 @@ public class MainProgetto {
 	 * @return nuovo oggetto di tipo Esame
 	 */
 	public static Esame nuovoEsame(){
-		nomeEsame = InputDati.leggiStringaNonVuota(NOME_ESAME);
-		raccomandazione = InputDati.leggiStringa(MSG_RACC);
-		tipoEsame = InputDati.leggiChar(MSG_TIPO);
-		giorno = InputDati.leggiIntero(MSG_GIORNO, 1, 31);
-		mese = InputDati.leggiIntero(MSG_MESE, 1, 12);
-		anno = InputDati.leggiIntero(MSG_ANNO);
-		ora = InputDati.leggiIntero(MSG_ORA, 0, 23);
-		minuti = InputDati.leggiIntero(MSG_MINUTI, 0, 59);
-		ospedale = InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
-		viaEsame = InputDati.leggiStringaNonVuota(MSG_VIA);
-		comuneEsame = InputDati.leggiStringaNonVuota(MSG_COMUNE);
-		provinciaEsame = InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
-		sogliaMax = InputDati.leggiDouble(SOGLIA_MAX);
-		sogliaMin = InputDati.leggiDouble(SOGLIA_MIN); 
-		prenotato = Esame.ESAME_PRENOTATO;
+		nomeEsame=InputDati.leggiStringaNonVuota(NOME_ESAME);
+		raccomandazione=InputDati.leggiStringa(MSG_RACC);
+		tipoEsame=InputDati.leggiChar(MSG_TIPO);
+		giornoE=InputDati.leggiIntero(MSG_GIORNO, 1, 31);
+		meseE=InputDati.leggiIntero(MSG_MESE, 1, 12);
+		annoE=InputDati.leggiIntero(MSG_ANNO);
+		oraE=InputDati.leggiIntero(MSG_ORA, 0, 23);
+		minE=InputDati.leggiIntero(MSG_MINUTI, 0, 59);
+		ospedale=InputDati.leggiStringaNonVuota(MSG_OSPEDALE);
+		viaEsame=InputDati.leggiStringaNonVuota(MSG_VIA);
+		comuneEsame=InputDati.leggiStringaNonVuota(MSG_COMUNE);
+		provinciaEsame=InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
+		sogliaMax=InputDati.leggiDouble(SOGLIA_MAX);
+		sogliaMin=InputDati.leggiDouble(SOGLIA_MIN); 
+		prenotato=Esame.ESAME_PRENOTATO;
 		
 		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 	//	ServizioFile.salvaSingoloOggetto(salvataggioEsame, esame);
