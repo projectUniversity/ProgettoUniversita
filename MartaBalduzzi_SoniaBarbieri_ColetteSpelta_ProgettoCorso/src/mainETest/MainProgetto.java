@@ -21,7 +21,6 @@ public class MainProgetto {
 	public static final String[] SCELTE={"Inserimento dei dati del paziente","Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
 	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
-	//public static final String COD_FISC="Inserisci il codice fiscale: ";
 	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli ";
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
@@ -81,8 +80,6 @@ public class MainProgetto {
 	private static Menu myMenu=new Menu(SCELTE);
 	private static int scelta;
 	private static String nomeMalattiaScelta;
-	//private static CartellaSanitaria cartSan;
-	
 	
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
@@ -114,10 +111,10 @@ public class MainProgetto {
 	private static double sogliaMax; 
 	private static double sogliaMin;
 	
-	private static ArrayList <Double> esitoPeriodico;
-	private static ArrayList <String> esitoDiagnostico;
-	
+	private static ArrayList <Double> esitoPeriodico=new ArrayList<Double>();
+	private static ArrayList <String> esitoDiagnostico=new ArrayList<String>();
 	private static String prenotato; 
+	
 	private static File salvataggio=new File("Salvataggio.dat");
 	private static CartellaSanitaria contenitore=null;
 	private static boolean caricato=false;
@@ -156,7 +153,7 @@ public class MainProgetto {
 				if(esam==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				System.out.println("Il contenitore contiene le informazioni");
+				//System.out.println("Il contenitore contiene le informazioni");
 			}
 			catch(ClassCastException e){
 				System.out.println("Errore di cast");
@@ -191,37 +188,39 @@ public class MainProgetto {
 			case 3:
 				System.out.println();
 			//	ServizioFile.caricaSingoloOggetto(salvataggioEsame);
-				for(int i=1;i<esam.size();i++){
+				for(int i=0;i<esam.size();i++){
 					System.out.println(esam.get(i).toStringPrenotati());
 				}
 				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
 				if(tipoEsame == Esame.PERIODICO){
 					double esitoP=InputDati.leggiDouble(MSG_ESITO);
-				//	esam.aggiungiEsitoPeriodico(nomeEsame, esitoP);
+					for(int i=0;i<esam.size();i++){
+						esam.get(i).aggiungiEsitoPeriodico(nomeEsame, esitoP);
+					}
 				}
 				else{
 					if(tipoEsame == Esame.DIAGNOSTICO){
 						String esitoD=InputDati.leggiStringa(MSG_ESITO);
-						//esam.aggiungiEsitoDiagnostico(nomeEsame, esitoD);
+						for(int i=0;i<esam.size();i++){
+							esam.get(i).aggiungiEsitoDiagnostico(nomeEsame, esitoD);
+						}
 					}
 				}
-				//ServizioFile.salvaSingoloOggetto(salvataggioEsame, esito);
-				
+				//ServizioFile.salvaSingoloOggetto(salvataggioEsame, esito);	
 			break;
 			case 4:
 				System.out.println();
 				malattia.add(nuovaMalattia());
-				
 				//ServizioFile.salvaSingoloOggetto(salvataggioMalattia, malattia);
 			break;
 			case 5:
 				System.out.println();
 				//malattia=getMalattia();
-				for(int i=1;i<malattia.size();i++){
+				for(int i=0;i<malattia.size();i++){
 					System.out.println(malattia.get(i).toStringSintetico());
 				}
 				nomeMalattiaScelta=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
-				for(int i=1;i<malattia.size();i++){
+				for(int i=0;i<malattia.size();i++){
 					System.out.println(malattia.get(i).toStringCompleto(nomeMalattiaScelta));
 				}
 				
@@ -232,16 +231,16 @@ public class MainProgetto {
 				String cognome=utente.getCognome();
 				String nome=utente.getNome();
 				
-				System.out.println(MSG+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
+				System.out.println(MSG+" "+cognome.substring(0, 1).toUpperCase()+cognome.substring(1, cognome.length())+" "+nome.substring(0, 1).toUpperCase()+nome.substring(1, nome.length()));
 				
 				System.out.println(CORNICE);
 				System.out.println();
-				frase.append(String.format(utente.toStringCompleto(),"/n"));
-				for(int i=1;i<malattia.size();i++){
-					frase.append(malattia.get(i).toStringSintetico());
+				System.out.println(utente.toStringCompleto());
+				for(int i=0;i<malattia.size();i++){
+					System.out.println(malattia.get(i).toStringSintetico());
 				}
-				for(int i=1;i<esam.size();i++){
-					frase.append(String.format(esam.get(i).toStringSintetico(),"/n","/n",esam.get(i).toStringPrenotati()));
+				for(int i=0;i<esam.size();i++){
+					System.out.println(String.format(esam.get(i).toStringSintetico(),"/n","/n",esam.get(i).toStringPrenotati()));
 				}
 				//cartSan=new CartellaSanitaria();
 				//utente=getUtente();
@@ -254,7 +253,7 @@ public class MainProgetto {
 				if(contenitore==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				System.out.println("Il contenitore contiene le informazioni");
+			//	System.out.println("Il contenitore contiene le informazioni");
 				ServizioFile.salvaSingoloOggetto(salvataggio, contenitore);
 				System.out.println();
 				System.out.println("Grazie per aver utilizzato il nostro programma!");

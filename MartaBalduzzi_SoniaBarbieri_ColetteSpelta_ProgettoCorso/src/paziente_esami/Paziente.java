@@ -168,7 +168,7 @@ public class Paziente implements Serializable
 		StringBuffer str = new StringBuffer();
 		str.append(BelleStringhe.incornicia("Dati anagrafici completi"));
 		str.append(String.format(NOME_COGNOME, nome.toUpperCase(), cognome.toUpperCase()));
-		str.append(String.format("\n" + SESSO_PESO_ALTEZZA, sesso, peso, altezza));
+		str.append(String.format("\n" + SESSO_PESO_ALTEZZA, Character.toUpperCase(sesso), peso, altezza));
 		str.append(String.format("\n" + NASCITA, giorno, mese, anno, comuneNascita.toUpperCase(), provinciaNascita.toUpperCase()));
 		str.append(String.format("\n" + DOMICILIO, viaCasa.toUpperCase(), comuneCasa.toUpperCase(), provinciaCasa.toUpperCase(), capCasa));
 		str.append(String.format("\n" + TEL_CF, telefono, codiceFiscale.toUpperCase()));
