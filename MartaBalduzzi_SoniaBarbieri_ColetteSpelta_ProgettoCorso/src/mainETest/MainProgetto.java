@@ -336,9 +336,8 @@ public class MainProgetto {
 		provinciaEsame=InputDati.leggiStringaNonVuota(MSG_PROVINCIA);
 		sogliaMax=InputDati.leggiDouble(SOGLIA_MAX);
 		sogliaMin=InputDati.leggiDouble(SOGLIA_MIN); 
-		prenotato=Esame.ESAME_PRENOTATO;
 		
-		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
+		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
 	//	ServizioFile.salvaSingoloOggetto(salvataggioEsame, esame);
 		return esame;
 	}
