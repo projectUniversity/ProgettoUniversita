@@ -25,7 +25,7 @@ public class MainProgetto {
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
 	public static final String CORNICE="_____________________________________________";
-	public static final String MSG_OK_CARICAMENTO="Caricamento riuscito";
+	//public static final String MSG_OK_CARICAMENTO="Caricamento riuscito";
 	public static final String MSG_NO_CARICAMENTO ="Caricamento fallito. Creazione da zero";
 	
 	public static final String MSG_NOME = "Inserire il nome della malattia: ";
@@ -160,7 +160,7 @@ public class MainProgetto {
 			}
 			finally{
 				if(utente!=null&&malattia!=null&&esam!=null){
-					System.out.println(MSG_OK_CARICAMENTO);
+					//System.out.println(MSG_OK_CARICAMENTO);
 					caricato=true;
 				}
 			}
