@@ -18,14 +18,14 @@ import InputSalvataggioEMenu.*;
 public class MainProgetto {
 	
 	//COSTANTI
-	public static final String[] SCELTE={"Inserimento dei dati del paziente","Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
+	public static final String[] SCELTE={"Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
 	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
 	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli ";
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
 	public static final String CORNICE="_____________________________________________";
-	public static final String MSG_OK_CARICAMENTO="Caricamento riuscito";
+	//public static final String MSG_OK_CARICAMENTO="Caricamento riuscito";
 	public static final String MSG_NO_CARICAMENTO ="Caricamento fallito. Creazione da zero";
 	
 	public static final String MSG_NOME = "Inserire il nome della malattia: ";
@@ -160,7 +160,7 @@ public class MainProgetto {
 			}
 			finally{
 				if(utente!=null&&malattia!=null&&esam!=null){
-					System.out.println(MSG_OK_CARICAMENTO);
+					//System.out.println(MSG_OK_CARICAMENTO);
 					caricato=true;
 				}
 			}
@@ -179,13 +179,13 @@ public class MainProgetto {
 				utente.controlloCf();
 				
 			break;*/
-			case 2:
+			case 1:
 				System.out.println();
 				esam.add(nuovoEsame());
 				
 				//new Esame(InputDati.leggiStringaNonVuota("Inserisci l'esame"),InputDati.leggiStringaNonVuota("Raccomandazioni"),InputDati.leggiChar("tipo esame"),InputDati.leggiIntero("giorno"),InputDati.leggiIntero("mese"),InputDati.leggiIntero("anno"),InputDati.leggiIntero("ora"),InputDati.leggiIntero("min"),InputDati.leggiStringaNonVuota("ospedale"),InputDati.leggiStringaNonVuota("via ospedale"),InputDati.leggiStringaNonVuota("comune ospedale"),InputDati.leggiStringaNonVuota("provincia ospedale"),InputDati.leggiDouble("soglia max"),InputDati.leggiDouble("soglia min"),InputDati.leggiStringaNonVuota("prenotato"));
 			break;
-			case 3:
+			case 2:
 				System.out.println();
 			//	ServizioFile.caricaSingoloOggetto(salvataggioEsame);
 				for(int i=0;i<esam.size();i++){
@@ -208,12 +208,12 @@ public class MainProgetto {
 				}
 				//ServizioFile.salvaSingoloOggetto(salvataggioEsame, esito);	
 			break;
-			case 4:
+			case 3:
 				System.out.println();
 				malattia.add(nuovaMalattia());
 				//ServizioFile.salvaSingoloOggetto(salvataggioMalattia, malattia);
 			break;
-			case 5:
+			case 4:
 				System.out.println();
 				//malattia=getMalattia();
 				for(int i=0;i<malattia.size();i++){
@@ -225,7 +225,7 @@ public class MainProgetto {
 				}
 				
 			break;
-			case 6:
+			case 5:
 				System.out.println();
 				StringBuffer frase=new StringBuffer();
 				String cognome=utente.getCognome();
