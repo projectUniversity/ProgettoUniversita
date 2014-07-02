@@ -52,7 +52,7 @@ public class Esame implements Serializable
 	private ArrayList <String> esamePrenotato;
 	
 	/**
-	 * COSTRUTTORE
+	 * COSTRUTTORE (con prenotato inizializzato a PRENOTATO)
 	 * @param _nomeEsame il nome dell'esame
 	 * @param _raccomandazione le raccomandazioni pre-esame
 	 * @param _tipoEsame il tipo delle'esame (D = diagnostico, P = periodico)
@@ -89,6 +89,48 @@ public class Esame implements Serializable
 		sogliaMax = _sogliaMax;
 		sogliaMin = _sogliaMin;
 		prenotato = ESAME_PRENOTATO;
+		esamePrenotato = new ArrayList <String>();
+	}
+	
+	/**
+	 * COSTRUTTORE (con prenotato inizializzato a null)
+	 * @param _nomeEsame il nome dell'esame
+	 * @param _raccomandazione le raccomandazioni pre-esame
+	 * @param _tipoEsame il tipo delle'esame (D = diagnostico, P = periodico)
+	 * @param _giorno il giorno in cui deve essere fatto l'esame
+	 * @param _mese il mese in ciui fare l'esame
+	 * @param _anno l'anno in cui fare l'esame
+	 * @param _ora l'ora delle'esame
+	 * @param _minuti i minuti dell'esame
+	 * @param _ospedale l'ospedale dove viene effettuato l'esame
+	 * @param _viaEsame la via dove viene svolto l'esame
+	 * @param _comuneEsame il comune di dove viene svolto l'esame
+	 * @param _provinciaEsame la provincia del comune
+	 * @param _sogliaMax la soglia max per un esito misurabile
+	 * @param _sogliaMin la soglia minima per un esito misurabile
+	 * @param _prenotato e' null se l'esame non e' stato prenotato
+	 */
+	public Esame (String _nomeEsame, String _raccomandazione, char _tipoEsame, int _giorno, int _mese, int _anno, int _ora, int _minuti, String _ospedale, String _viaEsame, String _comuneEsame, String _provinciaEsame, double _sogliaMax, double _sogliaMin, String _prenotato)
+	{
+		nomeEsame = _nomeEsame;
+		raccomandazione = _raccomandazione;
+		tipoEsame = _tipoEsame;
+		giorno = _giorno;
+		mese = _mese;
+		anno = _anno;
+		ora = _ora;
+		minuti = _minuti;
+		ospedale = _ospedale;
+		viaEsame = _viaEsame;
+		comuneEsame = _comuneEsame;
+		provinciaEsame = _provinciaEsame;
+		esitoPeriodico = new ArrayList <Double>();
+		esitoDiagnostico = new ArrayList <String>();
+		esamePeriodico = new ArrayList <String>();
+		esameDiagnostico = new ArrayList <String>();
+		sogliaMax = _sogliaMax;
+		sogliaMin = _sogliaMin;
+		prenotato = _prenotato;
 		esamePrenotato = new ArrayList <String>();
 	}
 	
@@ -151,6 +193,7 @@ public class Esame implements Serializable
 	 * METODO per aggiungere l'esito di un esame periodico
 	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunti) per poter aggiungere l'esito
 	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
+	 * @return il nuovo esame periodico con le relative caratteristiche
 	 */
 	public Esame aggiungiEsitoPeriodico(String esame, double esito)
 	{
@@ -173,13 +216,14 @@ public class Esame implements Serializable
 			}
 		}// for
 		
-		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 	}// metodo
 	
 	/**
 	 * METODO per aggiungere l'esito di un esame diagnostico
 	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunto) per poter aggiungere l'esito
 	 * @param esito il vaolre dell'esito come stringa (si tratta di un esame diagnostico)
+	 * @return il nuovo esame diagnostico con le relative caratteristiche
 	 */
 	public Esame aggiungiEsitoDiagnostico(String esame, String esito)
 	{
@@ -202,7 +246,7 @@ public class Esame implements Serializable
 			}
 		}// for
 		
-		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
 	}// metodo
 	
 	/**
@@ -315,5 +359,4 @@ public class Esame implements Serializable
 		
 		return media;
 	}
-
 }
