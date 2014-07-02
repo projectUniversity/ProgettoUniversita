@@ -67,9 +67,8 @@ public class Esame implements Serializable
 	 * @param _provinciaEsame la provincia del comune
 	 * @param _sogliaMax la soglia max per un esito misurabile
 	 * @param _sogliaMin la soglia minima per un esito misurabile
-	 * @param _prenotato se l'esame e' stato prenotato
 	 */
-	public Esame (String _nomeEsame, String _raccomandazione, char _tipoEsame, int _giorno, int _mese, int _anno, int _ora, int _minuti, String _ospedale, String _viaEsame, String _comuneEsame, String _provinciaEsame, double _sogliaMax, double _sogliaMin, String _prenotato)
+	public Esame (String _nomeEsame, String _raccomandazione, char _tipoEsame, int _giorno, int _mese, int _anno, int _ora, int _minuti, String _ospedale, String _viaEsame, String _comuneEsame, String _provinciaEsame, double _sogliaMax, double _sogliaMin)
 	{
 		nomeEsame = _nomeEsame;
 		raccomandazione = _raccomandazione;
@@ -89,7 +88,7 @@ public class Esame implements Serializable
 		esameDiagnostico = new ArrayList <String>();
 		sogliaMax = _sogliaMax;
 		sogliaMin = _sogliaMin;
-		prenotato = _prenotato;
+		prenotato = ESAME_PRENOTATO;
 		esamePrenotato = new ArrayList <String>();
 	}
 	
@@ -174,7 +173,7 @@ public class Esame implements Serializable
 			}
 		}// for
 		
-		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
 	}// metodo
 	
 	/**
@@ -203,7 +202,7 @@ public class Esame implements Serializable
 			}
 		}// for
 		
-		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin, prenotato);
+		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
 	}// metodo
 	
 	/**
@@ -294,7 +293,7 @@ public class Esame implements Serializable
 		str.append(String.format(ELENCO_PRENOTATI));
 		for(int i=0; i<esamePrenotato.size(); i++)
 		{
-			str.append(String.format("\n" + "%s", esamePrenotato.get(i)));
+			str.append("\n" + esamePrenotato.get(i));
 		}
 
 		return str.toString();
