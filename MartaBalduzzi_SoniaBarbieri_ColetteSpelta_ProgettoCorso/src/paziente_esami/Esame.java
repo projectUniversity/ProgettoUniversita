@@ -188,7 +188,7 @@ public class Esame implements Serializable
 			if(esameDoppio(esame))
 			{
 				if(esame.equalsIgnoreCase(esameDiagnostico.get(i)))
-				{
+				{ 
 					prenotato = null;
 					esitoDiagnostico.add(esito);
 				}
