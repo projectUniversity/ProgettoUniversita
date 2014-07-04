@@ -20,7 +20,7 @@ import it.unibs.fp.mylib.*;
 
 public class TestUtilita 
 {
-	@Test
+	/*@Test
 	public void leggiInteroTest() throws Exception 
 	{
 		int x;
@@ -62,7 +62,7 @@ public class TestUtilita
 		String stringa;
 		stringa = InputDati.leggiStringaNonVuota("Premi invio poi digita ciao e premi invio");
 		assertEquals("ciao", stringa);
-	}
+	}*/
 
 	@Test
 	public void controlloCfTest() throws Exception
