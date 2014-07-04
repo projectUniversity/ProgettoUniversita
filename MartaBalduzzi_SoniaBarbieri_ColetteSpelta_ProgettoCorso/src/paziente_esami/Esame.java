@@ -20,13 +20,7 @@ public class Esame implements Serializable
 	public final static String ESAME_PRENOTATO = "PRENOTATO";
 	public final static char PERIODICO = 'P';
 	public final static char DIAGNOSTICO = 'D';
-	public final static String ESAME_P_ESITI = "Esame: %s      Esito: %f  svolto in data %d/%d/%d";
-	public final static String ESAME_D = "Esame %s     svolto in data %d/%d/%d";
-	public final static String RACCOMANDAZIONI = "Esame: %s       Raccomandazioni: %s";
-	public final static String ESITI_P_DATA_ORA = "Esito: %1.2f    svolto in data %d/%d/%d   alle ore %d:%d  a %s in via %s, %s (%s)";
-	public final static String MEDIA = "La media dei valori registrati e' %1.2f";
-	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
-	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d   a %s in via %s, %s (%s)";
+	public final static String SOGLIA = "Il valore %1.2f registrato in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
 	
 	//ATTRIBUTI
 	private String nomeEsame;
@@ -97,41 +91,43 @@ public class Esame implements Serializable
 	 */
 	public void aggiungiEsame(ArrayList<Esame> nuovoEsame)
 	{
-		 if(prenotato == ESAME_PRENOTATO)
+		if(prenotato == ESAME_PRENOTATO)
+		{
+			esamePrenotato.addAll(nuovoEsame);
+		}
+		
+		for(int i=0; i<esamePrenotato.size(); i++)
+		{
+			if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
 			{
-				esamePrenotato.addAll(nuovoEsame);
+				esameDiagnostico.add(esamePrenotato.get(i));
 			}
-		 for(int i=0;i<esamePrenotato.size();i++)
-		 {
-			 if((esamePrenotato.get(i).tipoEsame)==DIAGNOSTICO)
-			 {
-				 esameDiagnostico.add(esamePrenotato.get(i));
-			 }
-			 else
-			 {
-				 esamePeriodico.add(esamePrenotato.get(i));
-			 }
-		 }
+		
+			else
+			{
+				esamePeriodico.add(esamePrenotato.get(i));
+			}
+		}
 	}
-	
 	
 	/**
 	 * METODO per aggiungere l'esito di un esame periodico
-	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunti) per poter aggiungere l'esito
-	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
-	 * @return il nuovo esame periodico con le relative caratteristiche
+	 * @param esame il nome dell'esame da ricercare nell'elenco
+	 * @param esitoP il valore dell'esito in virgola mobile se si tratta di un esame periodico
+	 * @param esitoD il valore dell'esito come una stringa se si tratta di un esame diagnostico
 	 */
 	public void aggiungiEsito(String esame, double esitoP, String esitoD)
 	{
-		for(int i=0;i<esamePrenotato.size();i++)
+		for(int i=0; i<esamePrenotato.size(); i++)
 		{
 			if((esamePrenotato.get(i).nomeEsame).equalsIgnoreCase(esame))
 			{
-				if((esamePrenotato.get(i).tipoEsame)==DIAGNOSTICO)
+				if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
 				{
 					esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
 					esamePrenotato.get(i).prenotato=null;
 				}
+				
 				else
 				{
 					esamePrenotato.get(i).esitoPeriodico.add(esitoP);
@@ -190,17 +186,18 @@ public class Esame implements Serializable
 	public String toStringSintetico()
 	{
 		StringBuffer str = new StringBuffer();
-		for(int i=0; i<esamePeriodico.size(); i++)
+		
+		if(tipoEsame == PERIODICO)
 		{
-			for(int j=0; j<esitoPeriodico.size(); j++)
-			{
-				str.append(String.format(ESAME_P_ESITI, esamePeriodico.get(i), esitoPeriodico.get(j), giorno, mese, anno));
-			}
+			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n" +
+												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + esitoPeriodico + "\n" +
+												"Svolto in data " + giorno + "-" + mese + "-" + anno));
 		}
 		
-		for(int i=0; i<esameDiagnostico.size(); i++)
+		else if(tipoEsame == DIAGNOSTICO)
 		{
-			str.append(String.format(ESAME_D, esameDiagnostico.get(i), giorno, mese, anno));
+			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n" +
+												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + esitoDiagnostico));
 		}	
 		
 		return str.toString();
@@ -213,14 +210,27 @@ public class Esame implements Serializable
 	public String toStringCompleto()
 	{
 		StringBuffer str = new StringBuffer();
-		if(tipoEsame==PERIODICO)
+		
+		if(tipoEsame == PERIODICO)
 		{
-			str.append(BelleStringhe.incornicia(RACCOMANDAZIONI+nomeEsame+raccomandazione+"\n"+ESITI_P_DATA_ORA+esitoPeriodico+giorno+mese+anno+ora+minuti+ospedale+viaEsame+comuneEsame+provinciaEsame+MEDIA+mediaEsiti() ));
-			if(verificaSoglia()){
-				str.append(String.format("\n"+SOGLIA,esitoPeriodico,giorno,mese,anno,sogliaMin,sogliaMax));
+			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n"+
+												"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
+												"Esito: " + esitoPeriodico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
+												"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")" + "\n" +
+												"La media degli esiti e': " + mediaEsiti()));
+			if(verificaSoglia())
+			{
+				str.append(String.format("\n" + SOGLIA, esitoPeriodico, giorno, mese, anno, sogliaMin, sogliaMax));
 			}
 		}
 		
+		else if(tipoEsame == DIAGNOSTICO)
+		{
+			str.append(BelleStringhe.incornicia("DATI ESAME DIAGNOSTICO" + "\n" +
+												"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
+												"Esito: " + esitoDiagnostico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
+												"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")"));
+		}
 		
 		return str.toString();
 	}
@@ -244,6 +254,7 @@ public class Esame implements Serializable
 	public double mediaEsiti()
 	{
 		double somma = 0;
+		
 		for(int i=0; i<esitoPeriodico.size(); i++)
 		{
 			somma = somma + esitoPeriodico.get(i);
@@ -254,6 +265,10 @@ public class Esame implements Serializable
 		return media;
 	}
 	
+	/**
+	 * METODO per prendere il nome di un esame
+	 * @return il nome del'esame
+	 */
 	public String getNomeEsame()
 	{
 		return nomeEsame;
