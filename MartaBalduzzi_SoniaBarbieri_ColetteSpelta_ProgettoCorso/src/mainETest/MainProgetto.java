@@ -52,9 +52,10 @@ public class MainProgetto {
 	public static final String MSG_VIA = "Specificare la via della struttura sopracitata: ";
 	public static final String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
 	public static final String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
-	public static final String MSG_ESITO = "Inserire l'esito dell'esame: ";
+	public static final String MSG_ESITO = "Inserire l'esito dell'esame(null se periodico,0 se diagnostico): ";
 	public static final String SOGLIA_MAX = "Inserire il massimo valore che l'esame può presentare (0 se diagnostico): ";
 	public static final String SOGLIA_MIN = "Inserire il minimo valore che l'esame deve avere (0 se diagnostico): ";
+	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
 	
 	public static final String NOME="Inserisci il nome: ";
 	public static final String COGNOME="Inserisci il cognome: ";
@@ -130,6 +131,7 @@ public class MainProgetto {
 	 */
 	public static void main(String[] args) throws EOFException{
 		System.out.println(BENVENUTO);
+		
 		//caricamento del contenuto del file da contenitore
 		if(salvataggio.exists()){
 			try{
@@ -137,30 +139,25 @@ public class MainProgetto {
 				if(contenitore==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				//System.out.println("Il contenitore contiene le informazioni");
 				utente=contenitore.getUtente();
 				System.out.println(utente.toStringSintetico());
 				if(utente==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-			//	System.out.println("Il contenitore contiene le informazioni");
 				malattia=contenitore.getMalattia();
 				if(malattia==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-			//	System.out.println("Il contenitore contiene le informazioni");
 				esam=contenitore.getEsame();
 				if(esam==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-				//System.out.println("Il contenitore contiene le informazioni");
 			}
 			catch(ClassCastException e){
 				System.out.println("Errore di cast");
 			}
 			finally{
 				if(utente!=null&&malattia!=null&&esam!=null){
-					//System.out.println(MSG_OK_CARICAMENTO);
 					caricato=true;
 				}
 			}
@@ -173,49 +170,29 @@ public class MainProgetto {
 		do{
 			scelta=myMenu.seleziona();
 			switch(scelta){
-			/*case 1:
-				System.out.println();
-				utente=creaUtente();
-				utente.controlloCf();
-				
-			break;*/
 			case 1:
 				System.out.println();
 				esam.add(nuovoEsame());
+				esito.aggiungiEsame(esam);
 				
-				//new Esame(InputDati.leggiStringaNonVuota("Inserisci l'esame"),InputDati.leggiStringaNonVuota("Raccomandazioni"),InputDati.leggiChar("tipo esame"),InputDati.leggiIntero("giorno"),InputDati.leggiIntero("mese"),InputDati.leggiIntero("anno"),InputDati.leggiIntero("ora"),InputDati.leggiIntero("min"),InputDati.leggiStringaNonVuota("ospedale"),InputDati.leggiStringaNonVuota("via ospedale"),InputDati.leggiStringaNonVuota("comune ospedale"),InputDati.leggiStringaNonVuota("provincia ospedale"),InputDati.leggiDouble("soglia max"),InputDati.leggiDouble("soglia min"),InputDati.leggiStringaNonVuota("prenotato"));
 			break;
 			case 2:
 				System.out.println();
-			//	ServizioFile.caricaSingoloOggetto(salvataggioEsame);
+				System.out.println(ELENCO_PRENOTATI);
 				for(int i=0;i<esam.size();i++){
 					System.out.println(esam.get(i).toStringPrenotati());
 				}
 				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
-				if(tipoEsame == Esame.PERIODICO){
-					double esitoP=InputDati.leggiDouble(MSG_ESITO);
-					for(int i=0;i<esam.size();i++){
-						esam.get(i).aggiungiEsitoPeriodico(nomeEsame, esitoP);
-					}
-				}
-				else{
-					if(tipoEsame == Esame.DIAGNOSTICO){
-						String esitoD=InputDati.leggiStringa(MSG_ESITO);
-						for(int i=0;i<esam.size();i++){
-							esam.get(i).aggiungiEsitoDiagnostico(nomeEsame, esitoD);
-						}
-					}
-				}
-				//ServizioFile.salvaSingoloOggetto(salvataggioEsame, esito);	
+				double esitoP=InputDati.leggiDouble(MSG_ESITO);
+				String esitoD=InputDati.leggiStringa(MSG_ESITO);
+				esito.aggiungiEsito(nomeEsame, esitoP,esitoD);
 			break;
 			case 3:
 				System.out.println();
 				malattia.add(nuovaMalattia());
-				//ServizioFile.salvaSingoloOggetto(salvataggioMalattia, malattia);
 			break;
 			case 4:
 				System.out.println();
-				//malattia=getMalattia();
 				for(int i=0;i<malattia.size();i++){
 					System.out.println(malattia.get(i).toStringSintetico());
 				}
@@ -227,7 +204,6 @@ public class MainProgetto {
 			break;
 			case 5:
 				System.out.println();
-				StringBuffer frase=new StringBuffer();
 				String cognome=utente.getCognome();
 				String nome=utente.getNome();
 				
@@ -242,10 +218,6 @@ public class MainProgetto {
 				for(int i=0;i<esam.size();i++){
 					System.out.println(String.format(esam.get(i).toStringSintetico(),"/n","/n",esam.get(i).toStringPrenotati()));
 				}
-				//cartSan=new CartellaSanitaria();
-				//utente=getUtente();
-				//System.out.println(utente.toStringCompleto());
-				//System.out.println(cartSan.toString());
 			break;
 			default:
 				//salvataggio del contenitore
@@ -253,7 +225,6 @@ public class MainProgetto {
 				if(contenitore==null){
 					System.out.println("Il contenitore è settato a null");
 				}
-			//	System.out.println("Il contenitore contiene le informazioni");
 				ServizioFile.salvaSingoloOggetto(salvataggio, contenitore);
 				System.out.println();
 				System.out.println("Grazie per aver utilizzato il nostro programma!");
@@ -289,7 +260,6 @@ public class MainProgetto {
 		telefono=InputDati.leggiStringaNonVuota(MSG_TELEFONO);
 		
 		Paziente paziente=new Paziente(nome, cognome, sesso, peso, altezza, anno, mese, giorno, codF, fattoreRh, gruppoS, via, comune, provincia, comuneN, provinciaN, cap, telefono);
-	//	ServizioFile.salvaSingoloOggetto(salvataggioUtente, paziente);
 		return paziente;
 	}
 	
@@ -325,6 +295,9 @@ public class MainProgetto {
 		nomeEsame=InputDati.leggiStringaNonVuota(NOME_ESAME);
 		raccomandazione=InputDati.leggiStringa(MSG_RACC);
 		tipoEsame=InputDati.leggiChar(MSG_TIPO);
+		if(tipoEsame!='d'||tipoEsame!='p'){
+			tipoEsame=InputDati.leggiChar(MSG_TIPO);
+		}
 		giornoE=InputDati.leggiIntero(MSG_GIORNO, 1, 31);
 		meseE=InputDati.leggiIntero(MSG_MESE, 1, 12);
 		annoE=InputDati.leggiIntero(MSG_ANNO);
@@ -338,53 +311,6 @@ public class MainProgetto {
 		sogliaMin=InputDati.leggiDouble(SOGLIA_MIN); 
 		
 		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
-	//	ServizioFile.salvaSingoloOggetto(salvataggioEsame, esame);
 		return esame;
 	}
-	
-	/*public static ArrayList<Malattia> getMalattia(){
-		ArrayList <Malattia> malattia=(ArrayList<Malattia>)ServizioFile.caricaSingoloOggetto(salvataggioMalattia);
-		/*Malattia malattiaL=null;
-		
-		for(int i=0;i<malattia.size();i++){
-			String nome=malattia.get(i).getNomeMalattia();
-			int giornoI=malattia.get(i).getGiornoInizio();
-			int meseI=malattia.get(i).getMeseInizio();
-			int annoI=malattia.get(i).getAnnoInizio();
-			int giornoF=malattia.get(i).getGiornoFine();
-			int meseF=malattia.get(i).getMeseFine();
-			int annoF=malattia.get(i).getAnnoFine();
-			String sintomo=malattia.get(i).getSintomo();
-			String diagnosi=malattia.get(i).getDiagnosi();
-			String esame=malattia.get(i).getEsame();
-			String terapia=malattia.get(i).getTerapia();
-			malattiaL=new Malattia(nome,giornoI,meseI,annoI,giornoF,meseF,annoF,sintomo,diagnosi,esame,terapia);
-		}
-		malattia.add(malattiaL);*/
-		
-		/*return malattia;
-	}
-	
-	public static Paziente getUtente(){
-		utente=(Paziente)ServizioFile.caricaSingoloOggetto(salvataggioUtente);
-		/*nome=utenteR.getNome();
-		cognome=utenteR.getCognome();
-		fattoreRh=utenteR.getFattoreRh();
-		gruppoS=utenteR.getGruppoSanguigno();
-		via=utenteR.getViaCasa();
-		comune=utenteR.getComuneCasa();
-		comuneN=utenteR.getComuneNascita();
-		provincia=utenteR.getProvinciaCasa();
-		provinciaN=utenteR.getProvinciaNascita();
-		peso=utenteR.getPeso();
-		codF=utenteR.getCodiceFiscale();
-		telefono=utenteR.getTelefono();
-		sesso=utenteR.getSesso();
-		altezza=utenteR.getAltezza();
-		anno=utenteR.getAnno();
-		mese=utenteR.getMese();
-		giorno=utenteR.getGiorno();
-		cap=utenteR.getCapCasa();*/
-	/*	return utente;
-	}*/
 }

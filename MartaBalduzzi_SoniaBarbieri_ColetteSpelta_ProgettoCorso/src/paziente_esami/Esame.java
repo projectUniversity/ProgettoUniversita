@@ -26,7 +26,6 @@ public class Esame implements Serializable
 	public final static String MEDIA = "La media dei valori registrati e' %1.2f";
 	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
 	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d   a %s in via %s, %s (%s)";
-	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
 	public final static String MSG_PRESENTE = "L'esame e' gia' presente in elenco";
 	
 	//ATTRIBUTI
@@ -44,12 +43,12 @@ public class Esame implements Serializable
 	private String provinciaEsame;
 	private ArrayList <Double> esitoPeriodico;
 	private ArrayList <String> esitoDiagnostico;
-	private ArrayList <String> esamePeriodico;
-	private ArrayList <String> esameDiagnostico;
+	private ArrayList <Esame> esamePeriodico;
+	private ArrayList <Esame> esameDiagnostico;
 	private double sogliaMax;
 	private double sogliaMin;
 	private String prenotato;
-	private ArrayList <String> esamePrenotato;
+	private ArrayList <Esame> esamePrenotato;
 	
 	/**
 	 * COSTRUTTORE
@@ -84,68 +83,37 @@ public class Esame implements Serializable
 		provinciaEsame = _provinciaEsame;
 		esitoPeriodico = new ArrayList <Double>();
 		esitoDiagnostico = new ArrayList <String>();
-		esamePeriodico = new ArrayList <String>();
-		esameDiagnostico = new ArrayList <String>();
+		esamePeriodico = new ArrayList <Esame>();
+		esameDiagnostico = new ArrayList <Esame>();
 		sogliaMax = _sogliaMax;
 		sogliaMin = _sogliaMin;
 		prenotato = ESAME_PRENOTATO;
-		esamePrenotato = new ArrayList <String>();
+		esamePrenotato = new ArrayList <Esame>();
 	}
 	
 	/**
 	 * METODO per aggiungere un esame alla lista degli esami diagnostici o di quelli periodici oppure di quelli prenotati
 	 * @param il nuovo esame che aggiungo alla lista corrispondente
 	 */
-	public void aggiungiEsame(String nuovoEsame)
+	public void aggiungiEsame(ArrayList<Esame> nuovoEsame)
 	{
-		if(tipoEsame == DIAGNOSTICO && prenotato == null)
-		{
-			esamePrenotato.remove(nuovoEsame); //il nuovo esame viene rimosso dalla lista dei prenotati quando viene aggiunto l'esito
-			esameDiagnostico.add(nuovoEsame);
-		}
-		
-		else if(tipoEsame == PERIODICO && prenotato == null)
-		{
-			esamePrenotato.remove(nuovoEsame); //il nuovo esame viene rimosso dalla lista dei prenotati quando viene aggiunto l'esito
-			esamePeriodico.add(nuovoEsame);
-		}
-		else if(prenotato == ESAME_PRENOTATO)
-		{
-			esamePrenotato.add(nuovoEsame);
-		}
+		 if(prenotato == ESAME_PRENOTATO)
+			{
+				esamePrenotato.addAll(nuovoEsame);
+			}
+		 for(int i=0;i<esamePrenotato.size();i++)
+		 {
+			 if((esamePrenotato.get(i).tipoEsame)==DIAGNOSTICO)
+			 {
+				 esameDiagnostico.add(esamePrenotato.get(i));
+			 }
+			 else
+			 {
+				 esamePeriodico.add(esamePrenotato.get(i));
+			 }
+		 }
 	}
 	
-	/**
-	 * METODO per vedere se un esame e' gia' presente nella lista
-	 * @param nome il nome dell'esame che cerco nella lista
-	 * @return true se l'esame e' gia' presente, altrimenti false
-	 */
-	public boolean esameDoppio(String nome)
-	{
-		if(tipoEsame == PERIODICO)
-		{
-			for(String esame: esamePeriodico)
-			{
-				if(nome.equalsIgnoreCase(esame))
-				{
-					return true;
-				}
-			}
-		}
-		
-		else if(tipoEsame == DIAGNOSTICO)
-		{
-			for(String esame: esameDiagnostico)
-			{
-				if(nome.equalsIgnoreCase(esame))
-				{
-					return true;
-				}
-			}
-		}
-		
-		return false;
-	}
 	
 	/**
 	 * METODO per aggiungere l'esito di un esame periodico
@@ -153,9 +121,25 @@ public class Esame implements Serializable
 	 * @param esito il valore dell'esito in virgola mobile (si tratta di un esame periodico)
 	 * @return il nuovo esame periodico con le relative caratteristiche
 	 */
-	public Esame aggiungiEsitoPeriodico(String esame, double esito)
+	public void aggiungiEsito(String esame, double esitoP, String esitoD)
 	{
-		for(int i=0; i<esamePeriodico.size(); i++)
+		for(int i=0;i<esamePrenotato.size();i++)
+		{
+			if((esamePrenotato.get(i).nomeEsame).equalsIgnoreCase(esame))
+			{
+				if((esamePrenotato.get(i).tipoEsame)==DIAGNOSTICO)
+				{
+					esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
+					esamePrenotato.get(i).prenotato=null;
+				}
+				else
+				{
+					esamePrenotato.get(i).esitoPeriodico.add(esitoP);
+					esamePrenotato.get(i).prenotato=null;
+				}
+			}
+		}
+		/*for(int i=0; i<esamePeriodico.size(); i++)
 		{
 			if(esameDoppio(esame))
 			{	
@@ -172,39 +156,9 @@ public class Esame implements Serializable
 				aggiungiEsame(esame);
 				esitoPeriodico.add(esito);
 			}
-		}// for
+		}// for*/
 		
-		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
-	}// metodo
-	
-	/**
-	 * METODO per aggiungere l'esito di un esame diagnostico
-	 * @param esame il nome dell'esame da ricercare nell'elenco (se non e' presente vi viene aggiunto) per poter aggiungere l'esito
-	 * @param esito il vaolre dell'esito come stringa (si tratta di un esame diagnostico)
-	 * @return il nuovo esame diagnostico con le relative caratteristiche
-	 */
-	public Esame aggiungiEsitoDiagnostico(String esame, String esito)
-	{
-		for(int i=0; i<esameDiagnostico.size(); i++)
-		{
-			if(esameDoppio(esame))
-			{
-				if(esame.equalsIgnoreCase(esameDiagnostico.get(i)))
-				{ 
-					prenotato = null;
-					esitoDiagnostico.add(esito);
-				}
-			}
-			
-			else
-			{
-				prenotato = null;
-				aggiungiEsame(esame);
-				esitoDiagnostico.add(esito);
-			}
-		}// for
-		
-		return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
+		//return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
 	}// metodo
 	
 	/**
@@ -292,11 +246,7 @@ public class Esame implements Serializable
 	public String toStringPrenotati()
 	{
 		StringBuffer str = new StringBuffer();
-		str.append(String.format(ELENCO_PRENOTATI));
-		for(int i=0; i<esamePrenotato.size(); i++)
-		{
-			str.append("\n" + esamePrenotato.get(i));
-		}
+		str.append("\n" + nomeEsame);
 
 		return str.toString();
 	}
@@ -316,5 +266,10 @@ public class Esame implements Serializable
 		double media = somma/(esitoPeriodico.size() + 1);
 		
 		return media;
+	}
+	
+	public String getNomeEsame()
+	{
+		return nomeEsame;
 	}
 }
