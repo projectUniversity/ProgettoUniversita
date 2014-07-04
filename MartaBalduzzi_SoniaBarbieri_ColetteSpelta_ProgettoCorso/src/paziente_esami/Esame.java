@@ -1,5 +1,7 @@
 package paziente_esami;
 
+import it.unibs.fp.mylib.BelleStringhe;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -18,7 +20,6 @@ public class Esame implements Serializable
 	public final static String ESAME_PRENOTATO = "PRENOTATO";
 	public final static char PERIODICO = 'P';
 	public final static char DIAGNOSTICO = 'D';
-	public final static String MSG_ASSENTE = "L'esame non e' presente nella lista";
 	public final static String ESAME_P_ESITI = "Esame: %s      Esito: %f  svolto in data %d/%d/%d";
 	public final static String ESAME_D = "Esame %s     svolto in data %d/%d/%d";
 	public final static String RACCOMANDAZIONI = "Esame: %s       Raccomandazioni: %s";
@@ -26,7 +27,6 @@ public class Esame implements Serializable
 	public final static String MEDIA = "La media dei valori registrati e' %1.2f";
 	public final static String SOGLIA = "Il valore %1.2f registrao in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
 	public final static String ESITO_D_DATA_ORA = "Esito: %s    svolto in data %d/%d/%d alle ore %d:%d   a %s in via %s, %s (%s)";
-	public final static String MSG_PRESENTE = "L'esame e' gia' presente in elenco";
 	
 	//ATTRIBUTI
 	private String nomeEsame;
@@ -165,7 +165,7 @@ public class Esame implements Serializable
 	 * METODO he verifica se il valore di un esame e' minore del valore minimo consentito o maggiore di quello massimo
 	 * @return true se l'esito di un esame e' minore o maggiore degli estremi, altrimenti false
 	 */
-	public boolean VerificaSoglia()
+	public boolean verificaSoglia()
 	{
 		for(int i=0; i<esitoPeriodico.size(); i++)
 		{
@@ -213,28 +213,14 @@ public class Esame implements Serializable
 	public String toStringCompleto()
 	{
 		StringBuffer str = new StringBuffer();
-		if(tipoEsame == PERIODICO)
+		if(tipoEsame==PERIODICO)
 		{
-			str.append(String.format(RACCOMANDAZIONI, nomeEsame, raccomandazione));
-			for(int i=0; i<esitoPeriodico.size(); i++)
-			{
-				str.append(String.format(ESITI_P_DATA_ORA, esitoPeriodico.get(i), giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame));
-				str.append(String.format("\n" + MEDIA, mediaEsiti()));
-				if(VerificaSoglia())
-				{
-					str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
-				}// if interno
-			}// for
-		}// if esterno
-		
-		if(tipoEsame == DIAGNOSTICO)
-		{
-			str.append(String.format(RACCOMANDAZIONI, nomeEsame, raccomandazione));
-			for(int i=0; i<esitoDiagnostico.size(); i++)
-			{
-				str.append(String.format("\n" + ESITO_D_DATA_ORA, esitoDiagnostico.get(i), giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame));
+			str.append(BelleStringhe.incornicia(RACCOMANDAZIONI+nomeEsame+raccomandazione+"\n"+ESITI_P_DATA_ORA+esitoPeriodico+giorno+mese+anno+ora+minuti+ospedale+viaEsame+comuneEsame+provinciaEsame+MEDIA+mediaEsiti() ));
+			if(verificaSoglia()){
+				str.append(String.format("\n"+SOGLIA,esitoPeriodico,giorno,mese,anno,sogliaMin,sogliaMax));
 			}
 		}
+		
 		
 		return str.toString();
 	}

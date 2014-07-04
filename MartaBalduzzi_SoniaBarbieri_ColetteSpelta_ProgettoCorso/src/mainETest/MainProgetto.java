@@ -167,10 +167,8 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				visita=nuovoEsame();
 				esam.add(nuovoEsame());
 				visita.aggiungiEsame(esam);
-				
 			break;
 			case 2:
 				System.out.println();
@@ -178,6 +176,8 @@ public class MainProgetto {
 				for(int i=0;i<esam.size();i++){
 					System.out.println(esam.get(i).toStringPrenotati());
 				}
+				System.out.println();
+				System.out.println(CORNICE);
 				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
 				double esitoP=InputDati.leggiDouble(MSG_ESITO);
 				String esitoD=InputDati.leggiStringa(MSG_ESITO);
@@ -307,7 +307,7 @@ public class MainProgetto {
 		sogliaMax=InputDati.leggiDouble(SOGLIA_MAX);
 		sogliaMin=InputDati.leggiDouble(SOGLIA_MIN); 
 		
-		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giornoE, meseE, annoE, oraE, minE, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
-		return esame;
+		visita=new Esame(nomeEsame, raccomandazione, tipoEsame, giornoE, meseE, annoE, oraE, minE, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
+		return visita;
 	}
 }
