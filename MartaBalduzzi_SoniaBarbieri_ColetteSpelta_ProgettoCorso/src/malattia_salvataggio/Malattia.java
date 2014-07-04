@@ -138,14 +138,18 @@ public class Malattia implements Serializable
 	public String toStringCompleto(String nomeDellaMalattia)
 	{
 		StringBuffer stringa = new StringBuffer();
-		stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" +
-						"Nome: " + nomeMalattia + "\n" +
-						"Data d'inizio: " + giornoInizio +"-"+ meseInizio +"-"+ annoInizio + "\n" +
-						"Data di termine: " + giornoFine +"-"+ meseFine +"-"+ annoFine + "\n" +
-						"Sintomi: " + sintomo + "\n" +
-						"Diagnosi: " + diagnosi + "\n" +
-						"Esami associati: " + esame + "\n" +
-						"Terapia da seguire: " + terapia));
+		
+		if(nomeDellaMalattia.equals(nomeMalattia))
+			{
+				stringa.append(BelleStringhe.incornicia("DATI MALATTIA" + "\n" +
+														"Nome: " + nomeMalattia + "\n" +
+														"Data d'inizio: " + giornoInizio +"-"+ meseInizio +"-"+ annoInizio + "\n" +
+														"Data di termine: " + giornoFine +"-"+ meseFine +"-"+ annoFine + "\n" +
+														"Sintomi: " + sintomo + "\n" +
+														"Diagnosi: " + diagnosi + "\n" +
+														"Esami associati: " + esame + "\n" +
+														"Terapia da seguire: " + terapia));
+			}
 		return stringa.toString();
 	}
 	
