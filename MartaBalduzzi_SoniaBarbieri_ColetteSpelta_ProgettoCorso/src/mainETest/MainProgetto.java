@@ -20,7 +20,6 @@ public class MainProgetto {
 	//COSTANTI
 	public static final String[] SCELTE={"Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
-	public static final String[] ESITO={"Inserimento esito di un esame periodico","Inserimento esito di un esame diagnostico"};
 	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli ";
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
@@ -51,7 +50,7 @@ public class MainProgetto {
 	public static final String MSG_VIA = "Specificare la via della struttura sopracitata: ";
 	public static final String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
 	public static final String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
-	public static final String MSG_ESITO = "Inserire l'esito dell'esame(null se periodico,0 se diagnostico): ";
+	public static final String MSG_ESITO = "Inserire l'esito dell'esame";
 	public static final String SOGLIA_MAX = "Inserire il massimo valore che l'esame può presentare (0 se diagnostico): ";
 	public static final String SOGLIA_MIN = "Inserire il minimo valore che l'esame deve avere (0 se diagnostico): ";
 	public final static String ELENCO_PRENOTATI = "Elenco degli esami prenotati:";
@@ -116,7 +115,7 @@ public class MainProgetto {
 	private static boolean caricato=false;
 	private static Paziente utente=null;
 	private static ArrayList<Esame> esam=new ArrayList<Esame>();
-	private static Esame visita;
+	private static Esame visita=null;
 	private static ArrayList<Malattia> malattia=new ArrayList<Malattia>();
 	
 	/**
@@ -167,7 +166,8 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
-				esam.add(nuovoEsame());
+				visita=nuovoEsame();
+				esam.add(visita);
 				visita.aggiungiEsame(esam);
 			break;
 			case 2:
@@ -179,8 +179,8 @@ public class MainProgetto {
 				System.out.println();
 				System.out.println(CORNICE);
 				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
-				double esitoP=InputDati.leggiDouble(MSG_ESITO);
-				String esitoD=InputDati.leggiStringa(MSG_ESITO);
+				double esitoP=InputDati.leggiDouble(MSG_ESITO+" periodico (0 se diagnostico):");
+				String esitoD=InputDati.leggiStringa(MSG_ESITO+" diagnostico (null se periodico):");
 				visita.aggiungiEsito(nomeEsame, esitoP,esitoD);
 			break;
 			case 3:
@@ -307,7 +307,7 @@ public class MainProgetto {
 		sogliaMax=InputDati.leggiDouble(SOGLIA_MAX);
 		sogliaMin=InputDati.leggiDouble(SOGLIA_MIN); 
 		
-		visita=new Esame(nomeEsame, raccomandazione, tipoEsame, giornoE, meseE, annoE, oraE, minE, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
-		return visita;
+		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giornoE, meseE, annoE, oraE, minE, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
+		return esame;
 	}
 }
