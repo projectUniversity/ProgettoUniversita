@@ -25,7 +25,6 @@ public class MainProgetto {
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
 	public static final String CORNICE="_____________________________________________";
-	//public static final String MSG_OK_CARICAMENTO="Caricamento riuscito";
 	public static final String MSG_NO_CARICAMENTO ="Caricamento fallito. Creazione da zero";
 	
 	public static final String MSG_NOME = "Inserire il nome della malattia: ";
@@ -85,7 +84,7 @@ public class MainProgetto {
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
 	private static double peso,altezza;
-	private static int anno,mese,giorno,cap, ora, minuti;
+	private static int anno,mese,giorno,cap;
 	
 	private static String nomeMalattia;
 	private static String sintomo;
@@ -112,16 +111,12 @@ public class MainProgetto {
 	private static double sogliaMax; 
 	private static double sogliaMin;
 	
-	private static ArrayList <Double> esitoPeriodico=new ArrayList<Double>();
-	private static ArrayList <String> esitoDiagnostico=new ArrayList<String>();
-	private static String prenotato; 
-	
 	private static File salvataggio=new File("Salvataggio.dat");
 	private static CartellaSanitaria contenitore=null;
 	private static boolean caricato=false;
 	private static Paziente utente=null;
 	private static ArrayList<Esame> esam=new ArrayList<Esame>();
-	private static Esame esito;
+	private static Esame visita;
 	private static ArrayList<Malattia> malattia=new ArrayList<Malattia>();
 	
 	/**
@@ -172,8 +167,9 @@ public class MainProgetto {
 			switch(scelta){
 			case 1:
 				System.out.println();
+				visita=nuovoEsame();
 				esam.add(nuovoEsame());
-				esito.aggiungiEsame(esam);
+				visita.aggiungiEsame(esam);
 				
 			break;
 			case 2:
@@ -185,7 +181,7 @@ public class MainProgetto {
 				String nomeEsame=InputDati.leggiStringaNonVuota(ESAME_SCELTA);
 				double esitoP=InputDati.leggiDouble(MSG_ESITO);
 				String esitoD=InputDati.leggiStringa(MSG_ESITO);
-				esito.aggiungiEsito(nomeEsame, esitoP,esitoD);
+				visita.aggiungiEsito(nomeEsame, esitoP,esitoD);
 			break;
 			case 3:
 				System.out.println();
@@ -295,9 +291,10 @@ public class MainProgetto {
 		nomeEsame=InputDati.leggiStringaNonVuota(NOME_ESAME);
 		raccomandazione=InputDati.leggiStringa(MSG_RACC);
 		tipoEsame=InputDati.leggiChar(MSG_TIPO);
-		if(tipoEsame!='d'||tipoEsame!='p'){
+		if(tipoEsame!='p'&&tipoEsame!='d'&&tipoEsame!='D'&&tipoEsame!='P'){
 			tipoEsame=InputDati.leggiChar(MSG_TIPO);
 		}
+		Character.toUpperCase(tipoEsame);
 		giornoE=InputDati.leggiIntero(MSG_GIORNO, 1, 31);
 		meseE=InputDati.leggiIntero(MSG_MESE, 1, 12);
 		annoE=InputDati.leggiIntero(MSG_ANNO);
@@ -310,7 +307,7 @@ public class MainProgetto {
 		sogliaMax=InputDati.leggiDouble(SOGLIA_MAX);
 		sogliaMin=InputDati.leggiDouble(SOGLIA_MIN); 
 		
-		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
+		Esame esame=new Esame(nomeEsame, raccomandazione, tipoEsame, giornoE, meseE, annoE, oraE, minE, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
 		return esame;
 	}
 }
