@@ -14,7 +14,7 @@ import java.util.*;
  * 
  * @author Balduzzi Marta, Barbieri Sonia, Spelta Colette
  * 
- * Classe svolta da Balduzzi Marta
+ * Classe curata da Balduzzi Marta
  *
  */
 

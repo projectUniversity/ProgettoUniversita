@@ -14,7 +14,7 @@ import it.unibs.fp.mylib.*;
  * 
  * @author Marta Balduzzi, Sonia Barbieri, Colette Spelta
  * 
- * Classe curata da Marta Balduzzi
+ * Classe curata da Balduzzi Marta
  *
  */
 
