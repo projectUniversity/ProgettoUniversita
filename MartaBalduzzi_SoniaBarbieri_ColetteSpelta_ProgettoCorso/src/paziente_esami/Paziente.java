@@ -93,7 +93,7 @@ public class Paziente implements Serializable
 	
 	/**
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
-	 * @return il codice fiscale del paziente
+	 * @return true se il codice fiscale del paziente e' corretto, false altrimenti e permette di reinserire il codice fiscale
 	 */
 	public boolean controlloCf()
 	{
@@ -109,37 +109,37 @@ public class Paziente implements Serializable
 		{
 			if(controlloLettera(codiceFiscale.substring(0, 6)) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" prime 6 lettere");
+				System.out.println(CF_SBAGLIATO + " prime 6 lettere");
 				codFGiusto=false;
 			}
 			else if(controlloNumero(codiceFiscale.substring(6, 8)) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" 7,8 numeri");
+				System.out.println(CF_SBAGLIATO + " 7° e/o 8° numero");
 				codFGiusto=false;
 			}
 			else if(controlloLettera(codiceFiscale.substring(8, 9)) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" 9 lettera");
+				System.out.println(CF_SBAGLIATO + " 9° lettera");
 				codFGiusto=false;
 			}
 			else if(controlloNumero(codiceFiscale.substring(9,11)) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" 10,11 numeri");
+				System.out.println(CF_SBAGLIATO + " 10° e/o 11° numero");
 				codFGiusto=false;
 			}
 			else if(controlloLettera(codiceFiscale.substring(11, 12)) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" 12 lettera");
+				System.out.println(CF_SBAGLIATO + " 12° lettera");
 				codFGiusto=false;
 			}
 			else if(controlloNumero(codiceFiscale.substring(12, 15)) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" 13,14,15 numeri");
+				System.out.println(CF_SBAGLIATO + " 13° e/o 14° e/o 15° numero");
 				codFGiusto=false;
 			}
 			else if(controlloLettera(codiceFiscale.substring(15, codiceFiscale.length())) == false)
 			{
-				System.out.println(CF_SBAGLIATO+" 16 lettera");
+				System.out.println(CF_SBAGLIATO + " 16° lettera");
 				codFGiusto=false;
 			}
 			
@@ -185,13 +185,14 @@ public class Paziente implements Serializable
 	{
 		for(int i=0; i<NUMERI.length; i++)
 		{
-			for(int j=0;j<str.length();j++)
+			for(int j=0; j<str.length(); j++)
 			{
-				if(str.charAt(j)!=NUMERI[i]){
+				if(str.charAt(j) != NUMERI[i])
+				{
 					return true;
 				}
-			}
-		}
+			}// for interno
+		}// for esterno
 		
 		return false;
 	}
@@ -205,13 +206,14 @@ public class Paziente implements Serializable
 	{
 		for(int i=0; i<NUMERI.length; i++)
 		{
-			for(int j=0;j<str.length();j++)
+			for(int j=0; j<str.length(); j++)
 			{
-				if(str.charAt(j)==NUMERI[i]){
+				if(str.charAt(j) == NUMERI[i])
+				{
 					return true;
 				}
-			}
-		}
+			}// for interno
+		}// esterno
 		
 		return false;
 	}
@@ -220,7 +222,8 @@ public class Paziente implements Serializable
 	 * METODO per prendere il nome del paziente
 	 * @return il nome del paziente
 	 */
-	public String getNome(){
+	public String getNome()
+	{
 		return nome;
 	}
 	
@@ -228,7 +231,8 @@ public class Paziente implements Serializable
 	 * METODO per prendere il cognome del paziente
 	 * @return il cognome del paziente
 	 */
-	public String getCognome(){
+	public String getCognome()
+	{
 		return cognome;
 	}
 }
