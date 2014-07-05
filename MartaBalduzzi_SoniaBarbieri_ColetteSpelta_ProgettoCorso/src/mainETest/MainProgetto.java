@@ -120,7 +120,9 @@ public class MainProgetto {
 	
 	/**
 	 * Metodo main
-	 * Questo metodo richiama i vari metodi delle altre classi e fa iniziare il programma
+	 * Questo metodo richiama i vari metodi delle altre classi e fa iniziare il programma.
+	 * Prima di vedere il menu vengono inizializzati gli attributi di paziente, esame e malattia con gli oggetti presenti in file di salvataggio.
+	 * Prima di uscire dal programma gli oggetti creati vengono salvati nel file di salvataggio.
 	 * @param args
 	 */
 	public static void main(String[] args) throws EOFException{
