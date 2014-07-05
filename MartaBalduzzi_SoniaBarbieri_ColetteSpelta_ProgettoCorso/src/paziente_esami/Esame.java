@@ -108,8 +108,8 @@ public class Esame implements Serializable
 			{
 				esamePeriodico.add(esamePrenotato.get(i));
 			}
-		}
-	}
+		}// for
+	}// fine metodo
 	
 	/**
 	 * METODO per aggiungere l'esito di un esame periodico
@@ -134,10 +134,9 @@ public class Esame implements Serializable
 					esamePrenotato.get(i).esitoPeriodico.add(esitoP);
 					esamePrenotato.get(i).prenotato=null;
 				}
-			}
-		}
-		
-	}// metodo
+			}// if esterno
+		}// for
+	}// fine metodo
 	
 	/**
 	 * METODO he verifica se il valore di un esame e' minore del valore minimo consentito o maggiore di quello massimo
@@ -187,7 +186,7 @@ public class Esame implements Serializable
 	
 	/**
 	 * METODO per a visualizzazione completa degli esami
-	 * @return la stringa completa con la descrizione dell'esame
+	 * @return la stringa completa con la descrizione dell'esame periodico o diagnostico
 	 */
 	public String toStringCompleto()
 	{
@@ -206,8 +205,8 @@ public class Esame implements Serializable
 				{
 				str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
 				}
-			}
-		}
+			}// if interno
+		}// if esterno
 		
 		else if(tipoEsame == DIAGNOSTICO)
 		{
@@ -249,5 +248,4 @@ public class Esame implements Serializable
 		
 		return media;
 	}
-	
 }
