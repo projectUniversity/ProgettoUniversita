@@ -130,24 +130,12 @@ public class MainProgetto {
 		if(salvataggio.exists()){
 			try{
 				contenitore=(CartellaSanitaria)ServizioFile.caricaSingoloOggetto(salvataggio);
-				if(contenitore==null){
-					System.out.println("Il contenitore è settato a null");
-				}
 				utente=contenitore.getUtente();
 				System.out.println(utente.toStringSintetico());
-				if(utente==null){
-					System.out.println("Il contenitore è settato a null");
-				}
 				malattia=contenitore.getMalattia();
-				if(malattia==null){
-					System.out.println("Il contenitore è settato a null");
-				}
 				esam=contenitore.getEsame();
 				for(int i=0;i<esam.size();i++){
 					visita=esam.get(i);
-				}
-				if(esam==null){
-					System.out.println("Il contenitore è settato a null");
 				}
 			}
 			catch(ClassCastException e){
@@ -172,7 +160,15 @@ public class MainProgetto {
 			case 1:
 				System.out.println();
 				esam.add(nuovoEsame());
-				visita.aggiungiEsame(esam);
+				try{
+					visita.aggiungiEsame(esam);
+				}
+				catch(NullPointerException e){
+					for(int i=0;i<esam.size();i++){
+						visita=esam.get(i);
+					}
+					visita.aggiungiEsame(esam);
+				}
 			break;
 			case 2:
 				System.out.println();

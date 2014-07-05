@@ -18,7 +18,6 @@ public class Paziente implements Serializable
 	//COSTANTI
 	public final static String [] FATTORE = {"POSITIVO","NEGATIVO"};
 	public final static String [] GRUPPO = {"0","A","B","AB"};
-	public final static char [] LETTERE = {'A','B','C','D','E','F','G','H','J','K','I','L','M','N','O','P','Q','R','S','T','U','X','Y','W','V','Z'};
 	public final static char [] NUMERI = {'0','1','2','3','4','5','6','7','8','9'};
 	public final static int LUNGH_MAX_CF = 16;
 	public final static String NOME_COGNOME = "Nome: %s - Cognome: %s";
@@ -184,12 +183,11 @@ public class Paziente implements Serializable
 	 */
 	public static boolean controlloLettera(String str)
 	{
-		for(int i=0; i<LETTERE.length; i++)
+		for(int i=0; i<NUMERI.length; i++)
 		{
 			for(int j=0;j<str.length();j++)
 			{
-				if(str.charAt(j)==LETTERE[i]){
-					
+				if(str.charAt(j)!=NUMERI[i]){
 					return true;
 				}
 			}

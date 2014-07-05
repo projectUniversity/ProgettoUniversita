@@ -20,7 +20,7 @@ public class Esame implements Serializable
 	public final static String ESAME_PRENOTATO = "PRENOTATO";
 	public final static char PERIODICO = 'P';
 	public final static char DIAGNOSTICO = 'D';
-	public final static String SOGLIA = "Il valore %1.2f registrato in data %d/%d/%d non si rova entro l'intervallo di normalita' %1.2f - %1.2f";
+	public final static String SOGLIA = "Il valore %1.2f registrato in data %d/%d/%d non si trova entro l'intervallo di normalita' %1.2f - %1.2f";
 	
 	//ATTRIBUTI
 	private String nomeEsame;
@@ -43,6 +43,7 @@ public class Esame implements Serializable
 	private double sogliaMin;
 	private String prenotato;
 	private ArrayList <Esame> esamePrenotato;
+	private int i;
 	
 	/**
 	 * COSTRUTTORE
@@ -144,7 +145,7 @@ public class Esame implements Serializable
 	 */
 	public boolean verificaSoglia()
 	{
-		for(int i=0; i<esitoPeriodico.size(); i++)
+		for(i=0; i<esitoPeriodico.size(); i++)
 		{
 			if(esitoPeriodico.get(i) < sogliaMin)
 			{
@@ -201,7 +202,10 @@ public class Esame implements Serializable
 												"La media degli esiti e': " + mediaEsiti()));
 			if(verificaSoglia())
 			{
-				str.append(String.format("\n" + SOGLIA, esitoPeriodico, giorno, mese, anno, sogliaMin, sogliaMax));
+				for(;i<esitoPeriodico.size();i++)
+				{
+				str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
+				}
 			}
 		}
 		
