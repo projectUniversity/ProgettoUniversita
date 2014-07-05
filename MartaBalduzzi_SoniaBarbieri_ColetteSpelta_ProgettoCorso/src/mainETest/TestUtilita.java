@@ -20,57 +20,14 @@ import it.unibs.fp.mylib.*;
 
 public class TestUtilita 
 {
-	/*@Test
-	public void leggiInteroTest() throws Exception 
-	{
-		int x;
-		x = InputDati.leggiIntero("Digita 20 e premi invio");
-		assertEquals(20,x,0.1);
-		x = InputDati.leggiIntero("Digita una lettera/simbolo e premi invio, poi digita 20 e premi invio");
-		assertEquals(20,x,0.1);
-	}
 	
-	@Test
-	public void leggiStringaTest() throws Exception 
-	{
-		String stringa;
-		stringa=InputDati.leggiStringa("Digita ciao e premi invio");
-		assertEquals("ciao",stringa);
-	}
-	
-	@Test
-	public void leggiDoubleTest() throws Exception 
-	{
-		double x;
-		x = InputDati.leggiDouble("Digita 0,210 e premi invio");
-		assertEquals(0.210,x,0.001);
-		x = InputDati.leggiDouble("Digita una lettera/simbolo e premi invio, poi digita 0,210 e premi invio");
-		assertEquals(0.210,x,0.001);
-	}
-	
-	@Test
-	public void leggiInteroMaxMinTest() throws Exception
-	{
-		int x;
-		x = InputDati.leggiIntero("Digita 10 e premi invio, poi digita 4 e premi invio",0,5);
-		assertEquals(4,x,0.001);
-	}
-	
-	@Test
-	public void leggiStringaNonVuotaTest() throws Exception
-	{
-		String stringa;
-		stringa = InputDati.leggiStringaNonVuota("Premi invio poi digita ciao e premi invio");
-		assertEquals("ciao", stringa);
-	}*/
-
 	@Test
 	public void controlloCfTest() throws Exception
 	{
-		String codF1 = new Paziente("Pietro", "Rossi", 'M', 57, 1.78, 1986, 5, 23, "ABCDEF12G34H567I", "Positivo", "AB", "Via primo maggio", "Breno", "Brescia", "Lovere", "Bergamo", 25043, "0364123456").controlloCf();
+		boolean codF1 = new Paziente("Pietro", "Rossi", 'M', 57, 1.78, 1986, 5, 23, "ABCDEF12G34H567I", "Positivo", "AB", "Via primo maggio", "Breno", "Brescia", "Lovere", "Bergamo", 25043, "0364123456").controlloCf();
 		assertEquals(true, codF1);
 		
-		String codF2 = new Paziente("Pietro", "Rossi", 'M', 57, 1.78, 1986, 5, 23, "ABC", "Positivo", "AB", "Via primo maggio", "Breno", "Brescia", "Lovere", "Bergamo", 25043, "0364123456").controlloCf();
+		boolean codF2 = new Paziente("Pietro", "Rossi", 'M', 57, 1.78, 1986, 5, 23, "ABC", "Positivo", "AB", "Via primo maggio", "Breno", "Brescia", "Lovere", "Bergamo", 25043, "0364123456").controlloCf();
 		assertEquals(false, codF2);
 	}
 	

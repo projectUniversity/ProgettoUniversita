@@ -18,8 +18,8 @@ public class Paziente implements Serializable
 	//COSTANTI
 	public final static String [] FATTORE = {"POSITIVO","NEGATIVO"};
 	public final static String [] GRUPPO = {"0","A","B","AB"};
-	public final static String [] LETTERE = {"A","B","C","D","E","F","G","H","J","K","I","L","M","N","O","P","Q","R","S","T","U","X","Y","W","V","Z"};
-	public final static int [] NUMERI = {0,1,2,3,4,5,6,7,8,9};
+	public final static char [] LETTERE = {'A','B','C','D','E','F','G','H','J','K','I','L','M','N','O','P','Q','R','S','T','U','X','Y','W','V','Z'};
+	public final static char [] NUMERI = {'0','1','2','3','4','5','6','7','8','9'};
 	public final static int LUNGH_MAX_CF = 16;
 	public final static String NOME_COGNOME = "Nome: %s - Cognome: %s";
 	public final static String SESSO_PESO_ALTEZZA = "Sesso: %c - Peso: %1.2f - Altezza: %1.2f";
@@ -27,7 +27,7 @@ public class Paziente implements Serializable
 	public final static String DOMICILIO = "Abita in via %s a %s in provincia di %s      CAP  %d";
 	public final static String TEL_CF ="Telefono:  %s          Codice Fiscale:  %s";
 	public final static String SANGUE = "Gruppo sanguigno: %s %s";
-	public final static String CF_SBAGLIATO = "Il codice fiscale inserito non e' corretto. Rinserire il CF: ";
+	public final static String CF_SBAGLIATO = "Il codice fiscale inserito non e' corretto.";
 		
 	//ATTRIBUTI
 	private String nome;
@@ -96,55 +96,56 @@ public class Paziente implements Serializable
 	 * METODO che controlla se il codice fiscale e' composto da 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera
 	 * @return il codice fiscale del paziente
 	 */
-	public String controlloCf()
+	public boolean controlloCf()
 	{
+		boolean codFGiusto=true;
 		
 		if(codiceFiscale.length() != LUNGH_MAX_CF)
 		{
-			System.out.println(CF_SBAGLIATO);
-			codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+			System.out.println(CF_SBAGLIATO+" lunghezza");
+			codFGiusto=false;
 		}
 		
 		else
 		{
 			if(controlloLettera(codiceFiscale.substring(0, 6)) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" prime 6 lettere");
+				codFGiusto=false;
 			}
 			else if(controlloNumero(codiceFiscale.substring(6, 8)) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" 7,8 numeri");
+				codFGiusto=false;
 			}
 			else if(controlloLettera(codiceFiscale.substring(8, 9)) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" 9 lettera");
+				codFGiusto=false;
 			}
 			else if(controlloNumero(codiceFiscale.substring(9,11)) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" 10,11 numeri");
+				codFGiusto=false;
 			}
 			else if(controlloLettera(codiceFiscale.substring(11, 12)) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" 12 lettera");
+				codFGiusto=false;
 			}
 			else if(controlloNumero(codiceFiscale.substring(12, 15)) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" 13,14,15 numeri");
+				codFGiusto=false;
 			}
-			else if(controlloLettera(codiceFiscale.substring(15, codiceFiscale.length()+1)) == false)
+			else if(controlloLettera(codiceFiscale.substring(15, codiceFiscale.length())) == false)
 			{
-				System.out.println(CF_SBAGLIATO);
-				codiceFiscale = InputDati.leggiStringaNonVuota(MainProgetto.COD_FISC);
+				System.out.println(CF_SBAGLIATO+" 16 lettera");
+				codFGiusto=false;
 			}
 			
 		}//else
-		return codiceFiscale;
+		return codFGiusto;
 	}
 	
 	/**
@@ -185,9 +186,12 @@ public class Paziente implements Serializable
 	{
 		for(int i=0; i<LETTERE.length; i++)
 		{
-			while(str.equalsIgnoreCase(LETTERE[i]))
+			for(int j=0;j<str.length();j++)
 			{
-				return true;
+				if(str.charAt(j)==LETTERE[i]){
+					
+					return true;
+				}
 			}
 		}
 		
@@ -203,10 +207,11 @@ public class Paziente implements Serializable
 	{
 		for(int i=0; i<NUMERI.length; i++)
 		{
-			int num = Integer.parseInt(str);
-				while(num == NUMERI[i])
+			for(int j=0;j<str.length();j++)
 			{
-				return true;
+				if(str.charAt(j)==NUMERI[i]){
+					return true;
+				}
 			}
 		}
 		

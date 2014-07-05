@@ -143,6 +143,9 @@ public class MainProgetto {
 					System.out.println("Il contenitore è settato a null");
 				}
 				esam=contenitore.getEsame();
+				for(int i=0;i<esam.size();i++){
+					visita=esam.get(i);
+				}
 				if(esam==null){
 					System.out.println("Il contenitore è settato a null");
 				}
@@ -159,15 +162,16 @@ public class MainProgetto {
 		if (!caricato){
 			System.out.println(MSG_NO_CARICAMENTO);
 			utente=creaUtente();
-			utente.controlloCf();
+			if(!utente.controlloCf()){
+				codF=InputDati.leggiStringaNonVuota(COD_FISC);
+			}
 		}
 		do{
 			scelta=myMenu.seleziona();
 			switch(scelta){
 			case 1:
 				System.out.println();
-				visita=nuovoEsame();
-				esam.add(visita);
+				esam.add(nuovoEsame());
 				visita.aggiungiEsame(esam);
 			break;
 			case 2:
@@ -212,7 +216,7 @@ public class MainProgetto {
 					System.out.println(malattia.get(i).toStringSintetico());
 				}
 				for(int i=0;i<esam.size();i++){
-					System.out.println(String.format(esam.get(i).toStringSintetico(),"/n","/n",esam.get(i).toStringPrenotati()));
+					System.out.println(esam.get(i).toStringCompleto());
 				}
 			break;
 			default:
@@ -294,7 +298,7 @@ public class MainProgetto {
 		if(tipoEsame!='p'&&tipoEsame!='d'&&tipoEsame!='D'&&tipoEsame!='P'){
 			tipoEsame=InputDati.leggiChar(MSG_TIPO);
 		}
-		Character.toUpperCase(tipoEsame);
+		tipoEsame=Character.toUpperCase(tipoEsame);
 		giornoE=InputDati.leggiIntero(MSG_GIORNO, 1, 31);
 		meseE=InputDati.leggiIntero(MSG_MESE, 1, 12);
 		annoE=InputDati.leggiIntero(MSG_ANNO);

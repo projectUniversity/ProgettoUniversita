@@ -128,33 +128,14 @@ public class Esame implements Serializable
 					esamePrenotato.get(i).prenotato=null;
 				}
 				
-				else
+				else if((esamePrenotato.get(i).tipoEsame) == PERIODICO)
 				{
 					esamePrenotato.get(i).esitoPeriodico.add(esitoP);
 					esamePrenotato.get(i).prenotato=null;
 				}
 			}
 		}
-		/*for(int i=0; i<esamePeriodico.size(); i++)
-		{
-			if(esameDoppio(esame))
-			{	
-				if(esame.equalsIgnoreCase(esamePeriodico.get(i)))
-				{
-					prenotato = null;
-					esitoPeriodico.add(esito);
-				}
-			}
-			
-			else
-			{
-				prenotato = null;
-				aggiungiEsame(esame);
-				esitoPeriodico.add(esito);
-			}
-		}// for*/
 		
-		//return new Esame(nomeEsame, raccomandazione, tipoEsame, giorno, mese, anno, ora, minuti, ospedale, viaEsame, comuneEsame, provinciaEsame, sogliaMax, sogliaMin);
 	}// metodo
 	
 	/**
@@ -265,12 +246,4 @@ public class Esame implements Serializable
 		return media;
 	}
 	
-	/**
-	 * METODO per prendere il nome di un esame
-	 * @return il nome del'esame
-	 */
-	public String getNomeEsame()
-	{
-		return nomeEsame;
-	}
 }
