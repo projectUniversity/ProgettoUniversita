@@ -18,9 +18,10 @@ import InputSalvataggioEMenu.*;
 public class MainProgetto {
 	
 	//COSTANTI
-	public static final String[] SCELTE={"Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione della cartella sanitaria"};
+	public static final String[] SCELTE={"Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione dei dettagli di un esame a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
 	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli ";
+	public static final String ESAME_SCELTO="Digitare il nome dell'esame per visualizzare i dettagli ";
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
 	public static final String CORNICE="_____________________________________________";
@@ -79,6 +80,7 @@ public class MainProgetto {
 	private static Menu myMenu=new Menu(SCELTE);
 	private static int scelta;
 	private static String nomeMalattiaScelta;
+	private static String nomeEsameScelto;
 	
 	private static String nome, cognome, fattoreRh,gruppoS,via,comune,provincia,comuneN,provinciaN, codF, telefono;
 	private static char sesso;
@@ -202,6 +204,17 @@ public class MainProgetto {
 			break;
 			case 5:
 				System.out.println();
+				for(int i=0;i<esam.size();i++){
+					System.out.println(esam.get(i).toStringSintetico());
+				}
+				nomeEsameScelto=InputDati.leggiStringaNonVuota(ESAME_SCELTO);
+				for(int i=0;i<esam.size();i++){
+					System.out.println(esam.get(i).toStringCompleto(nomeEsameScelto));
+				}
+				
+			break;
+			case 6:
+				System.out.println();
 				String cognome=utente.getCognome();
 				String nome=utente.getNome();
 				
@@ -214,7 +227,7 @@ public class MainProgetto {
 					System.out.println(malattia.get(i).toStringSintetico());
 				}
 				for(int i=0;i<esam.size();i++){
-					System.out.println(esam.get(i).toStringCompleto());
+					System.out.println(esam.get(i).toStringSintetico());
 				}
 			break;
 			default:

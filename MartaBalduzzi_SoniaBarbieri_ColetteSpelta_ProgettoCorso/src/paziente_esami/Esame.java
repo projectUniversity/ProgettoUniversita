@@ -186,34 +186,39 @@ public class Esame implements Serializable
 	
 	/**
 	 * METODO per a visualizzazione completa degli esami
+	 * riceve il ingresso il nome dell'esame del quale vedere il dettaglio
 	 * @return la stringa completa con la descrizione dell'esame periodico o diagnostico
 	 */
-	public String toStringCompleto()
+	public String toStringCompleto(String _nomeE)
 	{
 		StringBuffer str = new StringBuffer();
 		
-		if(tipoEsame == PERIODICO)
+		if(nomeEsame.equalsIgnoreCase(_nomeE))
 		{
-			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n"+
-												"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
-												"Esito: " + esitoPeriodico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
-												"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")" + "\n" +
-												"La media degli esiti e': " + mediaEsiti()));
-			if(verificaSoglia())
+			if(tipoEsame == PERIODICO)
 			{
-				for(;i<esitoPeriodico.size();i++)
+				str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n"+
+													"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
+													"Esito: " + esitoPeriodico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
+													"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")" + "\n" +
+													"La media degli esiti e': " + mediaEsiti()));
+				if(verificaSoglia())
 				{
-				str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
-				}
-			}// if interno
-		}// if esterno
-		
-		else if(tipoEsame == DIAGNOSTICO)
-		{
-			str.append(BelleStringhe.incornicia("DATI ESAME DIAGNOSTICO" + "\n" +
-												"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
-												"Esito: " + esitoDiagnostico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
-												"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")"));
+					for(;i<esitoPeriodico.size();i++)
+					{
+					str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
+					}
+				}// if interno
+			}// if esterno
+			
+			else if(tipoEsame == DIAGNOSTICO)
+			{
+				str.append(BelleStringhe.incornicia("DATI ESAME DIAGNOSTICO" + "\n" +
+													"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
+													"Esito: " + esitoDiagnostico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
+													"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")"));
+			}
+			
 		}
 		
 		return str.toString();
