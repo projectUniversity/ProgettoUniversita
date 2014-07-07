@@ -104,7 +104,7 @@ public class Esame implements Serializable
 		
 			else
 			{
-			//	esamePeriodico.add(esamePrenotato.get(i));
+				esamePeriodico.add(esamePrenotato.get(i));
 			}
 		}// for
 	}// fine metodo
