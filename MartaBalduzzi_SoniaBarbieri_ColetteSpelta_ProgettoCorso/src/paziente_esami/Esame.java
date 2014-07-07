@@ -144,7 +144,8 @@ public class Esame implements Serializable
 	
 	/**
 	 * METODO che verifica se il valore di un esame, passato come parametro, e' minore del valore minimo consentito o maggiore di quello massimo
-	 * @return true se l'esito di un esame e' minore o maggiore degli estremi, altrimenti false
+	 * @param _esitiPeriodico e' l'esito di tipo periodico di cui voglio fare la verifica
+	 * @return true se l'esito di un esame periodico e' minore o maggiore degli estremi, altrimenti false
 	 */
 	public boolean verificaSoglia(double _esitoPeriodico)
 	{
@@ -186,7 +187,7 @@ public class Esame implements Serializable
 	
 	/**
 	 * METODO per a visualizzazione completa degli esami
-	 * riceve il ingresso il nome dell'esame del quale vedere il dettaglio
+	 * @param _nomeE e' il nome dell'esame di cui visualizzare i dettagli
 	 * @return la stringa completa con la descrizione dell'esame periodico o diagnostico
 	 */
 	public String toStringCompleto(String _nomeE)
@@ -209,8 +210,7 @@ public class Esame implements Serializable
 					{
 						str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
 					}
-				}//for
-				
+				}//for	
 			}// if del tipo esame
 			
 			if(tipoEsame == DIAGNOSTICO)
