@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="paziente_esami.Paziente" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/paziente_esami/Paziente.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="729" width="563" x="721" y="1431"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="metodi.CartellaSanitaria" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/metodi/CartellaSanitaria.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="341" x="1266" y="1202"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="paziente_esami.Esame" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/paziente_esami/Esame.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="603" width="413" x="1670" y="1431"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="it.unibs.fp.mylib.MyMenu" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/it/unibs/fp/mylib/MyMenu.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="183" x="338" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="it.unibs.fp.mylib.NumeriCasuali" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/it/unibs/fp/mylib/NumeriCasuali.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="196" x="102" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="mainETest.TestUtilita" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/mainETest/TestUtilita.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="143" x="561" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="it.unibs.fp.mylib.ServizioFile" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/it/unibs/fp/mylib/ServizioFile.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="206" x="1022" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="it.unibs.fp.mylib.EstrazioniCasuali" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/it/unibs/fp/mylib/EstrazioniCasuali.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="127" x="1268" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="it.unibs.fp.mylib.BelleStringhe" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/it/unibs/fp/mylib/BelleStringhe.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="153" x="1435" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="InputSalvataggioEMenu.Menu" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/InputSalvataggioEMenu/Menu.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="127" x="1099" y="1202"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="mainETest.MainProgetto" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/mainETest/MainProgetto.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="1989" width="184" x="1628" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="it.unibs.fp.mylib.InputDati" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/it/unibs/fp/mylib/InputDati.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="459" width="238" x="744" y="-827"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="malattia_salvataggio.Malattia" 
+    project="MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso" 
+    file="/MartaBalduzzi_SoniaBarbieri_ColetteSpelta_ProgettoCorso/src/malattia_salvataggio/Malattia.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="306" x="1324" y="1431"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="14">    
+    <bendpoint x="1068" y="1202"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="15" name="utente"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="18" name="esameDiagnostico"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="21" name="esamePeriodico"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="24" name="utente"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="27" name="esamePrenotato"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="30" name="malattia"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <bendpoint x="1679" y="1202"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="33" name="visita"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="36" name="esame"/>      
+      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <bendpoint x="1637" y="1202"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="39" name="malattia"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <bendpoint x="1658" y="1202"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="42" name="esam"/>      
+      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="45" name="myMenu"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="48" name="contenitore"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
