@@ -126,13 +126,13 @@ public class Esame implements Serializable
 				if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
 				{
 					esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
-					esamePrenotato.get(i).prenotato=null;
+					esamePrenotato.get(i).prenotato = null;
 				}
 				
 				else if((esamePrenotato.get(i).tipoEsame) == PERIODICO)
 				{
 					esamePrenotato.get(i).esitoPeriodico.add(esitoP);
-					esamePrenotato.get(i).prenotato=null;
+					esamePrenotato.get(i).prenotato = null;
 				}
 			}// if esterno
 		}// for
@@ -171,13 +171,12 @@ public class Esame implements Serializable
 		if(tipoEsame == PERIODICO)
 		{
 			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n" +
-												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + esitoPeriodico + "\n" +
-												"Svolto in data " + giorno + "-" + mese + "-" + anno));
+												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + toStringEsitiP()));
 		}
 		
 		else if(tipoEsame == DIAGNOSTICO)
 		{
-			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n" +
+			str.append(BelleStringhe.incornicia("DATI ESAME DIAGNOSTICO" + "\n" +
 												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + esitoDiagnostico));
 		}	
 		
@@ -204,21 +203,20 @@ public class Esame implements Serializable
 													"La media degli esiti e': " + mediaEsiti()));
 				if(verificaSoglia())
 				{
-					for(;i<esitoPeriodico.size();i++)
+					for(i=0; i<esitoPeriodico.size(); i++)
 					{
 					str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
 					}
-				}// if interno
-			}// if esterno
+				}// if di verificaSoglia()
+			}// if del tipo esame
 			
-			else if(tipoEsame == DIAGNOSTICO)
+			if(tipoEsame == DIAGNOSTICO)
 			{
 				str.append(BelleStringhe.incornicia("DATI ESAME DIAGNOSTICO" + "\n" +
 													"Esame: " + nomeEsame.toUpperCase() + "  Raccomandazioni: " + raccomandazione + "\n" +
 													"Esito: " + esitoDiagnostico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
 													"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")"));
 			}
-			
 		}
 		
 		return str.toString();
@@ -231,7 +229,7 @@ public class Esame implements Serializable
 	public String toStringPrenotati()
 	{
 		StringBuffer str = new StringBuffer();
-		str.append("\n" + nomeEsame);
+		str.append("\n" + nomeEsame + " (tipo esame: " + tipoEsame + ")");
 
 		return str.toString();
 	}
@@ -252,5 +250,21 @@ public class Esame implements Serializable
 		double media = somma/(esitoPeriodico.size() + 1);
 		
 		return media;
+	}
+	
+	/**
+	 * METODO per visualizzare tutti gli esiti di un esame periodico
+	 * @return la stringa descrittiva degli esiti
+	 */
+	public String toStringEsitiP()
+	{
+		StringBuffer str = new StringBuffer();
+		for(i=0; i<esitoPeriodico.size(); i++)
+		{
+			str.append(esitoPeriodico.get(i) + "\n" +
+					"Svolto in data " + giorno + "-" + mese + "-" + anno);
+		}
+		
+		return str.toString();
 	}
 }
