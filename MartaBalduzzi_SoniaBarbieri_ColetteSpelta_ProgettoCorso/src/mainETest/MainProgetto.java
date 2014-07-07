@@ -20,11 +20,11 @@ public class MainProgetto {
 	//COSTANTI
 	public static final String[] SCELTE={"Prenotazione di un nuovo esame","Inserimento dell'esito di un esame","Inserimento di una nuova malattia","Visualizzazione dei dettagli di una malattia a scelta","Visualizzazione dei dettagli di un esame a scelta","Visualizzazione della cartella sanitaria"};
 	public static final String BENVENUTO="Benvenuto nel programma della cartella sanitaria";
-	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli ";
-	public static final String ESAME_SCELTO="Digitare il nome dell'esame per visualizzare i dettagli ";
+	public static final String MALATTIA_SCELTA="Digitare il nome della malattia per visualizzare i dettagli: ";
+	public static final String ESAME_SCELTO="Digitare il nome dell'esame per visualizzare i dettagli: ";
 	public static final String ESAME_SCELTA = "Digitare il nome dell'esame per inserirne l'esito: ";
 	public static final String MSG="Questa e' la cartella sanitaria del paziente:";
-	public static final String CORNICE="_____________________________________________";
+	public static final String CORNICE="_______________________________________________________________________________________";
 	public static final String MSG_NO_CARICAMENTO ="Caricamento fallito. Creazione da zero";
 	
 	public static final String MSG_NOME = "Inserire il nome della malattia: ";
@@ -197,6 +197,7 @@ public class MainProgetto {
 				for(int i=0;i<malattia.size();i++){
 					System.out.println(malattia.get(i).toStringSintetico());
 				}
+				System.out.println(CORNICE);
 				nomeMalattiaScelta=InputDati.leggiStringaNonVuota(MALATTIA_SCELTA);
 				for(int i=0;i<malattia.size();i++){
 					System.out.println(malattia.get(i).toStringCompleto(nomeMalattiaScelta));
@@ -208,6 +209,7 @@ public class MainProgetto {
 				for(int i=0;i<esam.size();i++){
 					System.out.println(esam.get(i).toStringSintetico());
 				}
+				System.out.println(CORNICE);
 				nomeEsameScelto=InputDati.leggiStringaNonVuota(ESAME_SCELTO);
 				for(int i=0;i<esam.size();i++){
 					System.out.println(esam.get(i).toStringCompleto(nomeEsameScelto));
