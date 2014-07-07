@@ -144,7 +144,7 @@ public class Esame implements Serializable
 	}// fine metodo
 	
 	/**
-	 * METODO he verifica se il valore di un esame e' minore del valore minimo consentito o maggiore di quello massimo
+	 * METODO che verifica se il valore di un esame, passato come parametro, e' minore del valore minimo consentito o maggiore di quello massimo
 	 * @return true se l'esito di un esame e' minore o maggiore degli estremi, altrimenti false
 	 */
 	public boolean verificaSoglia(double _esitoPeriodico)
