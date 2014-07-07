@@ -118,29 +118,28 @@ public class Esame implements Serializable
 	public void aggiungiEsito(String esame, double esitoP, String esitoD)
 	{
 		boolean esitoAggiunto=false;
-		for(int i=0; i<esamePrenotato.size(); i++)
-		{
-			while(!esitoAggiunto)
+		
+			for(int i=0; i<esamePrenotato.size(); i++)
 			{
 				if((esamePrenotato.get(i).nomeEsame).equalsIgnoreCase(esame))
 				{
-					if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
+					while(!esitoAggiunto)
 					{
-						esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
-						esamePrenotato.get(i).prenotato = null;
-						esitoAggiunto=true;
-					}
-					
-					else if((esamePrenotato.get(i).tipoEsame) == PERIODICO)
-					{
-						esamePrenotato.get(i).esitoPeriodico.add(esitoP);
-						esamePrenotato.get(i).prenotato = null;
-						esitoAggiunto=true;
-					}
-				}// if esterno
-			}//while
-			
-		}// for	
+						if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
+						{
+							esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
+							esamePrenotato.get(i).prenotato = null;
+							esitoAggiunto=true;
+						}
+						if((esamePrenotato.get(i).tipoEsame) == PERIODICO)
+						{
+							esamePrenotato.get(i).esitoPeriodico.add(esitoP);
+							esamePrenotato.get(i).prenotato = null;
+							esitoAggiunto=true;
+						}
+					}// while
+				}//if esterno	
+			}//for
 	}// fine metodo
 	
 	/**
