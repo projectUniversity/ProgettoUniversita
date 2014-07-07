@@ -92,10 +92,8 @@ public class Esame implements Serializable
 	 */
 	public void aggiungiEsame(ArrayList<Esame> nuovoEsame)
 	{
-		if(prenotato == ESAME_PRENOTATO)
-		{
-			esamePrenotato.addAll(nuovoEsame);
-		}
+		
+		esamePrenotato.addAll(nuovoEsame);
 		
 		for(int i=0; i<esamePrenotato.size(); i++)
 		{
@@ -106,7 +104,7 @@ public class Esame implements Serializable
 		
 			else
 			{
-				esamePeriodico.add(esamePrenotato.get(i));
+			//	esamePeriodico.add(esamePrenotato.get(i));
 			}
 		}// for
 	}// fine metodo
@@ -119,43 +117,47 @@ public class Esame implements Serializable
 	 */
 	public void aggiungiEsito(String esame, double esitoP, String esitoD)
 	{
+		boolean esitoAggiunto=false;
 		for(int i=0; i<esamePrenotato.size(); i++)
 		{
-			if((esamePrenotato.get(i).nomeEsame).equalsIgnoreCase(esame))
+			while(!esitoAggiunto)
 			{
-				if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
+				if((esamePrenotato.get(i).nomeEsame).equalsIgnoreCase(esame))
 				{
-					esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
-					esamePrenotato.get(i).prenotato = null;
-				}
-				
-				else if((esamePrenotato.get(i).tipoEsame) == PERIODICO)
-				{
-					esamePrenotato.get(i).esitoPeriodico.add(esitoP);
-					esamePrenotato.get(i).prenotato = null;
-				}
-			}// if esterno
-		}// for
+					if((esamePrenotato.get(i).tipoEsame) == DIAGNOSTICO)
+					{
+						esamePrenotato.get(i).esitoDiagnostico.add(esitoD);
+						esamePrenotato.get(i).prenotato = null;
+						esitoAggiunto=true;
+					}
+					
+					else if((esamePrenotato.get(i).tipoEsame) == PERIODICO)
+					{
+						esamePrenotato.get(i).esitoPeriodico.add(esitoP);
+						esamePrenotato.get(i).prenotato = null;
+						esitoAggiunto=true;
+					}
+				}// if esterno
+			}//while
+			
+		}// for	
 	}// fine metodo
 	
 	/**
 	 * METODO he verifica se il valore di un esame e' minore del valore minimo consentito o maggiore di quello massimo
 	 * @return true se l'esito di un esame e' minore o maggiore degli estremi, altrimenti false
 	 */
-	public boolean verificaSoglia()
+	public boolean verificaSoglia(double _esitoPeriodico)
 	{
-		for(i=0; i<esitoPeriodico.size(); i++)
+		if(_esitoPeriodico < sogliaMin)
 		{
-			if(esitoPeriodico.get(i) < sogliaMin)
-			{
-				return true;
-			}
+			return true;
+		}
 			
-			else if(esitoPeriodico.get(i) > sogliaMax)
-			{
-				return true;
-			}
-		}// for
+		else if(_esitoPeriodico > sogliaMax)
+		{
+			return true;
+		}
 		
 		return false;
 	}// metodo
@@ -171,7 +173,7 @@ public class Esame implements Serializable
 		if(tipoEsame == PERIODICO)
 		{
 			str.append(BelleStringhe.incornicia("DATI ESAME PERIODICO" + "\n" +
-												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + toStringEsitiP()));
+												"Esame: " + nomeEsame.toUpperCase() + "  Esito: " + esitoPeriodico));
 		}
 		
 		else if(tipoEsame == DIAGNOSTICO)
@@ -201,13 +203,15 @@ public class Esame implements Serializable
 													"Esito: " + esitoPeriodico + "  Svolto in data " + giorno + "-" + mese + "-" + anno + "\n" +
 													"Alle ore " + ora + ":" + minuti + "  nella struttura " + ospedale.toUpperCase() + " in via " + viaEsame.toUpperCase() + ", " + comuneEsame.toUpperCase() + " (" + provinciaEsame.toUpperCase() + ")" + "\n" +
 													"La media degli esiti e': " + mediaEsiti()));
-				if(verificaSoglia())
+				
+				for(int i=0;i<esitoPeriodico.size();i++)
 				{
-					for(i=0; i<esitoPeriodico.size(); i++)
+					if(verificaSoglia(esitoPeriodico.get(i)))
 					{
-					str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
+						str.append(String.format("\n" + SOGLIA, esitoPeriodico.get(i), giorno, mese, anno, sogliaMin, sogliaMax));
 					}
-				}// if di verificaSoglia()
+				}//for
+				
 			}// if del tipo esame
 			
 			if(tipoEsame == DIAGNOSTICO)
@@ -250,21 +254,5 @@ public class Esame implements Serializable
 		double media = somma/(esitoPeriodico.size() + 1);
 		
 		return media;
-	}
-	
-	/**
-	 * METODO per visualizzare tutti gli esiti di un esame periodico
-	 * @return la stringa descrittiva degli esiti
-	 */
-	public String toStringEsitiP()
-	{
-		StringBuffer str = new StringBuffer();
-		for(i=0; i<esitoPeriodico.size(); i++)
-		{
-			str.append(esitoPeriodico.get(i) + "\n" +
-					"Svolto in data " + giorno + "-" + mese + "-" + anno);
-		}
-		
-		return str.toString();
 	}
 }

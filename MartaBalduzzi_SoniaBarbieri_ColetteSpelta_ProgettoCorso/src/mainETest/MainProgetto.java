@@ -48,7 +48,7 @@ public class MainProgetto {
 	public static final String MSG_MINUTI = "Inserire i minuti: ";
 	public static final String MSG_ORA = "Inserire l'ora in cui si intende fare l'esame: ";
 	public static final String MSG_OSPEDALE = "Specificare il nome della struttura in cui si intende fare l'esame: ";
-	public static final String MSG_VIA = "Specificare la via della struttura sopracitata: ";
+	public static final String MSG_VIA = "Specificare la via della struttura sopracitata: via ";
 	public static final String MSG_COMUNE = "Specificare il comune di appartenenza della struttura sopracitata: ";
 	public static final String MSG_PROVINCIA = "Specificare la provincia della struttura sopracitata: ";
 	public static final String MSG_ESITO = "Inserire l'esito dell'esame";
@@ -141,6 +141,7 @@ public class MainProgetto {
 				for(int i=0;i<esam.size();i++){
 					visita=esam.get(i);
 				}
+				visita.aggiungiEsame(esam);
 			}
 			catch(ClassCastException e){
 				System.out.println("Errore di cast");
